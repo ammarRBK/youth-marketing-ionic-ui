@@ -1,20 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="false">
+  <ion-title class="title">
+    شباب التسوق
+  </ion-title>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <div class="textalign">
+    <h2>
+      !!!مرحباً
+    </h2>
+    <p>
+    أهلاً بكم في تطبيقكم المخصص لخدمة ربات البيوت داخل مخيم الزعتري اللواتي يبحثن عن مكان لعرض منتجاتهن، لبيعها للمجتمعات داخل وخارج مخيم الزعتري
+    </p>
+    <ion-text>
+      <strong>
+        اختر إذا كنت تريد أن تستعمل تطبيقنا كبائع منتجات 
+      أو تريد أن تستعرض المنتجات
+      </strong>
+    </ion-text>
+  </div>
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-button mode="ios" expand="block" color="secondary" fill="outline" routerLink="costumers"><strong>زبون</strong></ion-button>
+    <ion-button mode="ios" expand="block" color="secondary" fill="outline" routerLink="users"><strong>بائع</strong></ion-button>
   </div>
 </ion-content>
