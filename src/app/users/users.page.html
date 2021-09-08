@@ -13,6 +13,102 @@
       الرجاء ادخال المعلومات كاملة والتأكد من أن كلمة السر تحتوي على الأقل 8 حروف وأرقام
     </ion-text>
   </div>
-  <ion-label>اسم المستخدم</ion-label>
-  <ion-input placeholder="أدخل اسم المستخدم"></ion-input>
+  <div id="formerea">
+  <form [formGroup]="interfaceForm" (ngSubmit)="submitSignup()">
+    <ion-item lines="full">
+      <ion-label>اسم المستخدم</ion-label>
+      <ion-input 
+      placeholder="الرجاء ادخال الاسم واسم العائلة أو اللقب"
+      type="text"
+      formControlName="userName"
+      required="true"></ion-input>
+    </ion-item>
+    <span *ngIf="formvalidate.userName.errors">الرجاء ادخال اسم المستخدم ويجب أن يحتوي أكثر من 6 أحرف</span>
+    <ion-item lines="full">
+      <ion-label>كلمة السر</ion-label>
+      <ion-input 
+      placeholder="كلمة السر يجب أن تكون 8 أو أكثر أحرف وأرقام ويفضل كتابة رموز"
+      type="password"
+      formControlName="password"
+      required="true"></ion-input>
+    </ion-item>
+    <span *ngIf="formvalidate.password.errors">الرجاء ادخال كلمة السر ويجب أن تحتوي على الأقل 8 أحرف وأرقام</span>
+    <ion-item lines="full">
+      <ion-label>تأكيد كلمة السر</ion-label>
+      <ion-input 
+      placeholder="تأكيد كلمة السر"
+      type="password"
+      formControlName="confirmPassword"
+      required="true"></ion-input>
+    </ion-item>
+    <span *ngIf="formvalidate.confirmPassword.errors">تأكيد كلمة السر يجب أن يكون مطابقا للكلمة</span>
+    <ion-item lines="full">
+      <ion-label>رقم الهاتف</ion-label>
+      <ion-input 
+      placeholder="رقم الهاتف (07 xxx-xxx-xx)"
+      type="number"
+      formControlName="phoneNumber"></ion-input>
+    </ion-item>
+    <span *ngIf="formvalidate.phoneNumber.errors">(07 xxx-xxx-xx) رقم الهاتف يجب أن يكون 10 خانات</span>
+    <ion-label><h2><strong>:العنوان</strong></h2></ion-label>
+    <ion-item>
+      <ion-label>القطاع</ion-label>
+      <ion-select placeholder="القطاع" formControlName="district" [(ngModel)]="district">
+        <ion-select-option value="D01">الأول</ion-select-option>
+        <ion-select-option value="D02">الثاني</ion-select-option>
+        <ion-select-option value="D03">الثالث</ion-select-option>
+        <ion-select-option value="D04">الرابع</ion-select-option>
+        <ion-select-option value="D05">الخامس</ion-select-option>
+        <ion-select-option value="D06">السادس</ion-select-option>
+        <ion-select-option value="D07">السابع</ion-select-option>
+        <ion-select-option value="D08">الثامن</ion-select-option>
+        <ion-select-option value="D09">التاسع</ion-select-option>
+        <ion-select-option value="D10">العاشر</ion-select-option>
+        <ion-select-option value="D11">الحادي عشر</ion-select-option>
+        <ion-select-option value="D12">الثاني عشر</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>البلوك</ion-label>
+      <ion-select placeholder="الحارة / البلوك" formControlName="block" [(ngModel)]="block">
+        <ion-select-option value="B01">1</ion-select-option>
+        <ion-select-option value="B02">2</ion-select-option>
+        <ion-select-option value="B03">3</ion-select-option>
+        <ion-select-option value="B04">4</ion-select-option>
+        <ion-select-option value="B05">5</ion-select-option>
+        <ion-select-option value="B06">6</ion-select-option>
+        <ion-select-option value="B07">7</ion-select-option>
+        <ion-select-option value="B08">8</ion-select-option>
+        <ion-select-option value="B09">9</ion-select-option>
+        <ion-select-option value="B10">10</ion-select-option>
+        <ion-select-option value="B11"> 11</ion-select-option>
+        <ion-select-option value="B12"> 12</ion-select-option>
+        <ion-select-option value="B13">13</ion-select-option>
+        <ion-select-option value="B14">14</ion-select-option>
+        <ion-select-option value="B15">15</ion-select-option>
+        <ion-select-option value="B16">16</ion-select-option>
+        <ion-select-option value="B17">17</ion-select-option>
+        <ion-select-option value="B18">18</ion-select-option>
+        <ion-select-option value="B19">19</ion-select-option>
+        <ion-select-option value="B20">20</ion-select-option>
+        <ion-select-option value="B21">21</ion-select-option>
+        <ion-select-option value="B22">22</ion-select-option>
+        <ion-select-option value="B23">23</ion-select-option>
+        <ion-select-option value="B24"> 24</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label>المنزل</ion-label>
+      <ion-input 
+      placeholder="المنزل (رقم أو رقم-A  رقم-رقم أو)"
+      type="text"
+      formControlName="houseHold"
+      required="true"></ion-input>
+    </ion-item>
+    <span *ngIf="formvalidate.phoneNumber.errors">الرجاء ادخال بيانات السكن كاملة وبشكل صحيح</span>
+    <ion-item lines="none">
+      <ion-button type="submit" [disabled]="!interfaceForm.valid" expand="block" color="primary">تأكيد التسجيل</ion-button>
+    </ion-item>
+  </form>
+</div>
 </ion-content>
