@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MustMatch } from './_helper'
+import { MustMatch } from './_helper';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-users',
@@ -15,7 +16,7 @@ export class UsersPage implements OnInit {
   houseHold: string;
   formvalidate;
 
-  constructor(private signupForm: FormBuilder) { }
+  constructor(private signupForm: FormBuilder, private signupServ: AuthService) { }
 
   ngOnInit() {
     this.interfaceForm= this.signupForm.group({
@@ -30,8 +31,18 @@ export class UsersPage implements OnInit {
     this.formvalidate=this.interfaceForm.controls
   }
 
+  address(){
+    return this.interfaceForm.value.district+"-"+this.interfaceForm.value.block+"-"+this.interfaceForm.value.houseHold
+  }
+
   submitSignup(){
-    console.log(JSON.stringify(this.interfaceForm.value))
+    let user={
+      userName: this.interfaceForm.value.userName,
+      password: this.interfaceForm.value.password,
+      phoneNumber: this.interfaceForm.value.phoneNumber,
+      address: this.address()
+    }
+    this.signupServ.signup(user).subscribe(response=> console.log(response))
   }
 
 }
