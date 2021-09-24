@@ -47,13 +47,14 @@
       <ion-input 
       placeholder="رقم الهاتف (07 xxx-xxx-xx)"
       type="number"
-      formControlName="phoneNumber"></ion-input>
+      formControlName="phoneNumber"
+      required="true"></ion-input>
     </ion-item>
     <span *ngIf="formvalidate.phoneNumber.errors">(07 xxx-xxx-xx) رقم الهاتف يجب أن يكون 10 خانات</span>
     <ion-label><h2><strong>:العنوان</strong></h2></ion-label>
     <ion-item>
       <ion-label>القطاع</ion-label>
-      <ion-select placeholder="القطاع" formControlName="district" [(ngModel)]="district">
+      <ion-select placeholder="القطاع" formControlName="district">
         <ion-select-option value="D01">الأول</ion-select-option>
         <ion-select-option value="D02">الثاني</ion-select-option>
         <ion-select-option value="D03">الثالث</ion-select-option>
@@ -70,7 +71,7 @@
     </ion-item>
     <ion-item>
       <ion-label>البلوك</ion-label>
-      <ion-select placeholder="الحارة / البلوك" formControlName="block" [(ngModel)]="block">
+      <ion-select placeholder="الحارة / البلوك" formControlName="block">
         <ion-select-option value="B01">1</ion-select-option>
         <ion-select-option value="B02">2</ion-select-option>
         <ion-select-option value="B03">3</ion-select-option>

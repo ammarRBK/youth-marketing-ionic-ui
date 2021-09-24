@@ -21,7 +21,7 @@ export class UsersPage implements OnInit {
   ngOnInit() {
     this.interfaceForm= this.signupForm.group({
       userName: ['',[Validators.required,Validators.minLength(3)]],
-      phoneNumber: ['',[Validators.required, Validators.minLength(9), Validators.maxLength(10), Validators.pattern(/\-?\d*\.?\d{1,2}/)]],
+      phoneNumber: ['',[Validators.required, Validators.required, Validators.minLength(9), Validators.maxLength(10), Validators.pattern(/\-?\d*\.?\d{1,2}/)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]],
       confirmPassword: ['',[Validators.required]],
       district: ['',[Validators.required]],
@@ -43,7 +43,8 @@ export class UsersPage implements OnInit {
       address: this.address()
     }
     console.log(user)
-    this.signupServ.signup(user).subscribe(response=> console.log(response))
+    this.signupServ.signup(user).subscribe(response=> response['successMessage']==="User saved with hashed password"
+     ? console.log(response["successMessage"]): console.error("faild beacuse: ",response));
   }
 
 }

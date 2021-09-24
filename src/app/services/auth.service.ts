@@ -11,7 +11,7 @@ export class AuthService {
   
   constructor(private http: HttpClient) { }
 
-  url= '../../assets/config.json';
+  url= 'http://localhost:3000/api/';
   httpOptions: object={
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin':'http://localhost:3000',
@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   signup(userData: any):Observable<{}>{
-    return this.http.post("http://localhost:3000/api/users/signup",userData,this.httpOptions).pipe(
+    return this.http.post(this.url+"users/signup",userData,this.httpOptions).pipe(
       retry(2),
       catchError(this.handleError));
   }

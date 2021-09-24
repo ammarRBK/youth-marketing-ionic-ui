@@ -1,9 +1,34 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>تسجيل الدخول</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content fullScreen="true">
+  <div id="formerea">
+    <form [formGroup]="interfaceForm" (ngSubmit)="submitLogin()">
+      <ion-item lines="full">
+        <ion-label>رقم الهاتف</ion-label>
+        <ion-input 
+        placeholder="الرجاء ادخال رقم الهاتف"
+        type="number"
+        formControlName="phoneNumber"
+        required="true"></ion-input>
+      </ion-item>
+      <span *ngIf="formvalidate.phoneNumber.errors">الرجاء ادخال رقم الهاتف</span>
+      <ion-item lines="full">
+        <ion-label>كلمة السر</ion-label>
+        <ion-input 
+        placeholder="الرجاء ادخال كلمة السر"
+        type="password"
+        formControlName="password"
+        required="true"></ion-input>
+      </ion-item>
+      <span *ngIf="formvalidate.password.errors">الرجاء ادخال كلمة السر</span>
+      
+      <ion-item lines="none">
+        <ion-button type="submit" [disabled]="!interfaceForm.valid" expand="block" color="primary">تسجيل الدخول</ion-button>
+      </ion-item>
+    </form>
+  </div>
 </ion-content>
