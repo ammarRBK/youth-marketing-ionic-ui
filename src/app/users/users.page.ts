@@ -14,7 +14,7 @@ export class UsersPage implements OnInit {
   district: string;
   block: string;
   houseHold: string;
-  formvalidate;
+  formvalidate: object;
 
   constructor(private signupForm: FormBuilder, private signupServ: AuthService) { }
 
