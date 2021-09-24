@@ -32,7 +32,7 @@ export class UsersPage implements OnInit {
   }
 
   address(){
-    return this.interfaceForm.value.district+"-"+this.interfaceForm.value.block+"-"+this.interfaceForm.value.houseHold
+    return this.interfaceForm.value.district+"-"+this.interfaceForm.value.block+"-HH"+this.interfaceForm.value.houseHold
   }
 
   submitSignup(){
@@ -42,6 +42,7 @@ export class UsersPage implements OnInit {
       phoneNumber: this.interfaceForm.value.phoneNumber,
       address: this.address()
     }
+    console.log(user)
     this.signupServ.signup(user).subscribe(response=> console.log(response))
   }
 

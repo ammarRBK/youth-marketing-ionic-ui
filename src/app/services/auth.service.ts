@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
@@ -11,10 +11,18 @@ export class AuthService {
   
   constructor(private http: HttpClient) { }
 
-  url:string= '../../assets/config.json';
+  url= '../../assets/config.json';
+  httpOptions: object={
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin':'http://localhost:3000',
+      'Content-Type': 'application/json'
+    })
+  }
 
   signup(userData: any):Observable<{}>{
-    return this.http.post("http://localhost:3306/api/users/signup",userData)
+    return this.http.post("http://localhost:3000/api/users/signup",userData,this.httpOptions).pipe(
+      retry(2),
+      catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
