@@ -12,6 +12,11 @@
     <ion-text>
       الرجاء ادخال المعلومات كاملة والتأكد من أن كلمة السر تحتوي على الأقل 8 حروف وأرقام
     </ion-text>
+    <div id="loginlink">
+      <ion-text >
+        <h5>لديك حساب ؟ <strong><a routerLink="../login">سجل دخولك من هنا</a></strong></h5> 
+      </ion-text>
+    </div>
   </div>
   <div id="formerea">
   <form [formGroup]="interfaceForm" (ngSubmit)="submitSignup()">
@@ -107,9 +112,8 @@
       required="true"></ion-input>
     </ion-item>
     <span *ngIf="formvalidate.phoneNumber.errors">الرجاء ادخال بيانات السكن كاملة وبشكل صحيح</span>
-    <ion-item lines="none">
-      <ion-button type="submit" [disabled]="!interfaceForm.valid" expand="block" color="primary">تأكيد التسجيل</ion-button>
-    </ion-item>
+
+    <ion-button type="submit" [disabled]="!interfaceForm.valid" expand="block">تأكيد التسجيل</ion-button>
   </form>
 </div>
 </ion-content>

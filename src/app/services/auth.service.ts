@@ -19,8 +19,14 @@ export class AuthService {
     })
   }
 
-  signup(userData: any):Observable<{}>{
+  signup(userData: object):Observable<{}>{
     return this.http.post(this.url+"users/signup",userData,this.httpOptions).pipe(
+      retry(2),
+      catchError(this.handleError));
+  }
+
+  login(userData: object):Observable<{}>{
+    return this.http.post(this.url+"users/signin",userData,this.httpOptions).pipe(
       retry(2),
       catchError(this.handleError));
   }

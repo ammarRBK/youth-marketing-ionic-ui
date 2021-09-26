@@ -6,16 +6,16 @@
 
 <ion-content fullScreen="true">
   <div id="formerea">
-    <form [formGroup]="interfaceForm" (ngSubmit)="submitLogin()">
+    <form [formGroup]="loginInterfaceForm" (ngSubmit)="submitLogin()">
       <ion-item lines="full">
         <ion-label>رقم الهاتف</ion-label>
         <ion-input 
-        placeholder="الرجاء ادخال رقم الهاتف"
+        placeholder="رقم الهاتف (07 xxx-xxx-xx)"
         type="number"
         formControlName="phoneNumber"
         required="true"></ion-input>
       </ion-item>
-      <span *ngIf="formvalidate.phoneNumber.errors">الرجاء ادخال رقم الهاتف</span>
+      <span *ngIf="loginInterfaceForm.controls.phoneNumber.errors">الرجاء ادخال رقم الهاتف*</span>
       <ion-item lines="full">
         <ion-label>كلمة السر</ion-label>
         <ion-input 
@@ -24,11 +24,10 @@
         formControlName="password"
         required="true"></ion-input>
       </ion-item>
-      <span *ngIf="formvalidate.password.errors">الرجاء ادخال كلمة السر</span>
+      <span *ngIf="loginInterfaceForm.controls.password.errors">الرجاء ادخال كلمة السر*</span>
       
-      <ion-item lines="none">
-        <ion-button type="submit" [disabled]="!interfaceForm.valid" expand="block" color="primary">تسجيل الدخول</ion-button>
-      </ion-item>
+      <ion-button type="submit" [disabled]="!loginInterfaceForm.valid" expand="block" color="primary">تسجيل الدخول</ion-button>
+      
     </form>
   </div>
 </ion-content>
