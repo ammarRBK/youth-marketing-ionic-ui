@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from './_helper';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +17,7 @@ export class UsersPage implements OnInit {
   houseHold: string;
   formvalidate: object;
 
-  constructor(private signupForm: FormBuilder, private signupServ: AuthService) { }
+  constructor(private signupForm: FormBuilder, private signupServ: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.interfaceForm= this.signupForm.group({
@@ -45,6 +46,10 @@ export class UsersPage implements OnInit {
     console.log(user)
     this.signupServ.signup(user).subscribe(response=> response['successMessage']==="User saved with hashed password"
      ? console.log(response["successMessage"]): console.error("faild beacuse: ",response));
+  }
+
+  backToHome(){
+    this.router.navigateByUrl('/home')
   }
 
 }
