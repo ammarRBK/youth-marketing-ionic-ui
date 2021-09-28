@@ -25,8 +25,8 @@
         required="true"></ion-input>
       </ion-item>
       <span *ngIf="loginInterfaceForm.controls.password.errors">الرجاء ادخال كلمة السر*</span>
-      
-      <ion-button type="submit" [disabled]="!loginInterfaceForm.valid" expand="block" color="primary">تسجيل الدخول</ion-button>
+      <ion-text id="errormessage" *ngIf="errorMessage !== ''">{{errorMessage}}</ion-text>
+      <ion-button type="submit" id="buttonsubmit" [disabled]="!loginInterfaceForm.valid" expand="block" color="primary">تسجيل الدخول</ion-button>
       
     </form>
   </div>
