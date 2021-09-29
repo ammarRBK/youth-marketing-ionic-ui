@@ -16,15 +16,14 @@ export class LoginPage implements OnInit {
 
   constructor(private loginForm:FormBuilder, private loginServe: AuthService, private navCtrl: NavController, private router: Router) { }
   
-  ngOnInit() {
+  ngOnInit(){
+    this.loginInterfaceForm= this.loginForm.group({
+      phoneNumber: ['',[Validators.required, Validators.min(9)]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]]
+    });
+    
     this.loginServe.checkLoggedIn().subscribe(res=>{
-      if(res['message']=== "not loggedin"){
-        this.loginInterfaceForm= this.loginForm.group({
-          phoneNumber: ['',[Validators.required, Validators.min(9)]],
-          password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]]
-        })
-      }
-      this.router.navigateByUrl('home/login/profile');
+      res['message']=== "loggedin" ? this.router.navigateByUrl('home/login/profile') : console.log("not loggedin")
     })
     
   }

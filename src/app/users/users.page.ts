@@ -20,6 +20,9 @@ export class UsersPage implements OnInit {
   constructor(private signupForm: FormBuilder, private signupServ: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.signupServ.checkLoggedIn().subscribe(res=>{
+      res['message']=== "loggedin" ? this.router.navigateByUrl('home/login/profile') : console.log("not loggedin")
+    })
     this.interfaceForm= this.signupForm.group({
       userName: ['',[Validators.required,Validators.minLength(3)]],
       phoneNumber: ['',[Validators.required, Validators.required, Validators.minLength(9), Validators.maxLength(10), Validators.pattern(/\-?\d*\.?\d{1,2}/)]],

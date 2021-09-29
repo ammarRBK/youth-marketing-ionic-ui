@@ -14,7 +14,7 @@ export class AuthService {
   url= 'http://localhost:3000/api/';
   httpOptions: object={
     headers: new HttpHeaders({
-      'Access-Control-Allow-Origin':'http://localhost:3000',
+      'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json'
     })
   }
