@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  constructor(private authServ: AuthService, private platform:Platform, private router: Router) { 
+    this.platform.backButton.subscribe(()=>{
+      this.authServ.checkLoggedIn().subscribe(res =>{
+        res['message']=== "loggedin" ? this.router.navigateByUrl('home/login/profile') :  this.router.navigateByUrl('home/users')
+      })
+    })
+  }
 
   ngOnInit() {
   }
