@@ -1,7 +1,6 @@
 ion-title.large-title {
     color:dodgerblue;
     font-size: 30px;
-    margin-left: 10%;
   }
 
 #stringErea{
@@ -13,10 +12,33 @@ ion-title.large-title {
 }
 
 span{
-  color:firebrick;
+  background-color:lightpink;
+  color: rgb(255, 0, 0);
 }
 
 .icon{
   color: royalblue;
-  padding-right: 5px;
+}
+
+#usernameinput{
+ border-radius: 50px;
+ width: auto;
+ text-align: center;
+ --background: transparent;
+ --border-color: white;
+ border-style:inset;
+ color: black;
+}
+
+#passwordinput{
+  border-radius: 50px;
+  width: 170px;
+  text-align: center;
+  margin-right: 10px;
+  margin-top: 20px;
+  display: inline-block;
+  --background: transparent;
+ --border-color: white;
+ border-style:inset;
+ color: black;
 }

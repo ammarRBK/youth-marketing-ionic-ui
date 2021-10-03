@@ -24,3 +24,8 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+ion-content{
+    --background: rgba(255, 0, 179, 0.171) url('./assets/logo.png') no-repeat center center / cover;
+}

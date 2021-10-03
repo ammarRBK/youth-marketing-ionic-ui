@@ -1,10 +1,8 @@
-<ion-header [translucent]="false">
-  <ion-title class="title">
-    شباب التسوق
-  </ion-title>
+<ion-header [translucent]="true">
+  <h2 class="title">شباب التسوق</h2>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="home">
   <div class="textalign">
     <h2>
       !!!مرحباً
@@ -20,7 +18,7 @@
     </ion-text>
   </div>
   <div id="container">
-    <ion-button mode="ios" expand="block" color="secondary" fill="outline" (click)="costumers()"><strong>زبون</strong></ion-button>
-    <ion-button mode="ios" expand="block" color="secondary" fill="outline" (click)="users()"><strong>بائع</strong></ion-button>
+    <ion-button id="customer"  mode="ios" expand="round" fill="solid" (click)="costumers()"><strong>زبون</strong></ion-button>
+    <ion-button id="saler" mode="ios" expand="round" fill="solid" (click)="users()"><strong>بائع</strong></ion-button>
   </div>
 </ion-content>
