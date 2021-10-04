@@ -1,8 +1,3 @@
-ion-title.large-title {
-    color:dodgerblue;
-    font-size: 30px;
-  }
-
 #stringErea{
   text-align: center;
 }
@@ -23,7 +18,7 @@ span{
 #usernameinput{
  border-radius: 50px;
  width: auto;
- text-align: center;
+ text-align: end;
  --background: transparent;
  --border-color: white;
  border-style:inset;
@@ -32,13 +27,32 @@ span{
 
 #passwordinput{
   border-radius: 50px;
-  width: 170px;
-  text-align: center;
-  margin-right: 10px;
-  margin-top: 20px;
-  display: inline-block;
   --background: transparent;
- --border-color: white;
- border-style:inset;
- color: black;
+  --border-color: white;
+  border-style:inset;
+  color: black;
+  width: 50%;
+  display: inline-flex;
+  text-align: end;
+  margin-top: 20px;
+}
+
+#phonenumber{
+  border-radius: 50px;
+  --background: transparent;
+  --border-color: white;
+  border-style:inset;
+  color: black;
+  text-align: center;
+}
+
+#address{
+  --background:transparent;
+  text-align: end;
+}
+
+.subbutton{
+  height: 50px;
+  margin-top: 30px;
+  font-size: large;
 }

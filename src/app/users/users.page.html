@@ -1,6 +1,6 @@
 <ion-header translucent="true">
   <ion-toolbar>
-    <ion-title class="large-title" size="small"><ion-icon (click)="backToHome()" class="icon" name="arrow-back-sharp"></ion-icon>تسجيل حساب</ion-title>
+    <ion-title class="large-title" size="large"><ion-icon (click)="backToHome()" class="icon" name="arrow-back-sharp"></ion-icon>تسجيل حساب</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -26,39 +26,39 @@
       placeholder="الاسم واسم العائلة أو اللقب"
       type="text"
       formControlName="userName"
-      required="true"></ion-input>
+      required="true"><ion-icon name="person-sharp"></ion-icon></ion-input>
     </ion-item>
-    <span *ngIf="formvalidate.userName.errors">الرجاء ادخال اسم المستخدم من 6 أحرف أو أكثر</span>
-    <ion-item lines="full" id="passwordinput">
-      <!-- <ion-label>كلمة السر</ion-label> -->
-      <ion-input
-      placeholder="كلمة السر"
-      type="password"
-      formControlName="password"
-      required="true"></ion-input>
-    </ion-item>
+    <div><span *ngIf="formvalidate.userName.errors">الرجاء ادخال اسم المستخدم ويحتوي على الأقل 6 أحرف*</span></div>
     <ion-item lines="full" id="passwordinput">
       <!-- <ion-label>تأكيد كلمة السر</ion-label> -->
       <ion-input 
       placeholder="تأكيد كلمة السر"
       type="password"
       formControlName="confirmPassword"
-      required="true"></ion-input>
+      required="true"><ion-icon name="lock-open-sharp"></ion-icon></ion-input>
     </ion-item>
-    <span *ngIf="formvalidate.password.errors">الرجاء ادخال كلمة السر ويجب أن تحتوي على الأقل 8 أحرف وأرقام*</span>
-    <span *ngIf="formvalidate.confirmPassword.errors">تأكيد كلمة السر يجب أن يكون مطابقا للكلمة*</span>
-    <ion-item lines="full">
-      <ion-label>رقم الهاتف</ion-label>
+    <ion-item lines="full" id="passwordinput">
+      <!-- <ion-label>كلمة السر</ion-label> -->
+      <ion-input
+      placeholder="كلمة السر"
+      type="password"
+      formControlName="password"
+      required="true"><ion-icon name="lock-open-sharp"></ion-icon></ion-input>
+    </ion-item>
+    <span *ngIf="formvalidate.password.errors">الرجاء ادخال كلمة السر ويجب أن تحتوي على الأقل 8 أحرف وأرقام*</span><hr>
+    <span *ngIf="formvalidate.confirmPassword.errors">تأكيد كلمة السر يجب أن يكون مطابقا للكلمة*</span><hr><hr>
+    <ion-item lines="full" id="phonenumber">
+      <!-- <ion-label>رقم الهاتف</ion-label> -->
       <ion-input 
       placeholder="رقم الهاتف (07 xxx-xxx-xx)"
       type="number"
       formControlName="phoneNumber"
-      required="true"></ion-input>
+      required="true"><ion-icon name="call-sharp"></ion-icon></ion-input>
     </ion-item>
-    <span *ngIf="formvalidate.phoneNumber.errors">(07 xxx-xxx-xx) رقم الهاتف يجب أن يكون 10 خانات*</span>
-    <ion-label><h2><strong>:العنوان</strong></h2></ion-label>
-    <ion-item>
-      <ion-label>القطاع</ion-label>
+    <span *ngIf="formvalidate.phoneNumber.errors">(07 xxx-xxx-xx) رقم الهاتف يجب أن يكون 10 خانات*</span><hr>
+    <ion-label><h1><strong>:العنوان</strong></h1></ion-label>
+    <ion-item id="address">
+      <!-- <ion-label>القطاع</ion-label> -->
       <ion-select placeholder="القطاع" formControlName="district">
         <ion-select-option value="D01">الأول</ion-select-option>
         <ion-select-option value="D02">الثاني</ion-select-option>
@@ -74,8 +74,8 @@
         <ion-select-option value="D12">الثاني عشر</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label>البلوك</ion-label>
+    <ion-item id="address">
+      <!-- <ion-label>البلوك</ion-label> -->
       <ion-select placeholder="الحارة / البلوك" formControlName="block">
         <ion-select-option value="B01">1</ion-select-option>
         <ion-select-option value="B02">2</ion-select-option>
@@ -103,7 +103,7 @@
         <ion-select-option value="B24"> 24</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item lines="full">
+    <ion-item lines="full" id="address">
       <ion-label>المنزل</ion-label>
       <ion-input 
       placeholder="المنزل (رقم أو رقم-A  رقم-رقم أو)"
@@ -113,7 +113,7 @@
     </ion-item>
     <span *ngIf="formvalidate.houseHold.errors">الرجاء ادخال بيانات السكن كاملة وبشكل صحيح*</span>
 
-    <ion-button type="submit" [disabled]="!interfaceForm.valid" expand="block">تأكيد التسجيل</ion-button>
+    <ion-button class="subbutton" type="submit" [disabled]="!interfaceForm.valid" expand="block">تأكيد التسجيل</ion-button>
   </form>
 </div>
 </ion-content>

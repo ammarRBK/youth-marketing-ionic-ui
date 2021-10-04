@@ -15,14 +15,9 @@ ion-button{
   font-size: 25px;
 }
 
-#customer{
- margin: auto;
- margin-left: 14vh;
- margin-top: 25vh;   
+.buttons{
+  display: inline-flex;
+  width: 100%;
+  padding-top: 20px;
+  justify-content: center;
 }
-
-#saler{
-  margin: auto;
-  margin-left: 14vh; 
-  margin-top: 5vh; 
- }

@@ -1,16 +1,47 @@
+.textcontent{
+    text-align: center;
+}
+
+.formerea{
+    margin-top: 50px;
+    text-align: end;
+}
+
 span{
-    color: firebrick;
-    font-weight: bold;
+    background-color:lightpink;
+    color: rgb(255, 0, 0);
+}
+
+#passwordinput{
+    border-radius: 50px;
+    --background: transparent;
+    --border-color: white;
+    border-style:inset;
+    color: black;
+    width: 100%;
+    display: inline-flex;
+    text-align: end;
+    margin-top: 20px;
+  }
+  
+#phonenumber{
+    border-radius: 50px;
+    --background: transparent;
+    --border-color: white;
+    border-style:inset;
+    color: black;
+    text-align: center;
 }
 
 #errormessage{
+    background-color:lightpink;
     color: red;
     font-weight: bolder;
-    padding-top: 20px;
 }
 
 #buttonsubmit{
     font-size: 20px;
+    margin-top: 20px;
 }
 
 .icon{
