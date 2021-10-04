@@ -12,4 +12,8 @@ export class CostumersPage implements OnInit {
   ngOnInit() {
   }
 
+  showProductPage(){
+    console.log("hellow Ammar")
+  }
+
 }
