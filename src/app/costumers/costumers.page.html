@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar mode="ios" showCancelButton="focus" placeholder="ابحث عن منتج محدد" animated><ion-icon size="large" name="person"></ion-icon></ion-searchbar>
+    <ion-searchbar mode="ios" showCancelButton="focus" placeholder="ابحث عن منتج محدد" animated><ion-icon size="large" name="person" (click)="routeProfile()" *ngIf="this.loggedin"></ion-icon></ion-searchbar>
   </ion-toolbar> 
 </ion-header>
 

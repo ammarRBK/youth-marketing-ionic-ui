@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-costumers',
@@ -7,13 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CostumersPage implements OnInit {
 
-  constructor() { }
+  loggedin:boolean;
+
+  constructor(private router:Router, private authServ: AuthService) { }
 
   ngOnInit() {
+    this.authServ.checkLoggedIn().subscribe(res => {
+      res['message']=== "loggedin" ? this.loggedin= true : this.loggedin= false;
+    })
   }
 
   showProductPage(){
     console.log("hellow Ammar")
+  }
+
+  routeProfile(){
+    this.router.navigateByUrl('home/login/profile');
   }
 
 }
