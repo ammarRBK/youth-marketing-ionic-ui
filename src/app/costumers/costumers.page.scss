@@ -8,8 +8,15 @@ ion-card{
     color: black;
     width: 95%;
     border-radius: 10%;
+    height: auto;
 }
 
 ion-searchbar{
     margin-top: 10px;
+}
+
+#cardimage{
+    height: auto;
+    width: auto;
+    position: center;
 }

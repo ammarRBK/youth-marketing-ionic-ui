@@ -20,7 +20,7 @@ export class CostumersPage implements OnInit {
   }
 
   showProductPage(){
-    console.log("hellow Ammar")
+    this.router.navigateByUrl('costumers/product');
   }
 
   routeProfile(){
