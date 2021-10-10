@@ -1,12 +1,13 @@
 #fulllist{
     background: hsla(325, 100%, 50%, 0);
     display: flexbox;
+    margin-right: 10px;
 }
 
 ion-card{
     --background:rgba(234, 0, 255, 0.301);
     color: black;
-    width: 50%;
+    width: 100%;
     border-radius: 10%;
     height: auto;
 }

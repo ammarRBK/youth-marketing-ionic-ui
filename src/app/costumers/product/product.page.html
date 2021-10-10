@@ -1,9 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>product</ion-title>
+    <ion-icon (click)="backToCostumers()" size="large" class="icon" name="arrow-back-sharp"></ion-icon><ion-title>{{productinfo.productTitle}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="maincontent">
+    <ion-item-divider id="divider">
+      <img id="cardimage" src="../../assets/icon/favicon.png"/>
+    </ion-item-divider>
 
+    <ion-item-divider mode="ios" id="divider">
+      <ion-text><strong>:الوصف</strong>    <br>{{productinfo.productDisciption}}</ion-text>
+    </ion-item-divider>
+
+    <ion-item-divider mode="ios" id="divider">
+      <div><ion-text><br><br>{{productinfo.productQuantity}}KG</ion-text></div>
+      <div><strong>:الكمية/ الوزن</strong></div>
+    </ion-item-divider>
+
+    <ion-item-divider mode="ios" id="divider">
+      <ion-text> <br><br>{{productinfo.productDate}}</ion-text>:<strong>تاريخ الانتاج</strong>
+    </ion-item-divider>
+
+    <ion-item-divider mode="ios" id="divider">
+      <ion-text> <br><br>{{productinfo.expirationDate}}</ion-text>:<strong>تاريخ الانتهاء</strong>
+    </ion-item-divider>
+  </div>
+  
 </ion-content>

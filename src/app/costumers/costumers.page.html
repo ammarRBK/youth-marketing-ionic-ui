@@ -1,21 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar mode="ios" showCancelButton="focus" placeholder="ابحث عن منتج محدد" animated><ion-icon size="large" name="person" (click)="routeProfile()" *ngIf="this.loggedin"></ion-icon></ion-searchbar>
+    <ion-searchbar mode="ios" showCancelButton="focus" placeholder="ابحث عن منتج محدد" animated><ion-icon (click)="backToHome()" size="large" class="icon" name="arrow-back-sharp"></ion-icon><ion-icon size="large" name="person" (click)="routeProfile()" *ngIf="this.loggedin"></ion-icon></ion-searchbar>
   </ion-toolbar> 
 </ion-header>
 
 <ion-content fullscreen class="maincontent">
-  <div id="fulllist" > 
-    <ion-card (click)="showProductPage()" *ngFor="let product of productions; index as i">
-      <img id="cardimage" src="../../assets/icon/favicon.png"/>
-      <ion-card-header>
-        <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
-        <ion-card-title>{{product.productTitle}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <h2><strong>{{product.availableUnits}}</strong>:عدد المنتجات المتوفرة</h2>
-      </ion-card-content>
-    </ion-card>
+  <div id="fulllist" >
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card (click)="showProductPage(product)" *ngFor="let product of fcol; index as i">
+            <img id="cardimage" src="../../assets/icon/favicon.png"/>
+            <ion-card-header>
+              <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
+              <ion-card-title>{{product.productTitle}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <h2><strong>{{product.availableUnits}}</strong>:العدد</h2>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card (click)="showProductPage(product)" *ngFor="let product of scol; index as i">
+            <img id="cardimage" src="../../assets/icon/favicon.png"/>
+            <ion-card-header>
+              <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
+              <ion-card-title>{{product.productTitle}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <h2><strong>{{product.availableUnits}}</strong>:العدد</h2>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 
 

@@ -12,6 +12,8 @@ export class CostumersPage implements OnInit {
 
   loggedin:boolean;
   productions: any;
+  fcol=[];
+  scol=[];
 
   constructor(private router:Router, private authServ: AuthService, private products: ProductsService) { }
 
@@ -20,20 +22,31 @@ export class CostumersPage implements OnInit {
     this.authServ.checkLoggedIn().subscribe(res => {
       res['message']=== "loggedin" ? this.loggedin= true : this.loggedin= false;
     })
+    
   }
 
   getProds(){
     this.products.getProducts().forEach((elem:any)=>{
-      this.productions= elem
+      this.productions= elem;
+
+      for(let i=0; i< this.productions.length; i=i+2){
+        this.fcol.push(this.productions[i]);
+        this.scol.push(this.productions[i+1]);
+      }
     })
   }
 
-  showProductPage(){
+  showProductPage(product){
+    this.products.product= product;
     this.router.navigateByUrl('costumers/product');
   }
 
   routeProfile(){
     this.router.navigateByUrl('home/login/profile');
+  }
+
+  backToHome(){
+    this.router.navigateByUrl('home');
   }
 
 }

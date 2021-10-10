@@ -17,6 +17,8 @@ export class ProductsService {
     })
   }
 
+  product={}
+
   getProducts(){
     return this.http.get(this.url+"products/getproducts",this.httpOptions).pipe(
       retry(2),
