@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-product',
@@ -9,9 +10,17 @@ import { Router } from '@angular/router';
 })
 export class ProductPage implements OnInit {
 
-  constructor(private product:ProductsService, private router:Router) { }
+  constructor(private product:ProductsService, private router:Router, private authServ: AuthService) { }
   productinfo= this.product.product;
+  loggedin: boolean;
   ngOnInit() { 
+    this.authServ.checkLoggedIn().subscribe(res => {
+      res['message']=== "loggedin" ? this.loggedin= true : this.loggedin= false;
+    })
+  }
+
+  routeProfile(){
+    this.router.navigateByUrl('home/login/profile');
   }
 
   backToCostumers(){
