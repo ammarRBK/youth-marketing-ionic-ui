@@ -49,4 +49,9 @@ export class CostumersPage implements OnInit {
     this.router.navigateByUrl('home');
   }
 
+
+  handleText(event){
+    console.log(event.srcElement.value)
+  }
+
 }
