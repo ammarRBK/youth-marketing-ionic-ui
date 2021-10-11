@@ -9,17 +9,24 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
+  
   constructor(private authServ: AuthService, private platform:Platform, private router: Router) { 
     this.platform.backButton.subscribe(()=>{
       this.authServ.checkLoggedIn().subscribe(res =>{
         res['message']=== "loggedin" ? this.router.navigateByUrl('home/login/profile') :  this.router.navigateByUrl('home/users')
       })
     })
+    
   }
 
+  userdata: object
+
   ngOnInit() {
-    
+    this.userdata= this.authServ.user;
+  }
+
+  backToHome(){
+    this.router.navigateByUrl('home');
   }
 
 }

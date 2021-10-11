@@ -18,6 +18,7 @@ export class AuthService {
       'Content-Type': 'application/json'
     })
   }
+  user={};
 
   signup(userData: object):Observable<{}>{
     return this.http.post(this.url+"users/signup",userData,this.httpOptions).pipe(

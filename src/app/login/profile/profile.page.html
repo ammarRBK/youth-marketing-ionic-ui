@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar >
-    <ion-title>صفحتي الشخصية</ion-title>
+    
+    <ion-title><ion-icon (click)="backToHome()" size="large" class="icon" name="arrow-back-sharp"></ion-icon>صفحتي الشخصية</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <ion-item-divider>
+    <ion-avatar slot="end">
+      <img src="../../../assets/logo.png">
+      <h2>{{userdata.userName}}</h2>
+    </ion-avatar>
+    
+  </ion-item-divider>
 </ion-content>

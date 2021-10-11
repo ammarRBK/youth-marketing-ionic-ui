@@ -53,8 +53,8 @@ export class CostumersPage implements OnInit {
   handleText(event){
     let eventValue= event.srcElement.value;
     let inputSearch= eventValue.toLowerCase();
-    let cards= Array.from(document.querySelectorAll('ion-card'))
-    // console.log(cards)
+    let cards= Array.from(document.querySelectorAll('ion-card'));
+    
     requestAnimationFrame(()=>{
       cards.forEach(card=>{
         let title= card.children[1].children[0].textContent

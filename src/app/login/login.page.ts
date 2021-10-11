@@ -23,7 +23,10 @@ export class LoginPage implements OnInit {
     });
     
     this.loginServe.checkLoggedIn().subscribe(res=>{
-      res['message']=== "loggedin" ? this.router.navigateByUrl('home/login/profile') : console.log("not loggedin")
+      if(res['message']=== "loggedin"){
+      this.router.navigateByUrl('home/login/profile')
+      }
+      console.log("not loggedin")
     })
     
   }
@@ -36,8 +39,10 @@ export class LoginPage implements OnInit {
       }else{
         if(res['message']=== "user Authintecated"){
           this.errorMessage='';
-          console.log(res['message']);
+          
+          this.loginServe.user= res['user'];
           this.router.navigateByUrl('home/login/profile');
+
         }if(res['message']=== "wrong password"){
           this.errorMessage= 'كلمة السر خاطئة الرجاء التأكد من كلمة السر*';
         }else{
