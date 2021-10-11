@@ -51,7 +51,16 @@ export class CostumersPage implements OnInit {
 
 
   handleText(event){
-    console.log(event.srcElement.value)
+    let eventValue= event.srcElement.value;
+    let inputSearch= eventValue.toLowerCase();
+    let cards= Array.from(document.querySelectorAll('ion-card'))
+    // console.log(cards)
+    requestAnimationFrame(()=>{
+      cards.forEach(card=>{
+        let title= card.children[1].children[0].textContent
+        title.toLowerCase().indexOf(inputSearch) === -1 ? card.style.display="none" : card.style.display="block";
+      })
+    })
   }
 
 }
