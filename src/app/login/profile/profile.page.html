@@ -6,11 +6,29 @@
 </ion-header>
 
 <ion-content>
-  <ion-item-divider>
-    <ion-avatar slot="end">
-      <img src="../../../assets/logo.png">
-      <h2>{{userdata.userName}}</h2>
-    </ion-avatar>
-    
+  <ion-item-divider id="userinfo">
+    <ion-item slot="end">
+      <ion-avatar slot="end">
+        <img src="../../../assets/logo.png">
+      </ion-avatar>
+      <ion-label><strong><h1>عمار الاحمد</h1></strong></ion-label>
+      <!-- {{userdata.userName}} -->
+    </ion-item>
   </ion-item-divider>
+
+  <ion-fab horizontal="start" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary">
+      <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-label class="hint">تعديل البروفايل</ion-label>
+      <ion-fab-button (click)="navtoAddPage()" color="light">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-label class="hint">اضافة منتج</ion-label>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

@@ -13,8 +13,9 @@ export class LoginPage implements OnInit {
 
   loginInterfaceForm: FormGroup;
   errorMessage: string;
+  userProfileData: object;
 
-  constructor(private loginForm:FormBuilder, private loginServe: AuthService, private navCtrl: NavController, private router: Router) { }
+  constructor(private loginForm:FormBuilder, public loginServe: AuthService, private navCtrl: NavController, private router: Router) { }
   
   ngOnInit(){
     this.loginInterfaceForm= this.loginForm.group({
@@ -38,9 +39,9 @@ export class LoginPage implements OnInit {
         console.log("problem in LOGIN")
       }else{
         if(res['message']=== "user Authintecated"){
-          this.errorMessage='';
           
-          this.loginServe.user= res['user'];
+          this.loginServe.userDataSer= res['user'];
+          this.errorMessage='';
           this.router.navigateByUrl('home/login/profile');
 
         }if(res['message']=== "wrong password"){

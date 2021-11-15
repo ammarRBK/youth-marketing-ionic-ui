@@ -5,3 +5,19 @@
 ion-toolbar{
     display: flexbox;
 }
+
+ion-content{
+    text-align: end;
+}
+
+.hint{
+    background-color: rgba(0, 0, 0, 0.800);
+    font-size: small;
+    color: lightcyan;
+    border-radius: 20%;
+    text-align: center;
+}
+
+#userinfo{
+    display: inline-table;
+}

@@ -8,9 +8,11 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+
   
   constructor(private http: HttpClient) { }
 
+  user: object;
   url= 'http://localhost:3000/api/';
   httpOptions: object={
     headers: new HttpHeaders({
@@ -18,7 +20,14 @@ export class AuthService {
       'Content-Type': 'application/json'
     })
   }
-  user={};
+  
+  set userDataSer(userdata){
+    this.user=userdata;
+  }
+
+  get userDataSer(){
+    return this.user;
+  }
 
   signup(userData: object):Observable<{}>{
     return this.http.post(this.url+"users/signup",userData,this.httpOptions).pipe(
