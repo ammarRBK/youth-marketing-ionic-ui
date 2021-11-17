@@ -1,0 +1,33 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>addproduct</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <div class="formerea">
+    <form [formGroup]="addinterfaceform" (ngSubmit)="submitAddProduct()">
+      <ion-item lines="full" id="phonenumber">
+        <!-- <ion-label>رقم الهاتف</ion-label> -->
+        <ion-input 
+        placeholder="رقم الهاتف (07 xxx-xxx-xx)"
+        type="number"
+        formControlName="phoneNumber"
+        required="true"><ion-icon name="call-sharp"></ion-icon></ion-input>
+      </ion-item>
+      <div><span *ngIf="addinterfaceform.controls.phoneNumber.errors">الرجاء ادخال رقم الهاتف*</span></div>
+      <ion-item lines="full" id="passwordinput">
+        <!-- <ion-label>كلمة السر</ion-label> -->
+        <ion-input 
+        placeholder="كلمة السر"
+        type="password"
+        formControlName="password"
+        required="true"><ion-icon name="lock-closed-sharp"></ion-icon></ion-input>
+      </ion-item>
+      <div><span *ngIf="addinterfaceform.controls.password.errors">الرجاء ادخال كلمة السر*</span></div>
+      <ion-text id="errormessage" *ngIf="errorMessage !== ''">{{errorMessage}}</ion-text>
+      <ion-button type="submit" id="buttonsubmit" [disabled]="!addinterfaceform.valid" expand="block" color="primary">تسجيل الدخول</ion-button>
+      
+    </form>
+  </div>
+</ion-content>

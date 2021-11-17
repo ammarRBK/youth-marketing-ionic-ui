@@ -28,7 +28,7 @@ export class ProfilePage implements OnInit {
   }
 
   navtoAddPage(){
-    console.log("navved to add page");
+    this.router.navigateByUrl('home/login/profile/addproduct')
   }
 
   backToHome(){
