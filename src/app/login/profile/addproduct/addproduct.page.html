@@ -5,10 +5,92 @@
 </ion-header> -->
 
 <ion-content>
+  
   <div class="formerea">
+    
+    <ion-text><h1><ion-icon (click)="backToProfile()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon>          إضافة منتج</h1></ion-text>
     <form [formGroup]="addinterfaceform" (ngSubmit)="submitAddProduct()">
-      <ion-item lines="full" id="phonenumber">
-        <!-- <ion-label>رقم الهاتف</ion-label> -->
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="full" id="description">
+              <ion-textarea
+              placeholder="وصف المنتج"
+              type="text"
+              lines="full"
+              inputmode="text"
+              mode="ios"
+              min="3"
+              formControlName="productDescription"
+              required="true"></ion-textarea>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4">
+            <ion-item lines="full" id="title">
+              <ion-input
+              placeholder="اسم المنتج"
+              type="text"
+              lines="full"
+              min="3"
+              formControlName="productTitle"
+              required="true"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>:الكمية المتوفرة بالقطعة</ion-label>
+            <ion-item lines="full" id="numbers">
+              <ion-input
+              placeholder="عدد المنتجات المتوفرة بالرقم"
+              type="number"
+              formControlName="availableUnits"
+              required="true"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-label>:وزن المنتج</ion-label>
+            <ion-item lines="full" id="numbers">
+              <ion-input
+              placeholder="اذا كان وزنه نصف كيلو اكتب 0.5"
+              type="number"
+              formControlName="productQuantity"
+              required="true"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>:تاريخ الانتهاء</ion-label>
+            <ion-datetime
+            mode="ios"
+            placeholder="اختر التاريخ"
+            displayFormat="D/MM/YYYY"
+            pickerFormat="DD MMMM YYYY"
+            cancelText="الغاء"
+            doneText="اختيار"
+            formControlName="expirationDate"
+            required="true"></ion-datetime>
+          </ion-col>
+          <ion-col>
+            <ion-label>:تاريخ الانتاج</ion-label>
+            <ion-datetime
+            mode="ios"
+            placeholder="اختر التاريخ"
+            displayFormat="D/MM/YYYY"
+            pickerFormat="DD MMMM YYYY"
+            cancelText="الغاء"
+            doneText="اختيار"
+            formControlName="productDate"
+            required="true"></ion-datetime>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-button type="button" id="picture" expand="block" (click)="selectImage()" color="secondary">اختيار صورة للمنتج <ion-icon name="image-outline"></ion-icon></ion-button>
+      <ion-button type="submit" color="success" size="large" expand="block" id="submitButt">اضافة الى منتجاتي</ion-button>
+      <!-- <ion-item lines="full" id="phonenumber">
+        <ion-label>رقم الهاتف</ion-label>
         <ion-input 
         placeholder="رقم الهاتف (07 xxx-xxx-xx)"
         type="number"
@@ -17,7 +99,7 @@
       </ion-item>
       <div><span *ngIf="addinterfaceform.controls.phoneNumber.errors">الرجاء ادخال رقم الهاتف*</span></div>
       <ion-item lines="full" id="passwordinput">
-        <!-- <ion-label>كلمة السر</ion-label> -->
+        <ion-label>كلمة السر</ion-label>
         <ion-input 
         placeholder="كلمة السر"
         type="password"
@@ -26,7 +108,7 @@
       </ion-item>
       <div><span *ngIf="addinterfaceform.controls.password.errors">الرجاء ادخال كلمة السر*</span></div>
       <ion-text id="errormessage" *ngIf="errorMessage !== ''">{{errorMessage}}</ion-text>
-      <ion-button type="submit" id="buttonsubmit" [disabled]="!addinterfaceform.valid" expand="block" color="primary">تسجيل الدخول</ion-button>
+      <ion-button type="submit" id="buttonsubmit" [disabled]="!addinterfaceform.valid" expand="block" color="primary">تسجيل الدخول</ion-button> -->
       
     </form>
   </div>
