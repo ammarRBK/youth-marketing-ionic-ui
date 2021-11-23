@@ -11,7 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ProductPage implements OnInit {
 
   constructor(private product:ProductsService, private router:Router, private authServ: AuthService) { }
-  productinfo= this.product.product;
+  productinfo= this.product.product.productinfo;
+  permit= this.product.product.permited
   loggedin: boolean;
   ngOnInit() { 
     this.authServ.checkLoggedIn().subscribe(res => {
@@ -23,8 +24,8 @@ export class ProductPage implements OnInit {
     this.router.navigateByUrl('home/login/profile');
   }
 
-  backToCostumers(){
-    this.router.navigateByUrl('home/costumers');
+  backward(){
+    this.permit ? this.router.navigateByUrl('home/login/profile') : this.router.navigateByUrl('home/costumers');
   }
 
 }

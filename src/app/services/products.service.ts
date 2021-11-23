@@ -17,10 +17,17 @@ export class ProductsService {
     })
   }
 
-  product={}
+  product;
 
   getProducts(){
     return this.http.get(this.url+"products/getproducts",this.httpOptions).pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
+
+  getUserProducts(){
+    return this.http.get(this.url+"products/getUserProducts",this.httpOptions).pipe(
       retry(2),
       catchError(this.handleError)
     )

@@ -12,7 +12,6 @@
           <ion-card (click)="showProductPage(product)" *ngFor="let product of fcol; index as i">
             <img id="cardimage" src="../../assets/icon/favicon.png"/>
             <ion-card-header>
-              <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
               <ion-card-title>{{product.productTitle}}</ion-card-title>
             </ion-card-header>
             <ion-card-content>
@@ -20,11 +19,11 @@
             </ion-card-content>
           </ion-card>
         </ion-col>
+
         <ion-col>
           <ion-card (click)="showProductPage(product)" *ngFor="let product of scol; index as i">
             <img id="cardimage" src="../../assets/icon/favicon.png"/>
             <ion-card-header>
-              <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
               <ion-card-title>{{product.productTitle}}</ion-card-title>
             </ion-card-header>
             <ion-card-content>
@@ -36,21 +35,4 @@
     </ion-grid>
   </div>
 
-
-  <!-- <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-fab-button color="light">
-        <ion-icon name="logo-facebook"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button color="light">
-        <ion-icon name="logo-twitter"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button color="light">
-        <ion-icon name="logo-vimeo"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-  </ion-fab> -->
 </ion-content>

@@ -2,12 +2,30 @@
     align-self: start;
 }
 
+#userinfo{
+    display: inline-table;
+}
+
+#product{
+    background: rgba(255, 0, 234, 0.329);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
 ion-toolbar{
     display: flexbox;
 }
 
 ion-content{
     text-align: end;
+}
+
+ion-card{
+    --background:rgba(234, 0, 255, 0.301);
+    color: black;
+    width: 100%;
+    border-radius: 10%;
+    height: auto;
 }
 
 .hint{
@@ -18,6 +36,7 @@ ion-content{
     text-align: center;
 }
 
-#userinfo{
-    display: inline-table;
+.prods{
+    margin-top: 20px;
 }
+

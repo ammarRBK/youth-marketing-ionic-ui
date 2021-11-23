@@ -6,8 +6,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-item-divider id="userinfo">
-    <ion-item slot="end">
+  <ion-item-divider>
+    <ion-item  id="userinfo" slot="end">
       <ion-avatar slot="end">
         <img src="../../../assets/logo.png">
       </ion-avatar>
@@ -15,6 +15,19 @@
       <!-- {{userdata.userName}} -->
     </ion-item>
   </ion-item-divider>
+  <ion-text><h1>:منتجاتي</h1></ion-text>
+  <div class="prods">
+    <ion-item id="product" (click)="showproduct(product)" *ngFor="let product of products; index as i" lines="none" color="rgba(255, 0, 234, 0.329)">
+      <ion-label><h2><strong></strong></h2></ion-label>
+      <div>
+        <h4>{{product.productTitle}}</h4>
+        <p>
+          {{product.availableUnits}}    <strong>:العدد</strong>
+        </p>
+      </div>
+      <img src="../../../assets/logo.png" id="prodimage" width="150px" height="100px"/>
+    </ion-item>
+  </div>
 
   <ion-fab horizontal="start" vertical="bottom" slot="fixed">
     <ion-fab-button color="primary">

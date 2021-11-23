@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title><ion-icon (click)="backToCostumers()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon><ion-icon size="large" name="person" (click)="routeProfile()" *ngIf="this.loggedin"></ion-icon>
+    <ion-title><ion-icon (click)="backward()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon><ion-icon size="large" name="person" (click)="routeProfile()" *ngIf="this.loggedin"></ion-icon>
       {{productinfo.productTitle}}
     </ion-title>
   </ion-toolbar>
@@ -29,5 +29,15 @@
       <ion-text> <br><br>{{productinfo.expirationDate}}</ion-text>:<strong>تاريخ الانتهاء</strong>
     </ion-item-divider>
   </div>
-  
+  <ion-grid *ngIf="this.permit">
+    <ion-row>
+      <ion-col>
+        <ion-button size="large" expand="block" color="danger">حذف المنتج</ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-button size="large" expand="block" color="warning">تعديل بيانات المنتج</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

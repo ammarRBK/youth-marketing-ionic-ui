@@ -37,7 +37,7 @@ export class CostumersPage implements OnInit {
   }
 
   showProductPage(product){
-    this.products.product= product;
+    this.products.product= {permited:false, productinfo:product};
     this.router.navigateByUrl('costumers/product');
   }
 
