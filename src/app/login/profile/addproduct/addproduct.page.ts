@@ -4,6 +4,7 @@ import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Router } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-addproduct',
@@ -13,9 +14,10 @@ import { ActionSheetController } from '@ionic/angular';
 export class AddproductPage implements OnInit {
 
   addinterfaceform: FormGroup
-  croppedImagePath = "";
+  errormessage= "";
+  addedmessage= "";
 
-  constructor(private addformbuilder:FormBuilder, private router:Router, private camera: Camera, private file: File, public actionSheetController:ActionSheetController) { }
+  constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera: Camera, private file: File, public actionSheetController:ActionSheetController) { }
 
   ngOnInit() {
     this.addinterfaceform= this.addformbuilder.group({
@@ -38,15 +40,20 @@ export class AddproductPage implements OnInit {
     }
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
-      this.croppedImagePath = 'data:image/jpeg;base64,' + imageData;
+      this.submitAddProduct(imageData);
     }, (err) => {
       // Handle error
+      this.errormessage= "حدث خطأ أثناء اختيار ملف الصورة (الرجاء التأكد من الخطأ واعادة المحاولة)*"
+      setTimeout(() => {
+        this.errormessage= "";
+      }, 3000);
     });
   }
 
   async selectImage() {
     const actionSheet = await this.actionSheetController.create({
       header: "اختر مصدر صورة المنتج",
+      mode: "ios",
       buttons: [{
         text: 'اختيار من المعرض',
         handler: () => {
@@ -69,8 +76,39 @@ export class AddproductPage implements OnInit {
   }
 
   // product requirements= ['productTitle','productDescription','productQuantity','availableUnits','productDate','expirationDate','productImage']
-  submitAddProduct(){
-    
+  submitAddProduct(imagedata){
+    let productdata={
+      productTitle: this.addinterfaceform.value.productTitle,
+      productDescription: this.addinterfaceform.value.productDescription,
+      productQuantity: this.addinterfaceform.value.productQuantity,
+      availableUnits: this.addinterfaceform.value.availableUnits,
+      productDate: this.addinterfaceform.value.productDate,
+      expirationDate: this.addinterfaceform.value.expirationDate,
+      productImage: imagedata || null
+    }
+
+    this.productsServ.addProduct(productdata).subscribe(result=>{
+      if (result['message'].startWith("cannot add the product")) {
+        this.errormessage= "حدث خطأ ما أثناء اضافة منتجك* \n الرجاء التأكد من البيانات (اسم المنتج يجب أن لا يكون مكرراً والبيانات معبأة بشكل كامل وصحيح)"
+        setTimeout(() => {
+          this.errormessage= ""
+        }, 3000);
+      }
+      this.addedmessage= "تم إضافة المنتج بنجاح";
+      setTimeout(() => {
+        this.addinterfaceform.setValue({
+          productTitle: null,
+          productDescription: null,
+          productQuantity: null,
+          availableUnits: null,
+          productDate: null,
+          expirationDate: null,
+          productImage: null
+        })
+
+        this.addedmessage= ""
+      }, 3000);
+    })
   }
 
   backToProfile(){

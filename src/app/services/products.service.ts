@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,13 @@ export class ProductsService {
   }
 
   product;
+
+  addProduct(productData){
+    return this.http.post(this.url+"products/addproduct",productData,this.httpOptions).pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
 
   getProducts(){
     return this.http.get(this.url+"products/getproducts",this.httpOptions).pipe(
