@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   user: object;
-  url= 'http://localhost:3000/api/';
+  url= 'https://youth-marketing-server.herokuapp.com/api/';
   httpOptions: object={
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin':'*',

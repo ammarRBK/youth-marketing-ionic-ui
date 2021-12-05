@@ -10,7 +10,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 export class ProductsService {
 
   constructor(private http: HttpClient) { }
-  url= 'http://localhost:3000/api/';
+  url= 'https://youth-marketing-server.herokuapp.com/api/';
   httpOptions: object={
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin':'*',
