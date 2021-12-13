@@ -22,13 +22,13 @@
 
         <ion-col>
           <ion-card (click)="showProductPage(product)" *ngFor="let product of scol; index as i">
-            <img id="cardimage" src="../../assets/icon/favicon.png"/>
-            <ion-card-header>
-              <ion-card-title>{{product.productTitle}}</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              <h2><strong>{{product.availableUnits}}</strong>:العدد</h2>
-            </ion-card-content>
+          <img  id="cardimage" src="../../assets/icon/favicon.png"/>
+          <ion-card-header>
+            <ion-card-title>{{product.productTitle}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <h2><strong>{{product.availableUnits}}</strong>:العدد</h2>
+          </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-row>
