@@ -88,7 +88,7 @@ export class AddproductPage implements OnInit {
     }
 
     this.productsServ.addProduct(productdata).subscribe(result=>{
-      if (result['message'].startWith("cannot add the product")) {
+      if (result['message']=="cannot add the product") {
         this.errormessage= "حدث خطأ ما أثناء اضافة منتجك* \n الرجاء التأكد من البيانات (اسم المنتج يجب أن لا يكون مكرراً والبيانات معبأة بشكل كامل وصحيح)"
         setTimeout(() => {
           this.errormessage= ""
@@ -102,8 +102,7 @@ export class AddproductPage implements OnInit {
           productQuantity: null,
           availableUnits: null,
           productDate: null,
-          expirationDate: null,
-          productImage: null
+          expirationDate: null
         })
 
         this.addedmessage= ""
