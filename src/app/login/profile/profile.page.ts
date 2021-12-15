@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { LoginPage } from '../login.page';
 
 @Component({
   selector: 'app-profile',
@@ -11,9 +12,10 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProfilePage implements OnInit {
 
-  userdata:object;
+  login: LoginPage;
   clientMessage:string;
   products=[];
+  userdata;
 
   constructor(public authServ: AuthService, private productsSer:ProductsService, private platform:Platform, private router: Router) { 
     this.platform.backButton.subscribe(()=>{
@@ -21,11 +23,10 @@ export class ProfilePage implements OnInit {
         res['message']=== "loggedin" ? this.router.navigateByUrl('home/login/profile') :  this.router.navigateByUrl('home/users')
       })
     })
-    
+    this.userdata= this.login.userProfileData
   }
 
   ngOnInit() {
-    this.userdata= this.authServ.userDataSer;
     this.productsSer.getUserProducts().subscribe(result=>{
       result['message'] === "you dont have products yet" ? 
       this.clientMessage="إذا كنت ترغب بعرض منتجاتك للزبائن مستخدمين التطبيق قم بإضافتها الى ملفك الشخصي لدينا" 

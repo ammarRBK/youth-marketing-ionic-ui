@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
       }else{
         if(res['message']=== "user Authintecated"){
           
-          this.loginServe.userDataSer= res['user'];
+          this.userProfileData= res['user'];
           this.errorMessage='';
           this.router.navigateByUrl('home/login/profile');
 
