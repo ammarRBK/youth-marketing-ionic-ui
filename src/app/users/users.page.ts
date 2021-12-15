@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NumberValueAccessor, Validators } from '@angular/forms';
 import { MustMatch } from './_helper';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -16,6 +16,8 @@ export class UsersPage implements OnInit {
   block: string;
   houseHold: string;
   formvalidate: object;
+  successMessage: string;
+  errorMessage: string;
 
   constructor(private signupForm: FormBuilder, private signupServ: AuthService, private router: Router) { }
 
@@ -46,9 +48,33 @@ export class UsersPage implements OnInit {
       phoneNumber: this.interfaceForm.value.phoneNumber,
       address: this.address()
     }
-    console.log(user)
-    this.signupServ.signup(user).subscribe(response=> response['successMessage']==="User saved with hashed password"
-     ? console.log(response["successMessage"]): console.error("faild beacuse: ",response));
+
+    this.signupServ.signup(user).subscribe(response=>{
+      if(response['successMessage']==="User saved with hashed password"){
+        
+       this.successMessage= "تهانينا لقد تم تسجيل حسابك لدينا كبائع بإمكانك تسجيل الدخول واضافة منتجاتك"
+
+       setTimeout(() => {
+        this.interfaceForm.setValue({
+          userName: null,
+          password: null,
+          confirmPassword: null,
+          district: null,
+          block: null,
+          houseHold: null,
+          phoneNumber: null
+        });
+
+        this.successMessage= "";
+       }, 5000);
+      }else{
+        this.errorMessage= "لقد حدثت مشكلة أثناء تسجيل الحساب الرجاء التأكد من بياناتك و كتابتها بشكل وإعادة المحاولة"
+
+        setTimeout(() => {
+          this.errorMessage= "";
+        }, 5000);
+      }
+    })
   }
 
   backToHome(){
