@@ -8,8 +8,8 @@
   <div id="fulllist" >
     <ion-grid>
       <ion-row>
-        <ion-col>
-          <ion-card (click)="showProductPage(product)" *ngFor="let product of fcol; index as i">
+        <ion-col *ngFor="let product of fcol; index as i">
+          <ion-card (click)="showProductPage(product)" *ngIf="product">
             <img id="cardimage" src="../../assets/icon/favicon.png"/>
             <ion-card-header>
               <ion-card-title>{{product.productTitle}}</ion-card-title>
@@ -20,8 +20,8 @@
           </ion-card>
         </ion-col>
 
-        <ion-col>
-          <ion-card (click)="showProductPage(product)" *ngFor="let product of scol; index as i">
+        <ion-col *ngFor="let product of scol; index as i">
+          <ion-card *ngIf="product" (click)="showProductPage(product)" >
           <img  id="cardimage" src="../../assets/icon/favicon.png"/>
           <ion-card-header>
             <ion-card-title>{{product.productTitle}}</ion-card-title>
