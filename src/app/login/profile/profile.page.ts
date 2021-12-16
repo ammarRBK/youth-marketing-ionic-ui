@@ -15,7 +15,7 @@ export class ProfilePage implements OnInit {
   login: LoginPage;
   clientMessage:string;
   products=[];
-  userdata;
+  userdata: string;
 
   constructor(public authServ: AuthService, private productsSer:ProductsService, private platform:Platform, private router: Router) { 
     this.platform.backButton.subscribe(()=>{
@@ -23,15 +23,19 @@ export class ProfilePage implements OnInit {
         res['message']=== "loggedin" ? this.router.navigateByUrl('home/login/profile') :  this.router.navigateByUrl('home/users')
       })
     })
-    this.userdata= this.login.userProfileData
+    
   }
 
   ngOnInit() {
     this.productsSer.getUserProducts().subscribe(result=>{
-      result['message'] === "you dont have products yet" ? 
+      if(result['message'] === "you dont have products yet"){ 
       this.clientMessage="إذا كنت ترغب بعرض منتجاتك للزبائن مستخدمين التطبيق قم بإضافتها الى ملفك الشخصي لدينا" 
-      : this.products= JSON.parse(result['prods']);
+      }else{
+        this.products= JSON.parse(result['prods']);
+        this.userdata= result['userName'];
+      }
     })
+    
   }
 
   showproduct(product){
