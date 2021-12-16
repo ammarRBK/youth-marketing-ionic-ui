@@ -13,20 +13,20 @@
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
-      <ion-text><strong>:الوصف</strong>    <br>{{productinfo.productDisciption}}</ion-text>
+      <ion-text slot="end"><strong>:الوصف</strong>    <br>{{productinfo.productDisciption}}</ion-text>
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
-      <div><ion-text><br><br>{{productinfo.productQuantity}}KG</ion-text></div>
-      <div><strong>:الكمية/ الوزن</strong></div>
+      <ion-text slot="end"><br><br>{{productinfo.productQuantity}}KG</ion-text>
+      <strong slot="end">:الكمية/ الوزن</strong>
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
-      <ion-text> <br><br>{{productinfo.productDate}}</ion-text>:<strong>تاريخ الانتاج</strong>
+      <ion-text slot="end"> <br><br>{{productinfo.productDate}}</ion-text><strong slot="end">:تاريخ الانتاج</strong>
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
-      <ion-text> <br><br>{{productinfo.expirationDate}}</ion-text>:<strong>تاريخ الانتهاء</strong>
+      <ion-text slot="end"> <br><br>{{productinfo.expirationDate}}</ion-text><strong slot="end">:تاريخ الانتهاء</strong>
     </ion-item-divider>
   </div>
   <ion-grid *ngIf="this.permit">
