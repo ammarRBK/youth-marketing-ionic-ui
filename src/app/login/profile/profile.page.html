@@ -16,6 +16,7 @@
     </ion-item>
   </ion-item-divider>
   <ion-text><h1>:منتجاتي</h1></ion-text>
+  <ion-label *ngIf="clientMessage?.length > 0"><h2 id="climessage"><strong>{{this.clientMessage}}</strong></h2></ion-label>
   <div class="prods">
     <ion-item id="product" (click)="showproduct(product)" *ngFor="let product of products; index as i" lines="none" color="rgba(255, 0, 234, 0.329)">
       <ion-label><h2><strong></strong></h2></ion-label>

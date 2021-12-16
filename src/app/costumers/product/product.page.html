@@ -32,7 +32,7 @@
   <ion-grid *ngIf="this.permit">
     <ion-row>
       <ion-col>
-        <ion-button size="large" expand="block" color="danger">حذف المنتج</ion-button>
+        <ion-button size="large" expand="block" color="danger" (click)="warningAlert()">حذف المنتج</ion-button>
       </ion-col>
 
       <ion-col>
