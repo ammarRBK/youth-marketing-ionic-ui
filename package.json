@@ -35,6 +35,7 @@
     "@ionic-native/image-picker": "^5.36.0",
     "@ionic/angular": "^5.5.2",
     "cordova-plugin-telerik-imagepicker": "^2.3.6",
+    "currency-formatter": "^1.5.9",
     "jetifier": "^2.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

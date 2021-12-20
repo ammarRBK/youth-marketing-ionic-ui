@@ -16,6 +16,7 @@ export class AddproductPage implements OnInit {
   addinterfaceform: FormGroup
   errormessage= "";
   addedmessage= "";
+  currency= "";
 
   constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera: Camera, private file: File, public actionSheetController:ActionSheetController) { }
 
@@ -26,7 +27,8 @@ export class AddproductPage implements OnInit {
       availableUnits:['',[Validators.required, Validators.pattern('ds')]],
       productQuantity:['',[Validators.required, Validators.pattern('d')]],
       expirationDate:['',[Validators.required]],
-      productDate:['',[Validators.required]]
+      productDate:['',[Validators.required]],
+      productPrice: ['',[Validators.required]]
     })
   }
 
@@ -43,7 +45,9 @@ export class AddproductPage implements OnInit {
       this.submitAddProduct(imageData);
     }, (err) => {
       // Handle error
-      this.errormessage= "حدث خطأ أثناء اختيار ملف الصورة (الرجاء التأكد من الخطأ واعادة المحاولة)*"
+      this.errormessage= err === "cordova_not_available" 
+      ? "الرجاء استخدام هاتف جوال لالتقاط او اختيار صورة للمنتج*" 
+      : "حدث خطأ أثناء اختيار ملف الصورة (الرجاء التأكد من الخطأ واعادة المحاولة)*";
       setTimeout(() => {
         this.errormessage= "";
       }, 3000);
@@ -84,7 +88,8 @@ export class AddproductPage implements OnInit {
       availableUnits: this.addinterfaceform.value.availableUnits,
       productDate: this.addinterfaceform.value.productDate,
       expirationDate: this.addinterfaceform.value.expirationDate,
-      productImage: imagedata || null
+      productImage: imagedata || null,
+      productPrice: this.addinterfaceform.value.productPrice
     }
 
     this.productsServ.addProduct(productdata).subscribe(result=>{
@@ -102,12 +107,21 @@ export class AddproductPage implements OnInit {
           productQuantity: null,
           availableUnits: null,
           productDate: null,
-          expirationDate: null
+          expirationDate: null,
+          productPrice: null
         })
 
         this.addedmessage= ""
       }, 3000);
     })
+  }
+
+  formatToCurrency(event){
+    let uy = new Intl.NumberFormat('en-US',{style: 'currency', currency:'JOD'}).format(event.target.value);
+    this.currency= uy;
+    // this.addinterfaceform.setValue({
+    //   productPrice: uy
+    // })
   }
 
   backToProfile(){

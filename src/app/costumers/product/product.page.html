@@ -22,6 +22,11 @@
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
+      <ion-text slot="end"><br><br>{{productinfo.productPrice}}  JD</ion-text>
+      <strong slot="end">:سعر المنتج</strong>
+    </ion-item-divider>
+
+    <ion-item-divider mode="ios" id="divider">
       <ion-text slot="end"> <br><br>{{productinfo.productDate}}</ion-text><strong slot="end">:تاريخ الانتاج</strong>
     </ion-item-divider>
 
@@ -40,4 +45,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-button *ngIf="!this.permit" size="large" expand="block" color="success">شراء المنتج</ion-button>
 </ion-content>
