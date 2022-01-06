@@ -5,15 +5,20 @@
 }
 
 ion-card{
-    --background:rgba(234, 0, 255, 0.301);
-    color: black;
+    --background:rgba(217, 255, 0, 0.301);
+    color: white;
     width: 100%;
     border-radius: 10%;
     height: auto;
 }
 
+ion-card-title{
+    color: white;
+}
+
 ion-searchbar{
     margin-top: 10px;
+    --background: white;
 }
 
 #cardimage{

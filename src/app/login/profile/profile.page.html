@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar >
     
-    <ion-title><h2><ion-icon (click)="backToHome()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon>صفحتي الشخصية</h2></ion-title>
+    <ion-title><h2 id="personalpage"><ion-icon (click)="backToHome()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon>صفحتي الشخصية</h2></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,7 +20,7 @@
   <div class="prods">
     <ion-item id="product" (click)="showproduct(product)" *ngFor="let product of products; index as i" lines="none" color="rgba(255, 0, 234, 0.329)">
       <ion-label><h2><strong></strong></h2></ion-label>
-      <div>
+      <div style="color: white;">
         <h4>{{product.productTitle}}</h4>
         <p>
           {{product.availableUnits}}    <strong>:العدد</strong>

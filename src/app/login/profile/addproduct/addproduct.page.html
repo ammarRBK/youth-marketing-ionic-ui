@@ -8,7 +8,7 @@
   
   <div class="formerea">
     
-    <ion-text><h1><ion-icon (click)="backToProfile()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon>          إضافة منتج</h1></ion-text>
+    <ion-text color="light"><h1><ion-icon (click)="backToProfile()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon>          إضافة منتج</h1></ion-text>
     <form [formGroup]="addinterfaceform" (ngSubmit)="submitAddProduct()">
 
       <ion-grid>
@@ -17,6 +17,7 @@
           <ion-col size="8">
             <ion-item lines="full" id="title">
               <ion-input
+              color="light"
               placeholder="اسم المنتج"
               type="text"
               lines="full"
@@ -30,6 +31,7 @@
           <ion-col>
             <ion-item lines="full" id="description">
               <ion-textarea
+              color="light"
               placeholder="وصف المنتج"
               type="text"
               lines="full"
@@ -46,6 +48,7 @@
             <ion-label>:الكمية المتوفرة بالقطعة</ion-label>
             <ion-item lines="full" id="numbers">
               <ion-input
+              color="light"
               placeholder="عدد المنتجات المتوفرة بالرقم"
               type="number"
               formControlName="availableUnits"
@@ -56,6 +59,7 @@
             <ion-label>:وزن المنتج</ion-label>
             <ion-item lines="full" id="numbers">
               <ion-input
+              color="light"
               placeholder="اذا كان وزنه نصف كيلو اكتب 0.5"
               type="tel"
               formControlName="productQuantity"
@@ -67,6 +71,7 @@
           <ion-col>
             <ion-label>:تاريخ الانتهاء</ion-label>
             <ion-datetime
+            color="light"
             mode="ios"
             placeholder="اختر التاريخ"
             displayFormat="D/MM/YYYY"
@@ -79,6 +84,7 @@
           <ion-col>
             <ion-label>:تاريخ الانتاج</ion-label>
             <ion-datetime
+            color="light"
             mode="ios"
             placeholder="اختر التاريخ"
             displayFormat="D/MM/YYYY"
@@ -94,6 +100,7 @@
           <ion-col size="6.4">
             <ion-item lines="full" id="title">
               <ion-input
+                color="light"
                 placeholder="(0.5 JD) سعر المنتج"
                 type="tel"
                 lines="full"
