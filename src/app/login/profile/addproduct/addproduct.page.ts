@@ -28,7 +28,8 @@ export class AddproductPage implements OnInit {
       productQuantity:['',[Validators.required, Validators.pattern('d')]],
       expirationDate:['',[Validators.required]],
       productDate:['',[Validators.required]],
-      productPrice: ['',[Validators.required]]
+      productPrice: ['',[Validators.required]],
+      productImage:['',[]]
     })
   }
 
@@ -42,7 +43,9 @@ export class AddproductPage implements OnInit {
     }
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
-      this.submitAddProduct(imageData);
+      this.addinterfaceform.setValue({
+        productImage: imageData
+      })
     }, (err) => {
       // Handle error
       this.errormessage= err === "cordova_not_available" 
@@ -80,7 +83,7 @@ export class AddproductPage implements OnInit {
   }
 
   // product requirements= ['productTitle','productDescription','productQuantity','availableUnits','productDate','expirationDate','productImage']
-  submitAddProduct(imagedata){
+  submitAddProduct(){
     let productdata={
       productTitle: this.addinterfaceform.value.productTitle,
       productDescription: this.addinterfaceform.value.productDescription,
@@ -88,7 +91,7 @@ export class AddproductPage implements OnInit {
       availableUnits: this.addinterfaceform.value.availableUnits,
       productDate: this.addinterfaceform.value.productDate,
       expirationDate: this.addinterfaceform.value.expirationDate,
-      productImage: imagedata || null,
+      productImage: this.addinterfaceform.value.productImage || null,
       productPrice: this.addinterfaceform.value.productPrice
     }
 
