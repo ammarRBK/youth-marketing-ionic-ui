@@ -28,7 +28,7 @@
       formControlName="userName"
       required="true"><ion-icon name="person-sharp"></ion-icon></ion-input>
     </ion-item>
-    <div><span *ngIf="interfaceForm.userName.errors">الرجاء ادخال اسم المستخدم ويحتوي على الأقل 6 أحرف*</span></div>
+    <div><span *ngIf="interfaceForm.controls.userName.errors">الرجاء ادخال اسم المستخدم ويحتوي على الأقل 6 أحرف*</span></div>
     <ion-item lines="full" id="passwordinput">
       <!-- <ion-label>تأكيد كلمة السر</ion-label> -->
       <ion-input 
@@ -45,8 +45,8 @@
       formControlName="password"
       required="true"><ion-icon name="lock-open-sharp"></ion-icon></ion-input>
     </ion-item>
-    <span *ngIf="interfaceForm.password.errors">الرجاء ادخال كلمة السر ويجب أن تحتوي على الأقل 8 أحرف وأرقام*</span><hr>
-    <span *ngIf="interfaceForm.confirmPassword.errors">تأكيد كلمة السر يجب أن يكون مطابقا للكلمة*</span><hr><hr>
+    <span *ngIf="interfaceForm.controls.password.errors">الرجاء ادخال كلمة السر ويجب أن تحتوي على الأقل 8 أحرف وأرقام*</span><hr>
+    <span *ngIf="interfaceForm.controls.confirmPassword.errors">تأكيد كلمة السر يجب أن يكون مطابقا للكلمة*</span><hr><hr>
     <ion-item lines="full" id="phonenumber">
       <!-- <ion-label>رقم الهاتف</ion-label> -->
       <ion-input 
@@ -55,7 +55,7 @@
       formControlName="phoneNumber"
       required="true"><ion-icon name="call-sharp"></ion-icon></ion-input>
     </ion-item>
-    <span *ngIf="interfaceForm.phoneNumber.errors">(07 xxx-xxx-xx) رقم الهاتف يجب أن يكون 10 خانات*</span><hr>
+    <span *ngIf="interfaceForm.controls.phoneNumber.errors">(07 xxx-xxx-xx) رقم الهاتف يجب أن يكون 10 خانات*</span><hr>
     <ion-label><h1><strong>:العنوان</strong></h1></ion-label>
     <ion-item id="address">
       <!-- <ion-label>القطاع</ion-label> -->
@@ -111,7 +111,7 @@
       formControlName="houseHold"
       required="true"></ion-input>
     </ion-item>
-    <span *ngIf="interfaceForm.houseHold.errors">الرجاء ادخال بيانات السكن كاملة وبشكل صحيح*</span>
+    <span *ngIf="interfaceForm.controls.houseHold.errors">الرجاء ادخال بيانات السكن كاملة وبشكل صحيح*</span>
     <span *ngIf="errorMessage?.length > 0">{{errorMessage}}</span>
     <h2 id="success" *ngIf="successMessage?.length > 0">{{successMessage}}</h2>
     <ion-button class="subbutton" type="submit" [disabled]="!interfaceForm.valid" expand="block">تأكيد التسجيل</ion-button>
