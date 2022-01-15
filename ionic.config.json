@@ -3,7 +3,8 @@
   "integrations": {
     "cordova": {
       "enabled": true
-    }
+    },
+    "capacitor": {}
   },
   "type": "angular"
 }
