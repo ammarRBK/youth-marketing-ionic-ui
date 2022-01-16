@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { Platform, AlertController } from '@ionic/angular';
+import { Platform, AlertController, IonRouterOutlet } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 const { App } = Plugins;
 @Component({
@@ -10,9 +10,11 @@ const { App } = Plugins;
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private router: Router, private authServ: AuthService,private alert: AlertController, private platform: Platform) { 
+  constructor(private router: Router, private authServ: AuthService,private alert: AlertController, private platform: Platform, private routerOutlet: IonRouterOutlet) { 
     this.platform.backButton.subscribe(()=>{
-      this.warningAlert()
+      if (!this.routerOutlet.canGoBack()){
+        this.warningAlert()
+      } 
     })
   }
 
@@ -27,7 +29,6 @@ export class HomePage {
         {
           text: "!!خروج",
           handler: ()=>{
-
             App.exitApp();
           }
         }
