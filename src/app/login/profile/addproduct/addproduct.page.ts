@@ -55,7 +55,8 @@ export class AddproductPage implements OnInit {
       // Handle error
       this.errormessage= err === "cordova_not_available" 
       ? "الرجاء استخدام هاتف جوال لالتقاط او اختيار صورة للمنتج*" 
-      : "حدث خطأ أثناء اختيار ملف الصورة (الرجاء التأكد من الخطأ واعادة المحاولة)*";
+      : err;
+      // "حدث خطأ أثناء اختيار ملف الصورة (الرجاء التأكد من الخطأ واعادة المحاولة)*"
       setTimeout(() => {
         this.errormessage= "";
       }, 3000);
