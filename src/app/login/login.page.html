@@ -13,16 +13,18 @@
     <form [formGroup]="loginInterfaceForm" (ngSubmit)="submitLogin()">
       <ion-item lines="full" id="phonenumber">
         <!-- <ion-label>رقم الهاتف</ion-label> -->
-        <ion-input 
+        <ion-input
+        color="light" 
         placeholder="رقم الهاتف (07 xxx-xxx-xx)"
-        type="number"
+        type="tel"
         formControlName="phoneNumber"
         required="true"><ion-icon name="call-sharp"></ion-icon></ion-input>
       </ion-item>
       <div><span *ngIf="loginInterfaceForm.controls.phoneNumber.errors">الرجاء ادخال رقم الهاتف*</span></div>
       <ion-item lines="full" id="passwordinput">
         <!-- <ion-label>كلمة السر</ion-label> -->
-        <ion-input 
+        <ion-input
+        color="light" 
         placeholder="كلمة السر"
         type="password"
         formControlName="password"

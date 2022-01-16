@@ -23,6 +23,7 @@
     <ion-item lines="full" id="usernameinput">
       <!-- <ion-label>اسم المستخدم</ion-label> -->
       <ion-input
+      color="light"
       placeholder="الاسم واسم العائلة أو اللقب"
       type="text"
       formControlName="userName"
@@ -32,6 +33,7 @@
     <ion-item lines="full" id="passwordinput">
       <!-- <ion-label>تأكيد كلمة السر</ion-label> -->
       <ion-input 
+      color="light"
       placeholder="تأكيد كلمة السر"
       type="password"
       formControlName="confirmPassword"
@@ -40,6 +42,7 @@
     <ion-item lines="full" id="passwordinput">
       <!-- <ion-label>كلمة السر</ion-label> -->
       <ion-input
+      color="light"
       placeholder="كلمة السر"
       type="password"
       formControlName="password"
@@ -50,8 +53,9 @@
     <ion-item lines="full" id="phonenumber">
       <!-- <ion-label>رقم الهاتف</ion-label> -->
       <ion-input 
+      color="light"
       placeholder="رقم الهاتف (07 xxx-xxx-xx)"
-      type="number"
+      type="tel"
       formControlName="phoneNumber"
       required="true"><ion-icon name="call-sharp"></ion-icon></ion-input>
     </ion-item>
@@ -59,7 +63,7 @@
     <ion-label><h1><strong>:العنوان</strong></h1></ion-label>
     <ion-item id="address">
       <!-- <ion-label>القطاع</ion-label> -->
-      <ion-select placeholder="القطاع" formControlName="district">
+      <ion-select color="light" placeholder="القطاع" formControlName="district">
         <ion-select-option value="D01">الأول</ion-select-option>
         <ion-select-option value="D02">الثاني</ion-select-option>
         <ion-select-option value="D03">الثالث</ion-select-option>
@@ -76,7 +80,7 @@
     </ion-item>
     <ion-item id="address">
       <!-- <ion-label>البلوك</ion-label> -->
-      <ion-select placeholder="الحارة / البلوك" formControlName="block">
+      <ion-select color="light" placeholder="الحارة / البلوك" formControlName="block">
         <ion-select-option value="B01">1</ion-select-option>
         <ion-select-option value="B02">2</ion-select-option>
         <ion-select-option value="B03">3</ion-select-option>
@@ -106,6 +110,7 @@
     <ion-item lines="full" id="address">
       <ion-label>المنزل</ion-label>
       <ion-input 
+      color="light"
       placeholder="المنزل (رقم أو رقم-A  رقم-رقم أو)"
       type="text"
       formControlName="houseHold"
