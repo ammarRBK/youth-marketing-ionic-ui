@@ -20,9 +20,8 @@ export class ProfilePage implements OnInit {
   constructor(public authServ: AuthService, private productsSer:ProductsService, private platform:Platform, private router: Router) { 
     
     this.platform.backButton.subscribe(()=>{
-      this.authServ.checkLoggedIn().subscribe(res =>{
-        res['message']=== "loggedin" ? this.router.navigateByUrl('home/login/profile') :  this.router.navigateByUrl('home/users')
-      })
+      
+      this.router.navigateByUrl('home/users')
     })
     
   }
