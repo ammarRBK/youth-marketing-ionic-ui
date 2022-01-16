@@ -14,7 +14,8 @@ export class HomePage {
     this.platform.backButton.subscribe(()=>{
       if (!this.routerOutlet.canGoBack()){
         this.warningAlert()
-      } 
+      }
+      router.navigateByUrl('home');
     })
   }
 
