@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Router } from '@angular/router';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, Platform } from '@ionic/angular';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -18,7 +18,12 @@ export class AddproductPage implements OnInit {
   addedmessage= "";
   currency= "";
 
-  constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera: Camera, private file: File, public actionSheetController:ActionSheetController) { }
+  constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera: Camera, private file: File, public actionSheetController:ActionSheetController, private platform: Platform) { 
+    this.platform.backButton.subscribe(()=>{
+      
+      this.router.navigateByUrl('home/login/profile')
+    })
+  }
 
   ngOnInit() {
     this.addinterfaceform= this.addformbuilder.group({

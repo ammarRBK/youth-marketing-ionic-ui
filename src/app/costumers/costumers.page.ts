@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { ProductsService } from '../services/products.service';
 
@@ -15,7 +16,12 @@ export class CostumersPage implements OnInit {
   fcol=[];
   scol=[];
 
-  constructor(private router:Router, private authServ: AuthService, private products: ProductsService) { }
+  constructor(private router:Router, private authServ: AuthService, private products: ProductsService, private platform: Platform) { 
+    this.platform.backButton.subscribe(()=>{
+      
+      this.router.navigateByUrl('home');
+    })
+  }
 
   ngOnInit() {
     this.getProds();

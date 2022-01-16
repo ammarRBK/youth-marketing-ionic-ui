@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-product',
@@ -11,7 +11,12 @@ import { AlertController } from '@ionic/angular';
 })
 export class ProductPage implements OnInit {
 
-  constructor(private product:ProductsService, private router:Router, private authServ: AuthService, private alert: AlertController) { }
+  constructor(private product:ProductsService, private router:Router, private authServ: AuthService, private alert: AlertController, private platform: Platform) { 
+    this.platform.backButton.subscribe(()=>{
+      
+      this.permit ? this.router.navigateByUrl('home/login/profile') : this.router.navigateByUrl('home/costumers');
+    })
+  }
   productinfo= this.product.product.productinfo;
   permit= this.product.product.permited
   loggedin: boolean;
