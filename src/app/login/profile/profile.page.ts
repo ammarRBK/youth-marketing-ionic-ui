@@ -20,7 +20,9 @@ export class ProfilePage implements OnInit {
   constructor(public authServ: AuthService, private productsSer:ProductsService, private platform:Platform, private router: Router) { 
     
     this.platform.backButton.subscribe(()=>{
-      
+      if(this.userdata){
+        this.router.navigateByUrl('home')
+      }
       this.router.navigateByUrl('home/users')
     })
     
