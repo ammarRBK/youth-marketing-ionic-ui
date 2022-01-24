@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
-import { File } from '@ionic-native/file/ngx';
+import {  Camera,CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { Router } from '@angular/router';
 import { ActionSheetController, Platform } from '@ionic/angular';
 import { ProductsService } from 'src/app/services/products.service';
@@ -18,7 +17,7 @@ export class AddproductPage implements OnInit {
   addedmessage= "";
   currency= "";
 
-  constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera: Camera, private file: File, public actionSheetController:ActionSheetController, private platform: Platform) { 
+  constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera:Camera, public actionSheetController:ActionSheetController, private platform: Platform) { 
     this.platform.backButton.subscribe(()=>{
       
       this.router.navigateByUrl('home/login/profile')
@@ -42,12 +41,12 @@ export class AddproductPage implements OnInit {
     const options: CameraOptions = {
       quality: 100,
       sourceType: sourceType,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: true
     }
     this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
       this.addinterfaceform.setValue({
         productImage: imageData
       })

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { Device } from '@awesome-cordova-plugins/device/ngx';
 
 
 @Injectable({
@@ -10,9 +11,10 @@ import { retry, catchError } from 'rxjs/operators';
 export class AuthService {
 
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private device: Device) { }
 
   user: object;
+  deviceId= String(this.device.uuid);
   url= 'https://youth-marketing-server.herokuapp.com/api/';
   httpOptions: object={
     headers: new HttpHeaders({
@@ -36,19 +38,20 @@ export class AuthService {
   }
 
   login(userData: object):Observable<{}>{
+    userData['deviceId']= this.deviceId
     return this.http.post(this.url+"users/signin",userData,this.httpOptions).pipe(
       retry(2),
       catchError(this.handleError));
   }
 
   checkLoggedIn(){
-    return this.http.get(this.url+'users/checkloggedin',this.httpOptions).pipe(
+    return this.http.post(this.url+'users/checkloggedin',{deviceId:this.deviceId},this.httpOptions).pipe(
       retry(2),
       catchError(this.handleError));
   }
 
   getUserdata(){
-    return this.http.get(this.url+'users/getsession',this.httpOptions).pipe(
+    return this.http.post(this.url+'users/getsession', {deviceId:this.deviceId}, this.httpOptions).pipe(
       retry(2),
       catchError(this.handleError));
   }
