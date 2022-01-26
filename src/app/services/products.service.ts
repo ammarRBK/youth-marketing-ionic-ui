@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { Device } from '@awesome-cordova-plugins/device/ngx';
+
 // import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 @Injectable({
@@ -9,7 +11,8 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class ProductsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private device: Device) { }
+  deviceId= this.device.uuid;
   url= 'https://youth-marketing-server.herokuapp.com/api/';
   httpOptions: object={
     headers: new HttpHeaders({
@@ -35,7 +38,7 @@ export class ProductsService {
   }
 
   getUserProducts(){
-    return this.http.get(this.url+"products/getUserProducts",this.httpOptions).pipe(
+    return this.http.post(this.url+"products/getUserProducts",{deviceId:this.deviceId},this.httpOptions).pipe(
       retry(2),
       catchError(this.handleError)
     )
