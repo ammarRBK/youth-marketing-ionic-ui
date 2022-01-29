@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {  Camera,CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
 import { ActionSheetController, Platform } from '@ionic/angular';
 import { ProductsService } from 'src/app/services/products.service';
@@ -10,12 +11,15 @@ import { ProductsService } from 'src/app/services/products.service';
   templateUrl: './addproduct.page.html',
   styleUrls: ['./addproduct.page.scss'],
 })
-export class AddproductPage implements OnInit {
 
+
+export class AddproductPage implements OnInit {
+  
   addinterfaceform: FormGroup
   errormessage= "";
   addedmessage= "";
   currency= "";
+  picData;
 
   constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera:Camera, public actionSheetController:ActionSheetController, private platform: Platform) { 
     this.platform.backButton.subscribe(()=>{
@@ -38,6 +42,10 @@ export class AddproductPage implements OnInit {
   }
 
   pickImage(sourceType) {
+    const { App }= Plugins;
+    App.addListener('appRestoredResult', data=>{
+      
+    })
     const options: CameraOptions = {
       quality: 100,
       sourceType: sourceType,
@@ -50,6 +58,7 @@ export class AddproductPage implements OnInit {
       this.addinterfaceform.setValue({
         productImage: imageData
       })
+      this.picData= String(imageData);
     }, (err) => {
       // Handle error
       this.errormessage= err === "cordova_not_available" 
