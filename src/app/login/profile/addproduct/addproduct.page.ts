@@ -41,10 +41,9 @@ export class AddproductPage implements OnInit {
     const options: CameraOptions = {
       quality: 100,
       sourceType: sourceType,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.NATIVE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      allowEdit: true,
       correctOrientation: true
     }
     this.camera.getPicture(options).then((imageData) => {
