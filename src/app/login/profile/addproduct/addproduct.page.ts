@@ -45,7 +45,7 @@ export class AddproductPage implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       allowEdit: true,
-      saveToPhotoAlbum: true
+      correctOrientation: true
     }
     this.camera.getPicture(options).then((imageData) => {
       this.addinterfaceform.setValue({
