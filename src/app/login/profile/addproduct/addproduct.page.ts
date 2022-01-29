@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {  Camera,CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
-import { Plugins } from '@capacitor/core';
 import { Router } from '@angular/router';
 import { ActionSheetController, Platform } from '@ionic/angular';
 import { ProductsService } from 'src/app/services/products.service';
@@ -42,23 +41,19 @@ export class AddproductPage implements OnInit {
   }
 
   pickImage(sourceType) {
-    const { App }= Plugins;
-    App.addListener('appRestoredResult', data=>{
-      
-    })
     const options: CameraOptions = {
       quality: 100,
       sourceType: sourceType,
-      destinationType: this.camera.DestinationType.NATIVE_URI,
+      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true
     }
     this.camera.getPicture(options).then((imageData) => {
+      this.picData= imageData;
       this.addinterfaceform.setValue({
         productImage: imageData
       })
-      this.picData= String(imageData);
     }, (err) => {
       // Handle error
       this.errormessage= err === "cordova_not_available" 
