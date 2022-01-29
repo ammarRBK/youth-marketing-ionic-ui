@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  Camera,CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
-import { FileTransfer } from '@ionic-native/file-transfer';
 import { ProductsService } from './services/products.service';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
 
