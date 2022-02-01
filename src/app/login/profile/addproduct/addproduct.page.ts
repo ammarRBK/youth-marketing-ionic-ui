@@ -18,7 +18,6 @@ export class AddproductPage implements OnInit {
   errormessage= "";
   addedmessage= "";
   currency= "";
-  picData;
 
   constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera:Camera, public actionSheetController:ActionSheetController, private platform: Platform) { 
     this.platform.backButton.subscribe(()=>{
@@ -50,7 +49,7 @@ export class AddproductPage implements OnInit {
       correctOrientation: true
     }
     this.camera.getPicture(options).then((imageData) => {
-      this.picData= imageData;
+      
       this.addinterfaceform.setValue({
         productImage: imageData
       })
@@ -100,7 +99,7 @@ export class AddproductPage implements OnInit {
       availableUnits: this.addinterfaceform.value.availableUnits,
       productDate: this.addinterfaceform.value.productDate,
       expirationDate: this.addinterfaceform.value.expirationDate,
-      productImage: this.addinterfaceform.value.productImage || null,
+      productImage: null,
       productPrice: this.addinterfaceform.value.productPrice
     }
 
