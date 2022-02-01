@@ -109,21 +109,23 @@ export class AddproductPage implements OnInit {
         setTimeout(() => {
           this.errormessage= ""
         }, 3000);
-      }
-      this.addedmessage= "تم إضافة المنتج بنجاح";
-      setTimeout(() => {
-        this.addinterfaceform.setValue({
-          productTitle: null,
-          productDescription: null,
-          productQuantity: null,
-          availableUnits: null,
-          productDate: null,
-          expirationDate: null,
-          productPrice: null
-        })
+      }else{
+        this.addedmessage= "تم إضافة المنتج بنجاح";
+        setTimeout(() => {
+          this.addinterfaceform.setValue({
+            productTitle: null,
+            productDescription: null,
+            productQuantity: null,
+            availableUnits: null,
+            productDate: null,
+            expirationDate: null,
+            productPrice: null
+          })
 
-        this.addedmessage= ""
-      }, 3000);
+          this.addedmessage= ""
+        }, 3000);
+      }
+      
     })
   }
 
