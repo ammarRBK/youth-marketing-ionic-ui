@@ -24,6 +24,7 @@ export class ProductsService {
   product;
 
   addProduct(productData){
+    productData['deviceId']= this.deviceId
     return this.http.post(this.url+"products/addproduct",productData,this.httpOptions).pipe(
       retry(2),
       catchError(this.handleError)

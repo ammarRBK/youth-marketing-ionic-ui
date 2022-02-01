@@ -30,8 +30,8 @@ export class AddproductPage implements OnInit {
     this.addinterfaceform= this.addformbuilder.group({
       productTitle: ['',[Validators.required, Validators.minLength(3)]],
       productDescription:['',[Validators.required,Validators.minLength(3)]],
-      availableUnits:['',[Validators.required, Validators.pattern('ds')]],
-      productQuantity:['',[Validators.required, Validators.pattern('d')]],
+      availableUnits:['',[Validators.required]],
+      productQuantity:['',[Validators.required]],
       expirationDate:['',[Validators.required]],
       productDate:['',[Validators.required]],
       productPrice: ['',[Validators.required]],

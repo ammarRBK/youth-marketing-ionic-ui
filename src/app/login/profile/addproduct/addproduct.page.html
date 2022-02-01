@@ -116,7 +116,7 @@
       <span *ngIf="errormessage !== ''" id="errormessage"><ion-text>{{errormessage}}</ion-text></span>
       <span *ngIf="addedmessage !== ''" id="addedsuccess"><ion-text>{{addedmessage}}</ion-text></span>
       <span id="addedsuccess"><ion-text>{{picData}}</ion-text></span>
-      <ion-button type="submit" color="success" size="large" expand="block" id="submitButt">اضافة الى منتجاتي</ion-button>
+      <ion-button type="submit" [disabled]="!addinterfaceform.valid" color="success" size="large" expand="block" id="submitButt">اضافة الى منتجاتي</ion-button>
       
     </form>
   </div>
