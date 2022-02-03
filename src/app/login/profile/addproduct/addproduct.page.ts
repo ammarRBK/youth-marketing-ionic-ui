@@ -49,9 +49,13 @@ export class AddproductPage implements OnInit {
       correctOrientation: true
     }
     this.camera.getPicture(options).then((imageData) => {
-      
+
+      let imageName= new Date().toDateString() + Math.random().toString() + '.jpeg';
+      const imageBlob = this.productsServ.dataURItoBlob(imageData);
+      const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
+
       this.addinterfaceform.setValue({
-        productImage: imageData
+        productImage: imageFile
       })
     }, (err) => {
       // Handle error
@@ -90,7 +94,7 @@ export class AddproductPage implements OnInit {
     await actionSheet.present();
   }
 
-  // product requirements= ['productTitle','productDescription','productQuantity','availableUnits','productDate','expirationDate','productImage']
+  // product requirements= ['productTitle','productDescription','productQuantity','availableUnits','productDate','expirationDate','productImage','productPrice']
   submitAddProduct(){
     let productdata={
       productTitle: this.addinterfaceform.value.productTitle,
@@ -99,7 +103,7 @@ export class AddproductPage implements OnInit {
       availableUnits: this.addinterfaceform.value.availableUnits,
       productDate: this.addinterfaceform.value.productDate,
       expirationDate: this.addinterfaceform.value.expirationDate,
-      productImage: null,
+      productImage: this.addinterfaceform.value.productImage,
       productPrice: this.addinterfaceform.value.productPrice
     }
 
@@ -142,3 +146,46 @@ export class AddproductPage implements OnInit {
   }
 
 }
+
+// image;
+//  imageData;
+// constructor(private camera: Camera,
+//         private http: HttpClient) { }
+//   ngOnInit() {
+//   }
+
+//   openCamera(){
+//     const options: CameraOptions = {
+//     quality: 100,
+//     destinationType: this.camera.DestinationType.DATA_URL,
+//     encodingType: this.camera.EncodingType.JPEG,
+//     mediaType: this.camera.MediaType.PICTURE,
+//    }
+
+//     this.camera.getPicture(options).then((imageData) => {
+//     this.imageData = imageData;
+//     this.image=(<any>window).Ionic.WebView.convertFileSrc(imageData);
+//     }, (err) => {
+//        // Handle error
+//        alert("error "+JSON.stringify(err))
+//   });
+// }
+//   upload(){
+//     let  url = 'your REST API url';
+//     const date = new Date().valueOf();
+
+//     // Replace extension according to your media type
+//     const imageName = date+ '.jpeg';
+//     // call method that creates a blob from dataUri
+//     const imageBlob = this.dataURItoBlob(this.imageData);
+//     const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' })
+
+//     let  postData = new FormData();
+//     postData.append('file', imageFile);
+
+//     let data:Observable<any> = this.http.post(url,postData);
+//     data.subscribe((result) => {
+//       console.log(result);
+//     });
+//   }
+

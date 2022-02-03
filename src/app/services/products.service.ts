@@ -52,6 +52,17 @@ export class ProductsService {
     )
   }
 
+  dataURItoBlob(dataURI) {
+    const byteString = window.atob(dataURI);
+   const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+     }
+    const blob = new Blob([int8Array], { type: 'image/jpeg' });    
+   return blob;
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
