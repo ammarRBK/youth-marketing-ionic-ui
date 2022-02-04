@@ -3,15 +3,14 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
-
-// import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor(private http: HttpClient, private device: Device) { }
+  constructor(private http: HttpClient, private device: Device, private transferer: FileTransfer) { }
   deviceId= this.device.uuid;
   url= 'https://youth-marketing-server.herokuapp.com/api/';
   httpOptions: object={
@@ -22,13 +21,16 @@ export class ProductsService {
   }
 
   product;
+  status="";
 
-  addProduct(productData){
-    productData['deviceId']= this.deviceId
-    return this.http.post(this.url+"products/addproduct",productData,this.httpOptions).pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
+  addProduct(imageUri, productData){
+    productData.params.deviceId= this.deviceId
+    const filetransfer: FileTransferObject= this.transferer.create();
+    return filetransfer.upload(imageUri, encodeURI(this.url+"products/addproduct"), productData)
+    // this.http.post(this.url+"products/addproduct",productData,this.httpOptions).pipe(
+    //   retry(2),
+    //   catchError(this.handleError)
+    // )
   }
 
   getProducts(){
@@ -50,17 +52,6 @@ export class ProductsService {
       retry(2),
       catchError(this.handleError)
     )
-  }
-
-  dataURItoBlob(dataURI) {
-    const byteString = window.atob(dataURI);
-   const arrayBuffer = new ArrayBuffer(byteString.length);
-    const int8Array = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < byteString.length; i++) {
-      int8Array[i] = byteString.charCodeAt(i);
-     }
-    const blob = new Blob([int8Array], { type: 'image/jpeg' });    
-   return blob;
   }
 
   private handleError(error: HttpErrorResponse) {

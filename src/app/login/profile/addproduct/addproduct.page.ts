@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {  Camera,CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+import { File } from "@awesome-cordova-plugins/file/ngx";
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
 import { Router } from '@angular/router';
 import { ActionSheetController, Platform } from '@ionic/angular';
 import { ProductsService } from 'src/app/services/products.service';
@@ -18,8 +20,9 @@ export class AddproductPage implements OnInit {
   errormessage= "";
   addedmessage= "";
   currency= "";
+  imageUri;
 
-  constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera:Camera, public actionSheetController:ActionSheetController, private platform: Platform) { 
+  constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera:Camera, public actionSheetController:ActionSheetController, private platform: Platform, private file:File) { 
     this.platform.backButton.subscribe(()=>{
       
       this.router.navigateByUrl('home/login/profile')
@@ -49,14 +52,41 @@ export class AddproductPage implements OnInit {
       correctOrientation: true
     }
     this.camera.getPicture(options).then((imageData) => {
+      // this.picData= "this is the blobl ):" + imageData;
+      // let imageName= "";
+      //new Date().toDateString() + Math.random().toString() + '.jpeg';
+      // const imageBlob = this.dataURItoBlob(imageData);
+      // const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
 
-      let imageName= new Date().toDateString() + Math.random().toString() + '.jpeg';
-      const imageBlob = this.productsServ.dataURItoBlob(imageData);
-      const imageFile = new File([imageBlob], imageName, { type: 'image/jpeg' });
+      // this.file.resolveLocalFilesystemUrl(imageData).then(fileEntry=>{
+      //   let { name, nativeURL } = fileEntry;
 
-      this.addinterfaceform.setValue({
-        productImage: imageFile
-      })
+      //     // get the path..
+      //   let path = nativeURL.substring(0, nativeURL.lastIndexOf("/"));
+      //   imageName= name;
+      //   this.file.readAsArrayBuffer(path,name).then(buffered=>{
+      //   let imageBlob= new Blob([buffered],{type: 'image/jpeg'});
+
+      //     setTimeout(()=>{
+      //       this.picData= imageBlob.size;
+      //     },2000)
+          
+          
+      //   })
+      // })
+      // this.makeFileIntoBlob(imageData).then(data=>{
+        
+      //   this.picData="this is the file blob \n" + JSON.stringify(data);
+      // })
+
+      // this.addinterfaceform.patchValue({
+      //   productImage: null
+      // },{
+      //   onlySelf:true
+      // });
+      this.imageUri= imageData
+
+      
     }, (err) => {
       // Handle error
       this.errormessage= err === "cordova_not_available" 
@@ -103,33 +133,67 @@ export class AddproductPage implements OnInit {
       availableUnits: this.addinterfaceform.value.availableUnits,
       productDate: this.addinterfaceform.value.productDate,
       expirationDate: this.addinterfaceform.value.expirationDate,
-      productImage: this.addinterfaceform.value.productImage,
       productPrice: this.addinterfaceform.value.productPrice
     }
 
-    this.productsServ.addProduct(productdata).subscribe(result=>{
+    // this.productsServ.addProduct(productdata).subscribe(result=>{
+    //   if (result['message']=="cannot add the product") {
+    //     this.errormessage= "حدث خطأ ما أثناء اضافة منتجك* \n الرجاء التأكد من البيانات (اسم المنتج يجب أن لا يكون مكرراً والبيانات معبأة بشكل كامل وصحيح)"
+    //     setTimeout(() => {
+    //       this.errormessage= ""
+    //     }, 3000);
+    //   }else{
+    //     this.addedmessage= "تم إضافة المنتج بنجاح";
+    //     setTimeout(() => {
+    //       this.addinterfaceform.setValue({
+    //         productTitle: null,
+    //         productDescription: null,
+    //         productQuantity: null,
+    //         availableUnits: null,
+    //         productDate: null,
+    //         expirationDate: null,
+    //         productPrice: null
+    //       })
+
+    //       this.addedmessage= ""
+    //     }, 3000);
+    //   }
+      
+    // })
+    let productOptions: FileUploadOptions={
+      fileKey: "productImage",
+      fileName: this.imageUri.substr(this.imageUri.lastIndexOf('/')+1),
+      mimeType: 'image/jpeg',
+      params: productdata
+    }
+
+    this.productsServ.addProduct(this.imageUri, productOptions).then(result =>{
       if (result['message']=="cannot add the product") {
+            this.errormessage= "حدث خطأ ما أثناء اضافة منتجك* \n الرجاء التأكد من البيانات (اسم المنتج يجب أن لا يكون مكرراً والبيانات معبأة بشكل كامل وصحيح)"
+            setTimeout(() => {
+              this.errormessage= ""
+            }, 3000);
+          }else{
+            this.addedmessage= "تم إضافة المنتج بنجاح";
+            setTimeout(() => {
+              this.addinterfaceform.setValue({
+                productTitle: null,
+                productDescription: null,
+                productQuantity: null,
+                availableUnits: null,
+                productDate: null,
+                expirationDate: null,
+                productPrice: null
+              })
+    
+              this.addedmessage= ""
+            }, 3000);
+          }
+    }).catch(error=>{
         this.errormessage= "حدث خطأ ما أثناء اضافة منتجك* \n الرجاء التأكد من البيانات (اسم المنتج يجب أن لا يكون مكرراً والبيانات معبأة بشكل كامل وصحيح)"
         setTimeout(() => {
-          this.errormessage= ""
+          this.errormessage= ""+error
         }, 3000);
-      }else{
-        this.addedmessage= "تم إضافة المنتج بنجاح";
-        setTimeout(() => {
-          this.addinterfaceform.setValue({
-            productTitle: null,
-            productDescription: null,
-            productQuantity: null,
-            availableUnits: null,
-            productDate: null,
-            expirationDate: null,
-            productPrice: null
-          })
-
-          this.addedmessage= ""
-        }, 3000);
-      }
-      
     })
   }
 
@@ -144,6 +208,65 @@ export class AddproductPage implements OnInit {
   backToProfile(){
     this.router.navigateByUrl("home/login/profile")
   }
+
+  makeFileIntoBlob(_imagePath) {
+    // INSTALL PLUGIN - cordova plugin add cordova-plugin-file
+    return new Promise((resolve, reject) => {
+      let fileName = "";
+      this.file
+        .resolveLocalFilesystemUrl(_imagePath)
+        .then(fileEntry => {
+          let { name, nativeURL } = fileEntry;
+
+          // get the path..
+          let path = nativeURL.substring(0, nativeURL.lastIndexOf("/"));
+
+          fileName = name;
+
+          // we are provided the name, so now read the file into a buffer
+          return this.file.readAsArrayBuffer(path, name);
+        })
+        .then(buffer => {
+          // get the buffer and make a blob to be saved
+          let imgBlob = new Blob([buffer], {
+            type: "image/jpeg"
+          });
+          
+          // pass back blob and the name of the file for saving
+          // into fire base
+          resolve({
+            fileName,
+            imgBlob
+          });
+        })
+        .catch(e => reject(e));
+    });
+  }
+
+  // dataURItoBlob(dataURI) {
+  //   // convert base64 to raw binary data held in a string
+  //   // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+  //   var byteString = atob(dataURI.split(',')[1]);
+  
+  //   // separate out the mime component
+  //   var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+  
+  //   // write the bytes of the string to an ArrayBuffer
+  //   var ab = new ArrayBuffer(byteString.length);
+  
+  //   // create a view into the buffer
+  //   var ia = new Uint8Array(ab);
+  
+  //   // set the bytes of the buffer to the correct values
+  //   for (var i = 0; i < byteString.length; i++) {
+  //       ia[i] = byteString.charCodeAt(i);
+  //   }
+  
+  //   // write the ArrayBuffer to a blob, and you're done
+  //   var blob = new Blob([ab], {type: mimeString});
+  //   return blob;
+  
+  // }
 
 }
 
