@@ -1,6 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title><ion-icon (click)="backward()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon><ion-icon size="large" name="person" (click)="routeProfile()" *ngIf="this.loggedin"></ion-icon>
+    <ion-title>
+      <ion-button slot="start" size="small" fill="clear" expand="block" (click)="logout()">تسجيل خروج</ion-button>
+      <ion-icon (click)="backward()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon><ion-icon size="large" name="person" (click)="routeProfile()" *ngIf="this.loggedin"></ion-icon>
       {{productinfo.productTitle}}
     </ion-title>
   </ion-toolbar>

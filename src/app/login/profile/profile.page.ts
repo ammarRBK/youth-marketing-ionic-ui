@@ -40,6 +40,14 @@ export class ProfilePage implements OnInit {
     })
   }
 
+  logout(){
+    this.authServ.logout().subscribe(result=>{
+      if(result['message'] === "logged out"){
+        this.backToHome();
+      }
+    })
+  }
+
   showproduct(product){
     this.productsSer.product= {permited:true, productinfo:product};
     this.router.navigateByUrl('home/costumers/product');

@@ -68,6 +68,14 @@ export class ProductPage implements OnInit {
     })
   }
 
+  logout(){
+    this.authServ.logout().subscribe(result=>{
+      if(result['message'] === "logged out"){
+        this.router.navigateByUrl('home');
+      }
+    })
+  }
+
   routeProfile(){
     this.router.navigateByUrl('home/login/profile');
   }
