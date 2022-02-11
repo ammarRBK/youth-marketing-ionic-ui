@@ -9,7 +9,7 @@
 <ion-content>
   <div class="maincontent">
     <ion-item-divider id="divider">
-      <img id="cardimage" src="../../assets/icon/favicon.png"/>
+      <img id="cardimage" [src]="productinfo.image"/>
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
@@ -32,6 +32,9 @@
 
     <ion-item-divider mode="ios" id="divider">
       <ion-text slot="end"> <br><br>{{productinfo.expirationDate}}</ion-text><strong slot="end">:تاريخ الانتهاء</strong>
+    </ion-item-divider>
+    <ion-item-divider mode="ios" id="divider">
+      <ion-text *ngIf="!this.permit" slot="end"> <br><br>{{productinfo.expirationDate}}</ion-text><strong slot="end">:رقم هاتف البائع</strong>
     </ion-item-divider>
   </div>
   <ion-grid *ngIf="this.permit">

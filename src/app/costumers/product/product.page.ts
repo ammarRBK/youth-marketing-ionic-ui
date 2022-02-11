@@ -41,7 +41,7 @@ export class ProductPage implements OnInit {
           cssClass: "deletealert",
           handler: ()=>{
             console.log(this.productinfo['id'])
-            this.deleteProduct(this.productinfo['id']);
+            this.deleteProduct(this.productinfo['id'], this.productinfo['imageId']);
           }
         }
       ]
@@ -50,9 +50,10 @@ export class ProductPage implements OnInit {
     await alerterOptions.present()
   }
 
-  deleteProduct(id){
+  deleteProduct(id, imageId){
     let product= {
-      productId: id
+      productId: id,
+      imageId: imageId
     }
     this.product.deleteProduct(product).subscribe(async (result)=>{
       const afterDeletAlert= await this.alert.create({

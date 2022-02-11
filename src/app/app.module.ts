@@ -23,6 +23,7 @@ import { Device } from '@awesome-cordova-plugins/device/ngx';
   Device,
   ProductsService,
   File,
+  FileTransfer,
   FileTransferObject],
   bootstrap: [AppComponent],
 })

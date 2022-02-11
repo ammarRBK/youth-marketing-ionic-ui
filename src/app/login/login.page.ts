@@ -46,8 +46,12 @@ export class LoginPage implements OnInit {
 
         }if(res['message']=== "wrong password"){
           this.errorMessage= 'كلمة السر خاطئة الرجاء التأكد من كلمة السر*';
-        }else{
-          this.errorMessage= 'رقم الهاتف خاطئ أو المستخدم غير مسجل لدينا الرجاء التأكد من رقم الهاتف* ';
+          }else{
+            if (res['message'] === "user is not in database") {
+            this.errorMessage= 'رقم الهاتف خاطئ أو المستخدم غير مسجل لدينا الرجاء التأكد من رقم الهاتف* ';
+            } else {
+              this.errorMessage= res['message'] + '\n' + "Error: " + res['error'];
+          }
         }
       }
     })
