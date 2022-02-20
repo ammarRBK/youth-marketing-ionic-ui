@@ -9,21 +9,9 @@ const config: CapacitorConfig = {
     preferences: {
       ScrollEnabled: 'false',
       BackupWebStorage: 'none',
-      SplashMaintainAspectRatio: 'true',
-      FadeSplashScreenDuration: '0',
-      SplashShowOnlyFirstTime: 'false',
-      SplashScreen: 'screen',
       SplashScreenDelay: '0',
       launchShowDuration: '0',
       launchAutoHide: 'true',
-      androidSplashResourceName: "splash",
-      backgroundColor: "#ffffffff",
-      showSpinner: 'true',
-      androidSpinnerStyle: "large",
-      iosSpinnerStyle: "small",
-      spinnerColor: "#999999",
-      splashFullScreen: 'true',
-      splashImmersive: 'true',
     }
   }
 };

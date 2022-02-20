@@ -1,10 +1,12 @@
 {
-  "name": "youth_marketing",
+  "name": "Youth-Marketing",
   "integrations": {
     "cordova": {
-      "enabled": true
+      "enabled": false
     },
-    "capacitor": {}
+    "capacitor": {
+      "enabled":true
+    }
   },
   "type": "angular"
 }
