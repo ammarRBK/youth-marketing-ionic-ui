@@ -8,4 +8,7 @@ import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 })
 export class AppComponent {
   constructor(private splashscreen: SplashScreen) {}
+  ngOnInit(){
+    this.splashscreen.hide();
+  }
 }
