@@ -26,7 +26,6 @@
     "@awesome-cordova-plugins/device": "^5.37.3",
     "@awesome-cordova-plugins/file": "^5.39.0",
     "@awesome-cordova-plugins/file-transfer": "^5.39.0",
-    "@awesome-cordova-plugins/splash-screen": "^5.39.1",
     "@capacitor/android": "3.4.0",
     "@capacitor/app": "^1.0.7",
     "@capacitor/camera": "^1.2.3",
