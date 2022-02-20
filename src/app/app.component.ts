@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SplashScreen } from '@capacitor/splash-screen';
+import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +7,5 @@ import { SplashScreen } from '@capacitor/splash-screen';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
-  ngOnInit(){
-    SplashScreen.hide()
-  }
+  constructor(private splashscreen: SplashScreen) {}
 }

@@ -13,6 +13,7 @@ import { File } from "@awesome-cordova-plugins/file/ngx";
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
 import { ProductsService } from './services/products.service';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
+import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,8 @@ import { Device } from '@awesome-cordova-plugins/device/ngx';
   ProductsService,
   File,
   FileTransfer,
-  FileTransferObject],
+  FileTransferObject,
+  SplashScreen],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
