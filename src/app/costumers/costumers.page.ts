@@ -33,12 +33,8 @@ export class CostumersPage implements OnInit {
 
   getProds(){
     this.products.getProducts().forEach((elem:any)=>{
-      this.productions= elem;
 
-      for(let i=0; i< this.productions.length; i=i+2){
-        this.fcol.push(this.productions[i]);
-        this.scol.push(this.productions[i+1]);
-      }
+      elem.length > 0 ? this.productions= elem : this.productions=[];
     })
   }
 

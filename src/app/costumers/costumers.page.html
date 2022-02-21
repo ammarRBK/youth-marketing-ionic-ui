@@ -5,10 +5,10 @@
 </ion-header>
 
 <ion-content fullscreen class="maincontent">
-  <div id="fulllist" >
+  <div *nfIf="productions.length" id="fulllist" >
     <ion-grid>
       <ion-row>
-        <ion-col *ngFor="let product of fcol; index as i">
+        <ion-col size="6" *ngFor="let product of productions; index as i">
           <ion-card (click)="showProductPage(product)" *ngIf="product">
             <img id="cardimage" [src]="product.image"/>
             <ion-card-header>
@@ -19,7 +19,9 @@
             </ion-card-content>
           </ion-card>
         </ion-col>
+      </ion-row>
 
+      <!-- <ion-row>
         <ion-col *ngFor="let product of scol; index as i">
           <ion-card *ngIf="product" (click)="showProductPage(product)" >
           <img  id="cardimage" [src]="product.image"/>
@@ -31,7 +33,7 @@
           </ion-card-content>
           </ion-card>
         </ion-col>
-      </ion-row>
+      </ion-row> -->
     </ion-grid>
   </div>
 
