@@ -80,5 +80,4 @@ export class UsersPage implements OnInit {
   backToHome(){
     this.router.navigateByUrl('/home')
   }
-
 }
