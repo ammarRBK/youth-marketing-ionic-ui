@@ -18,15 +18,12 @@
     color: black;
 }
 
-#fabButtonsList{
-    color: white;
-}
-
 ion-toolbar{
     display: flexbox;
 }
 
 #hint{
+    background-color: black;
     font-size: small;
     border-radius: 20%;
     text-align: center;
@@ -34,9 +31,5 @@ ion-toolbar{
 
 .prods{
     margin-top: 20px;
-}
-
-.fablist{
-    color: white;
 }
 
