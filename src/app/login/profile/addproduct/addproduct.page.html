@@ -1,14 +1,8 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>addproduct</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
   
   <div class="formerea">
     
-    <ion-text color="light"><h1><ion-icon (click)="backToProfile()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon>          إضافة منتج</h1></ion-text>
+    <ion-text ><h1><ion-icon (click)="backToProfile()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon>          إضافة منتج</h1></ion-text>
     <form [formGroup]="addinterfaceform" (ngSubmit)="submitAddProduct()">
 
       <ion-grid>
@@ -17,7 +11,6 @@
           <ion-col size="8">
             <ion-item lines="full" id="title">
               <ion-input
-              color="light"
               placeholder="اسم المنتج"
               type="text"
               lines="full"
@@ -31,7 +24,6 @@
           <ion-col>
             <ion-item lines="full" id="description">
               <ion-textarea
-              color="light"
               placeholder="وصف المنتج"
               type="text"
               lines="full"
@@ -47,8 +39,7 @@
           <ion-col>
             <ion-label>:الكمية المتوفرة بالقطعة</ion-label>
             <ion-item lines="full" id="numbers">
-              <ion-input
-              color="light"
+              <ion-input             
               placeholder="عدد المنتجات المتوفرة بالرقم"
               type="number"
               formControlName="availableUnits"
@@ -58,8 +49,7 @@
           <ion-col>
             <ion-label>:وزن المنتج</ion-label>
             <ion-item lines="full" id="numbers">
-              <ion-input
-              color="light"
+              <ion-input              
               placeholder="اذا كان وزنه نصف كيلو اكتب 0.5"
               type="number"
               formControlName="productQuantity"
@@ -70,8 +60,7 @@
         <ion-row>
           <ion-col>
             <ion-label>:تاريخ الانتهاء</ion-label>
-            <ion-datetime
-            color="light"
+            <ion-datetime            
             mode="ios"
             placeholder="اختر التاريخ"
             displayFormat="D/MM/YYYY"
@@ -84,8 +73,7 @@
           </ion-col>
           <ion-col>
             <ion-label>:تاريخ الانتاج</ion-label>
-            <ion-datetime
-            color="light"
+            <ion-datetime           
             mode="ios"
             placeholder="اختر التاريخ"
             min="2020"
@@ -101,8 +89,7 @@
           <ion-col size="3"></ion-col>
           <ion-col size="6.4">
             <ion-item lines="full" id="title">
-              <ion-input
-                color="light"
+              <ion-input               
                 placeholder="(0.5 JD) سعر المنتج"
                 type="tel"
                 lines="full"
