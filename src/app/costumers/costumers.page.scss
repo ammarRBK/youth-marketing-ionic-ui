@@ -19,10 +19,11 @@ ion-card-title{
 ion-searchbar{
     margin-top: 10px;
     --background: white;
+    color: black;
 }
 
 #cardimage{
-    height: auto;
-    width: auto;
+    height: 100px;
+    width: 100%;
     position: center;
 }

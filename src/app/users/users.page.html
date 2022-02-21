@@ -63,7 +63,7 @@
     <ion-label><h1 style="color: white;"><strong>:العنوان</strong></h1></ion-label>
     <ion-item id="address">
       <!-- <ion-label>القطاع</ion-label> -->
-      <ion-select color="light" placeholder="القطاع" formControlName="district">
+      <ion-select slot="end" color="light" placeholder="القطاع" formControlName="district">
         <ion-select-option color="light" value="D01" >الأول</ion-select-option>
         <ion-select-option color="light" value="D02" >الثاني</ion-select-option>
         <ion-select-option color="light" value="D03" >الثالث</ion-select-option>
@@ -80,7 +80,7 @@
     </ion-item>
     <ion-item id="address">
       <!-- <ion-label>البلوك</ion-label> -->
-      <ion-select color="light" placeholder="الحارة / البلوك" formControlName="block">
+      <ion-select slot="end" color="light" placeholder="الحارة / البلوك" formControlName="block">
         <ion-select-option color="light" value="B01">1</ion-select-option>
         <ion-select-option color="light" value="B02">2</ion-select-option>
         <ion-select-option color="light" value="B03">3</ion-select-option>
@@ -108,7 +108,6 @@
       </ion-select>
     </ion-item>
     <ion-item lines="full" id="address">
-      <ion-label color="light">المنزل</ion-label>
       <ion-input 
       color="light"
       placeholder="المنزل (رقم أو رقم-A  رقم-رقم أو)"
