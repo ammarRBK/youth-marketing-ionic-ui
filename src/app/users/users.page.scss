@@ -16,15 +16,17 @@ span{
 }
 
 #usernameinput{
- border-radius: 50px;
- width: auto;
- text-align: end;
- --background: transparent;
- --border-color: white;
- border-style:inset;
+  color: white;
+  border-radius: 50px;
+  width: auto;
+  text-align: end;
+  --background: transparent;
+  --border-color: white;
+  border-style:inset;
 }
 
 #passwordinput{
+  color: white;
   border-radius: 50px;
   --background: transparent;
   --border-color: white;
@@ -36,6 +38,7 @@ span{
 }
 
 #phonenumber{
+  color: white;
   border-radius: 50px;
   --background: transparent;
   --border-color: white;
@@ -44,6 +47,7 @@ span{
 }
 
 #address{
+  color: white;
   --background:transparent;
   text-align: end;
 }
