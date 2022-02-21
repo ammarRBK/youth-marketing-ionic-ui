@@ -101,7 +101,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-button type="button" id="picture" expand="block" (click)="selectImage()" color="secondary">اختيار صورة للمنتج <ion-icon name="image-outline"></ion-icon></ion-button>
+      <ion-button type="button" id="picture" expand="block" (click)="selectImage()" color="secondary">{{fileName}}}}<ion-icon name="image-outline"></ion-icon></ion-button>
       <span *ngIf="errormessage !== ''" id="errormessage"><ion-text>{{errormessage}}</ion-text></span>
       <span *ngIf="addedmessage !== ''" id="addedsuccess"><ion-text>{{addedmessage}}</ion-text></span>
       <span id="addedsuccess"><ion-text>{{picData}}</ion-text></span>
