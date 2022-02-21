@@ -21,7 +21,7 @@ export class AddproductPage implements OnInit {
   addedmessage= "";
   currency= "";
   imageUri;
-  fileName= "اختيار صورة للمنتج"
+  fileName= ""
 
   constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera:Camera, public actionSheetController:ActionSheetController, private platform: Platform, private file:File) { 
     this.platform.backButton.subscribe(()=>{
@@ -86,7 +86,7 @@ export class AddproductPage implements OnInit {
       //   onlySelf:true
       // });
       this.imageUri= imageData
-      this.fileName= imageData.substr(imageData.lastIndexOf('/')+1)
+      this.fileName= imageData.substr(imageData.lastIndexOf('/')+1).split("?")[0];
       
     }, (err) => {
       // Handle error
