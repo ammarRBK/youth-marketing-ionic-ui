@@ -29,10 +29,14 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
+    this.getMyProducts();
+  }
+
+  getMyProducts(){
     this.productsSer.getUserProducts().subscribe(result=>{
       if(result['message'] === "you dont have products yet"){ 
         this.userdata= result['userName'];
-      this.clientMessage="إذا كنت ترغب بعرض منتجاتك للزبائن مستخدمين التطبيق قم بإضافتها الى ملفك الشخصي لدينا";
+      // this.clientMessage="إذا كنت ترغب بعرض منتجاتك للزبائن مستخدمين التطبيق قم بإضافتها الى ملفك الشخصي لدينا";
       }else{
         this.products= JSON.parse(result['prods']);
         this.userdata= result['userName'];

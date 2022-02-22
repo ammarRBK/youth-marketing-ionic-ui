@@ -6,6 +6,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-co
 import { Router } from '@angular/router';
 import { ActionSheetController, Platform } from '@ionic/angular';
 import { ProductsService } from 'src/app/services/products.service';
+import { ProfilePage } from '../profile.page';
 
 @Component({
   selector: 'app-addproduct',
@@ -17,6 +18,7 @@ import { ProductsService } from 'src/app/services/products.service';
 export class AddproductPage implements OnInit {
   
   addinterfaceform: FormGroup
+  refreshProds: ProfilePage;
   errormessage= "";
   addedmessage= "";
   currency= "";
@@ -176,6 +178,7 @@ export class AddproductPage implements OnInit {
             }, 3000);
           }else{
             this.addedmessage= "تم إضافة المنتج بنجاح";
+
             setTimeout(() => {
               this.addinterfaceform.setValue({
                 productTitle: null,
@@ -184,17 +187,19 @@ export class AddproductPage implements OnInit {
                 availableUnits: null,
                 productDate: null,
                 expirationDate: null,
-                productPrice: null
+                productPrice: null,
+                productImage: null
               })
-    
-              this.addedmessage= ""
-            }, 3000);
+
+              this.addedmessage= "";
+            }, 2000);
+            this.refreshProds.getMyProducts();
           }
     }).catch(error=>{
         this.errormessage= "حدث خطأ ما أثناء اضافة منتجك* \n الرجاء التأكد من البيانات (اسم المنتج يجب أن لا يكون مكرراً والبيانات معبأة بشكل كامل وصحيح)"
         setTimeout(() => {
-          this.errormessage= ""+error
-        }, 3000);
+          this.errormessage= ""
+        }, 5000);
     })
   }
 
@@ -210,39 +215,39 @@ export class AddproductPage implements OnInit {
     this.router.navigateByUrl("home/login/profile")
   }
 
-  makeFileIntoBlob(_imagePath) {
-    // INSTALL PLUGIN - cordova plugin add cordova-plugin-file
-    return new Promise((resolve, reject) => {
-      let fileName = "";
-      this.file
-        .resolveLocalFilesystemUrl(_imagePath)
-        .then(fileEntry => {
-          let { name, nativeURL } = fileEntry;
+  // makeFileIntoBlob(_imagePath) {
+  //   // INSTALL PLUGIN - cordova plugin add cordova-plugin-file
+  //   return new Promise((resolve, reject) => {
+  //     let fileName = "";
+  //     this.file
+  //       .resolveLocalFilesystemUrl(_imagePath)
+  //       .then(fileEntry => {
+  //         let { name, nativeURL } = fileEntry;
 
-          // get the path..
-          let path = nativeURL.substring(0, nativeURL.lastIndexOf("/"));
+  //         // get the path..
+  //         let path = nativeURL.substring(0, nativeURL.lastIndexOf("/"));
 
-          fileName = name;
+  //         fileName = name;
 
-          // we are provided the name, so now read the file into a buffer
-          return this.file.readAsArrayBuffer(path, name);
-        })
-        .then(buffer => {
-          // get the buffer and make a blob to be saved
-          let imgBlob = new Blob([buffer], {
-            type: "image/jpeg"
-          });
+  //         // we are provided the name, so now read the file into a buffer
+  //         return this.file.readAsArrayBuffer(path, name);
+  //       })
+  //       .then(buffer => {
+  //         // get the buffer and make a blob to be saved
+  //         let imgBlob = new Blob([buffer], {
+  //           type: "image/jpeg"
+  //         });
           
-          // pass back blob and the name of the file for saving
-          // into fire base
-          resolve({
-            fileName,
-            imgBlob
-          });
-        })
-        .catch(e => reject(e));
-    });
-  }
+  //         // pass back blob and the name of the file for saving
+  //         // into fire base
+  //         resolve({
+  //           fileName,
+  //           imgBlob
+  //         });
+  //       })
+  //       .catch(e => reject(e));
+  //   });
+  // }
 
   // dataURItoBlob(dataURI) {
   //   // convert base64 to raw binary data held in a string
