@@ -102,7 +102,15 @@
       placeholder="المنزل (رقم أو رقم-A  رقم-رقم أو)"
       type="text"
       formControlName="houseHold"
-      required="true"></ion-input>
+      required="true"><ion-icon name="home-sharp"></ion-icon></ion-input>
+    </ion-item>
+    <hr><hr><hr>
+    <ion-item lines="full" id="usernameinput">
+      <ion-input
+      placeholder="الايميل اذا كان موجود (example@example.com)"
+      type="email"
+      formControlName="email"
+      required="false"><ion-icon name="mail-sharp"></ion-icon></ion-input>
     </ion-item>
     <span *ngIf="errorMessage?.length > 0">{{errorMessage}}</span>
     <h2 id="success" *ngIf="successMessage?.length > 0">{{successMessage}}</h2>

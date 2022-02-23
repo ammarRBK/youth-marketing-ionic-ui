@@ -27,12 +27,13 @@ export class UsersPage implements OnInit {
     })
     this.interfaceForm= this.signupForm.group({
       userName: ['',[Validators.required,Validators.minLength(3)]],
-      phoneNumber: ['',[Validators.required, Validators.maxLength(10), Validators.pattern(/\-?\d*\.?\d{1,2}/)]],
+      phoneNumber: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(10), Validators.pattern(/\-?\d*\.?\d{1,2}/)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]],
       confirmPassword: ['',[Validators.required]],
       district: ['',[Validators.required]],
       block: ['',[Validators.required]],
-      houseHold: ['',[Validators.required]]
+      houseHold: ['',[Validators.required]],
+      email: ['',[Validators.email]]
     },{validator: MustMatch('password', 'confirmPassword')});
     this.formvalidate=this.interfaceForm.controls
   }
@@ -46,7 +47,8 @@ export class UsersPage implements OnInit {
       userName: this.interfaceForm.value.userName,
       password: this.interfaceForm.value.password,
       phoneNumber: this.interfaceForm.value.phoneNumber,
-      address: this.address()
+      address: this.address(),
+      email: this.interfaceForm.value.email || null
     }
 
     this.signupServ.signup(user).subscribe(response=>{
