@@ -64,17 +64,18 @@ export class UsersPage implements OnInit {
           district: null,
           block: null,
           houseHold: null,
-          phoneNumber: null
+          phoneNumber: null,
+          email: null
         });
 
         this.successMessage= "";
-       }, 5000);
+       }, 4000);
       }else{
         this.errorMessage= "لقد حدثت مشكلة أثناء تسجيل الحساب الرجاء التأكد من بياناتك و كتابتها بشكل وإعادة المحاولة"
 
         setTimeout(() => {
           this.errorMessage= "";
-        }, 5000);
+        }, 4000);
       }
     })
   }
