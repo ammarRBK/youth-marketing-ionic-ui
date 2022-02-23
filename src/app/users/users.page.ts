@@ -27,7 +27,7 @@ export class UsersPage implements OnInit {
     })
     this.interfaceForm= this.signupForm.group({
       userName: ['',[Validators.required,Validators.minLength(3)]],
-      phoneNumber: ['',[Validators.required,Validators.minLength(8), Validators.maxLength(10), Validators.pattern(/\-?\d*\.?\d{1,2}/)]],
+      phoneNumber: ['',[Validators.required,Validators.minLength(10), Validators.maxLength(14), Validators.pattern(/\-?\d*\.?\d{1,2}/)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]],
       confirmPassword: ['',[Validators.required]],
       district: ['',[Validators.required]],
