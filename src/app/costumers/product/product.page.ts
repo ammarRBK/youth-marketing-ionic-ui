@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { AlertController, Platform } from '@ionic/angular';
+import { ProfilePage } from '../../login/profile/profile.page';
 
 @Component({
   selector: 'app-product',
@@ -60,11 +61,13 @@ export class ProductPage implements OnInit {
         message: result['message'] === "Product deleted" ? "!!تم حذف المنتج" : "somthing bad happend"
       })
       await afterDeletAlert.present();
-      
+//refresh the Profile page component to call ngOnInit function another time
+      ProfilePage.returned.next(false);
+
        setTimeout(() => {
         afterDeletAlert.dismiss();
         this.router.navigateByUrl('home/login/profile')
-      }, 3000);
+      }, 2000);
     })
   }
 

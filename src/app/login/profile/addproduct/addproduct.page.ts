@@ -177,6 +177,7 @@ export class AddproductPage implements OnInit {
             }, 3000);
           }else{
             this.addedmessage= "تم إضافة المنتج بنجاح";
+//refresh the Profile page component to call ngOnInit function another time
             ProfilePage.returned.next(false);
             setTimeout(() => {
               this.addinterfaceform.setValue({
@@ -189,7 +190,7 @@ export class AddproductPage implements OnInit {
                 productPrice: null,
                 productImage: null
               })
-
+              this.fileName= "";
               this.addedmessage= "";
             }, 2000);
           }
