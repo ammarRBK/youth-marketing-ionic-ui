@@ -17,8 +17,7 @@ import { ProfilePage } from '../profile.page';
 
 export class AddproductPage implements OnInit {
   
-  addinterfaceform: FormGroup
-  refreshProds: ProfilePage;
+  addinterfaceform: FormGroup;
   errormessage= "";
   addedmessage= "";
   currency= "";
@@ -178,7 +177,7 @@ export class AddproductPage implements OnInit {
             }, 3000);
           }else{
             this.addedmessage= "تم إضافة المنتج بنجاح";
-
+            ProfilePage.returned.next(false);
             setTimeout(() => {
               this.addinterfaceform.setValue({
                 productTitle: null,
@@ -193,7 +192,6 @@ export class AddproductPage implements OnInit {
 
               this.addedmessage= "";
             }, 2000);
-            this.refreshProds.getMyProducts();
           }
     }).catch(error=>{
         this.errormessage= "حدث خطأ ما أثناء اضافة منتجك* \n الرجاء التأكد من البيانات (اسم المنتج يجب أن لا يكون مكرراً والبيانات معبأة بشكل كامل وصحيح)"

@@ -54,6 +54,17 @@ export class ProductsService {
     )
   }
 
+
+  // set updateUserProducts(productId){
+
+  // }
+
+  // get updateUserProducts(){
+  //   return this.getUserProducts().subscribe(res=>{
+  //     res['message'] !== "you dont have products yet" ? JSON.parse(res['prods']) : "";
+  //   })
+  // }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

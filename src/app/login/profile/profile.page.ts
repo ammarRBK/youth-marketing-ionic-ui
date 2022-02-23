@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
+import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { LoginPage } from '../login.page';
@@ -16,7 +17,7 @@ export class ProfilePage implements OnInit {
   clientMessage:string;
   products=[];
   userdata: string;
-
+  public static returned: Subject<any> = new Subject();
   constructor(public authServ: AuthService, private productsSer:ProductsService, private platform:Platform, private router: Router) { 
     
     this.platform.backButton.subscribe(()=>{
@@ -25,6 +26,10 @@ export class ProfilePage implements OnInit {
       }
       this.router.navigateByUrl('home/users')
     })
+
+    ProfilePage.returned.subscribe(res=>{
+      this.getMyProducts();
+    });
     
   }
 

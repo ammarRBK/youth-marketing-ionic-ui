@@ -60,7 +60,7 @@ export class ProductPage implements OnInit {
         message: result['message'] === "Product deleted" ? "!!تم حذف المنتج" : "somthing bad happend"
       })
       await afterDeletAlert.present();
-
+      
        setTimeout(() => {
         afterDeletAlert.dismiss();
         this.router.navigateByUrl('home/login/profile')
