@@ -22,7 +22,13 @@ export class AddproductPage implements OnInit {
   addedmessage= "";
   currency= "";
   imageUri;
-  fileName= ""
+  fileName= "";
+  productCategories=["مواد غذائية تصنيع معامل" 
+  , "مواد غذائية صنع منزلي" 
+  , "ملابس" 
+  , "حرف يدوية" 
+  , "صوف"
+  , "أدوات منزلية"];
 
   constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera:Camera, public actionSheetController:ActionSheetController, private platform: Platform, private file:File) { 
     this.platform.backButton.subscribe(()=>{
@@ -40,7 +46,8 @@ export class AddproductPage implements OnInit {
       expirationDate:['',[Validators.required]],
       productDate:['',[Validators.required]],
       productPrice: ['',[Validators.required]],
-      productImage:['',[]]
+      productImage:['',[]],
+      productCategory: ['',[Validators.required]]
     })
   }
 
@@ -135,7 +142,8 @@ export class AddproductPage implements OnInit {
       availableUnits: this.addinterfaceform.value.availableUnits,
       productDate: this.addinterfaceform.value.productDate,
       expirationDate: this.addinterfaceform.value.expirationDate,
-      productPrice: this.addinterfaceform.value.productPrice
+      productPrice: this.addinterfaceform.value.productPrice,
+      productCategory: this.addinterfaceform.value.productCategory
     }
 
     // this.productsServ.addProduct(productdata).subscribe(result=>{
@@ -176,6 +184,7 @@ export class AddproductPage implements OnInit {
               this.errormessage= ""
             }, 3000);
           }else{
+            this.fileName= "";
             this.addedmessage= "تم إضافة المنتج بنجاح";
 //refresh the Profile page component to call ngOnInit function another time
             ProfilePage.returned.next(false);
@@ -188,9 +197,10 @@ export class AddproductPage implements OnInit {
                 productDate: null,
                 expirationDate: null,
                 productPrice: null,
-                productImage: null
+                productImage: null,
+                productCategory: null
               })
-              this.fileName= "";
+              
               this.addedmessage= "";
             }, 2000);
           }
@@ -198,7 +208,7 @@ export class AddproductPage implements OnInit {
         this.errormessage= "حدث خطأ ما أثناء اضافة منتجك* \n الرجاء التأكد من البيانات (اسم المنتج يجب أن لا يكون مكرراً والبيانات معبأة بشكل كامل وصحيح)"
         setTimeout(() => {
           this.errormessage= ""
-        }, 5000);
+        }, 4000);
     })
   }
 

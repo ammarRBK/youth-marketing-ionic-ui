@@ -49,7 +49,7 @@
             <ion-label></ion-label>
             <ion-item lines="full" id="numbers">
               <ion-input              
-              placeholder="وزن المنتج"
+              placeholder="الكمية باللتر /وزن المنتج"
               type="number"
               formControlName="productQuantity"
               required="true"></ion-input>
@@ -60,26 +60,26 @@
           <ion-col>
             <ion-datetime            
             mode="ios"
-            placeholder=":تاريخ الانتهاء"
+            placeholder="اختر تاريخ الانتهاء"
             displayFormat="D/MM/YYYY"
             pickerFormat="DD MMMM YYYY"
             max="2030-12-31"
             cancelText="الغاء"
             doneText="اختيار"
             formControlName="expirationDate"
-            required="true"></ion-datetime>
+            required="true"><ion-icon name="calendar-outline"></ion-icon></ion-datetime>
           </ion-col>
           <ion-col>
             <ion-datetime           
             mode="ios"
-            placeholder=":تاريخ الانتاج"
+            placeholder="اختر تاريخ الانتاج"
             min="2020"
             displayFormat="D/MM/YYYY"
             pickerFormat="DD MMMM YYYY"
             cancelText="الغاء"
             doneText="اختيار"
             formControlName="productDate"
-            required="true"></ion-datetime>
+            required="true"><ion-icon name="calendar-outline"></ion-icon></ion-datetime>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -93,7 +93,32 @@
                 (blur)="formatToCurrency($event)"
                 [(ngModel)]= "currency"
                 formControlName="productPrice"
-                required="true"></ion-input>
+                required="true"><ion-icon name="cash-outline"></ion-icon></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <!-- <ion-accordion-group>
+              <ion-accordion value="الفئة / نوع المنتج">
+                <ion-item slot="header">
+                  <strong><ion-label>الفئة / نوع المنتج</ion-label></strong>
+                </ion-item>
+
+                <ion-list slot="content">
+                  <ion-item *ngFor="let category of productCategories; i as index">
+                    <ion-label>{{category}}</ion-label>
+                  </ion-item>
+                </ion-list>
+              </ion-accordion>
+            </ion-accordion-group> -->
+            <ion-item>
+
+              <ion-select slot="end" placeholder="اختر فئة أو نوع المنتج" interface="popover" formControlName="productCategory">
+
+                <ion-select-option *ngFor="let category of productCategories; i as index" [value]="category">{{category}}</ion-select-option>
+                
+              </ion-select>
             </ion-item>
           </ion-col>
         </ion-row>
