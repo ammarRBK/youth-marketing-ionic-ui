@@ -140,8 +140,8 @@ export class AddproductPage implements OnInit {
       productDescription: this.addinterfaceform.value.productDescription,
       productQuantity: this.addinterfaceform.value.productQuantity,
       availableUnits: this.addinterfaceform.value.availableUnits,
-      productDate: this.addinterfaceform.value.productDate,
-      expirationDate: this.addinterfaceform.value.expirationDate,
+      productDate: this.addinterfaceform.value.productDate || null,
+      expirationDate: this.addinterfaceform.value.expirationDate || null,
       productPrice: this.addinterfaceform.value.productPrice,
       productCategory: this.addinterfaceform.value.productCategory
     }

@@ -57,6 +57,31 @@
           </ion-col>
         </ion-row>
         <ion-row>
+          <ion-col size="12">
+            <!-- <ion-accordion-group>
+              <ion-accordion value="الفئة / نوع المنتج">
+                <ion-item slot="header">
+                  <strong><ion-label>الفئة / نوع المنتج</ion-label></strong>
+                </ion-item>
+
+                <ion-list slot="content">
+                  <ion-item *ngFor="let category of productCategories; i as index">
+                    <ion-label>{{category}}</ion-label>
+                  </ion-item>
+                </ion-list>
+              </ion-accordion>
+            </ion-accordion-group> -->
+            <ion-item id="category">
+
+              <ion-select #category slot="end" placeholder="اختر فئة أو نوع المنتج" interface="popover" formControlName="productCategory" required="true">
+
+                <ion-select-option *ngFor="let category of productCategories; i as index" [value]="category">{{category}}</ion-select-option>
+                
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="category.startsWith('مواد غذائية')">
           <ion-col>
             <ion-datetime            
             mode="ios"
@@ -97,31 +122,7 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col size="12">
-            <!-- <ion-accordion-group>
-              <ion-accordion value="الفئة / نوع المنتج">
-                <ion-item slot="header">
-                  <strong><ion-label>الفئة / نوع المنتج</ion-label></strong>
-                </ion-item>
-
-                <ion-list slot="content">
-                  <ion-item *ngFor="let category of productCategories; i as index">
-                    <ion-label>{{category}}</ion-label>
-                  </ion-item>
-                </ion-list>
-              </ion-accordion>
-            </ion-accordion-group> -->
-            <ion-item>
-
-              <ion-select slot="end" placeholder="اختر فئة أو نوع المنتج" interface="popover" formControlName="productCategory">
-
-                <ion-select-option *ngFor="let category of productCategories; i as index" [value]="category">{{category}}</ion-select-option>
-                
-              </ion-select>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+        
       </ion-grid>
       <ion-button type="button" id="picture" expand="block" (click)="selectImage()" color="secondary">اختيار صورة للمنتج<ion-icon name="image-outline"></ion-icon></ion-button>
       <span *ngIf="fileName !== ''"><ion-text>{{fileName}}</ion-text></span>

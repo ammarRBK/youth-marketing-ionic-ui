@@ -60,9 +60,10 @@ export class ProductPage implements OnInit {
       const afterDeletAlert= await this.alert.create({
         message: result['message'] === "Product deleted" ? "!!تم حذف المنتج" : "somthing bad happend"
       })
-      await afterDeletAlert.present();
 //refresh the Profile page component to call ngOnInit function another time
       ProfilePage.returned.next(false);
+      
+      await afterDeletAlert.present();
 
        setTimeout(() => {
         afterDeletAlert.dismiss();
