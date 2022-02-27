@@ -1,12 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-searchbar mode="ios" cancelButtonText="الغاء" showCancelButton="focus" placeholder="ابحث عن منتج محدد" (ionInput)="handleText($event)" animated><ion-icon (click)="backToHome()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon><ion-icon size="large" name="person" (click)="routeProfile()" *ngIf="this.loggedin"></ion-icon></ion-searchbar>
-    <ion-segment scrollable="true" (ionChange)="filterCategory($event)">
-      <strong>:<ion-icon name="filter-outline"></ion-icon></strong>
+    
+    <ion-segment #categories scrollable="true" (ionChange)="filterCategory($event)">
       <ion-segment-button *ngFor="let category of productCategories; i as index" [value]="category">
         <ion-label>{{category}}</ion-label>
       </ion-segment-button>
+      <ion-label id="cancelCategory" *ngIf="categories.value != null">الغاء الفلتر</ion-label>
     </ion-segment>
+    <!-- <strong><ion-icon size="large" name="filter-outline" slot="end"></ion-icon></strong> -->
     <!-- <ion-select id="category" #category slot="end" placeholder="اختر فئة أو نوع المنتج" interface="popover" formControlName="productCategory" required="true">
 
       <ion-select-option *ngFor="let category of productCategories; i as index" [value]="category">{{category}}</ion-select-option>
