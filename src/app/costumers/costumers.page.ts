@@ -68,4 +68,16 @@ export class CostumersPage implements OnInit {
     })
   }
 
+  filterCategory(event){
+    let filterValue= event.srcElement.value;
+    let cards= Array.from(document.querySelectorAll('ion-card'));
+    
+    requestAnimationFrame(()=>{
+      cards.forEach(card=>{
+        let category= card.children[2].children[1].children[1].textContent
+        category.indexOf(filterValue) === -1 ? card.style.display="none" : card.style.display="block";
+      })
+    })
+  }
+
 }
