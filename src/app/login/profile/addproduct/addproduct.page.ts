@@ -23,14 +23,10 @@ export class AddproductPage implements OnInit {
   currency= "";
   imageUri;
   fileName= "";
-  productCategories=["مواد غذائية تصنيع معامل" 
-  , "مواد غذائية صنع منزلي" 
-  , "ملابس" 
-  , "حرف يدوية" 
-  , "صوف"
-  , "أدوات منزلية"];
+  productCategories;
 
   constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera:Camera, public actionSheetController:ActionSheetController, private platform: Platform, private file:File) { 
+    this.productCategories= this.productsServ.productCategories;
     this.platform.backButton.subscribe(()=>{
       
       this.router.navigateByUrl('home/login/profile')
@@ -43,8 +39,8 @@ export class AddproductPage implements OnInit {
       productDescription:['',[Validators.required,Validators.minLength(3)]],
       availableUnits:['',[Validators.required]],
       productQuantity:['',[Validators.required]],
-      expirationDate:['',[Validators.required]],
-      productDate:['',[Validators.required]],
+      expirationDate:['',[]],
+      productDate:['',[]],
       productPrice: ['',[Validators.required]],
       productImage:['',[]],
       productCategory: ['',[Validators.required]]

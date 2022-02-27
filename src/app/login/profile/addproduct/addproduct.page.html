@@ -71,9 +71,9 @@
                 </ion-list>
               </ion-accordion>
             </ion-accordion-group> -->
-            <ion-item id="category">
+            <ion-item>
 
-              <ion-select #category slot="end" placeholder="اختر فئة أو نوع المنتج" interface="popover" formControlName="productCategory" required="true">
+              <ion-select id="category" #category slot="end" placeholder="اختر فئة أو نوع المنتج" interface="popover" formControlName="productCategory" required="true">
 
                 <ion-select-option *ngFor="let category of productCategories; i as index" [value]="category">{{category}}</ion-select-option>
                 
@@ -81,7 +81,7 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row *ngIf="category.startsWith('مواد غذائية')">
+        <ion-row *ngIf="category.value.startsWith('مواد غذائية')">
           <ion-col>
             <ion-datetime            
             mode="ios"

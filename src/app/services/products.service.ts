@@ -22,6 +22,14 @@ export class ProductsService {
 
   product;
   status="";
+  productCategories=["مواد غذائية صنع معمل",
+  "حلويات صنع معمل",
+  "حلويات صنع منزلي",
+  "مواد غذائية صنع منزلي" ,
+  "ملابس",
+  "حرف يدوية",
+  "صوف",
+  "أدوات منزلية"];
 
   addProduct(imageUri, productData){
     productData.params.deviceId= this.deviceId

@@ -15,8 +15,11 @@ export class CostumersPage implements OnInit {
   productions: any;
   fcol=[];
   scol=[];
+  productCategories;
 
   constructor(private router:Router, private authServ: AuthService, private products: ProductsService, private platform: Platform) { 
+    this.productCategories= this.products.productCategories;
+
     this.platform.backButton.subscribe(()=>{
       
       this.router.navigateByUrl('home');
