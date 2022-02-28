@@ -25,13 +25,12 @@
         <ion-col size="6" *ngFor="let product of productions; index as i">
           <ion-card (click)="showProductPage(product)" *ngIf="product">
             <img id="cardimage" [src]="product.image"/>
-            <ion-card-header slot="end">
+            <ion-card-header>
               <ion-card-title>{{product.productTitle}}</ion-card-title>
             </ion-card-header>
-            <ion-card-content slot="end">
-              <ion-label>:نوع المنتج</ion-label>
-              <h2><strong>{{product.productCategory}}</strong></h2>
-              <h2><strong>{{product.availableUnits}}</strong>:القطع المتوفرة</h2>
+            <ion-card-content>
+              <h2 slot="end">نوع المنتج: <strong>{{product.productCategory}}</strong></h2><hr>
+              <h2 slot="end"><strong>{{product.availableUnits}}</strong>   :القطع المتوفرة</h2>
             </ion-card-content>
           </ion-card>
         </ion-col>

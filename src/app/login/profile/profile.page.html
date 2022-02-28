@@ -15,17 +15,37 @@
   </ion-item-divider>
   <div class="prods">
     <ion-item id="product" (click)="showproduct(product)" *ngFor="let product of products; index as i" lines="none" color="rgba(255, 0, 234, 0.329)">
-      <ion-label><h2><strong></strong></h2></ion-label>
-      <div style="color: white;">
-        <h4>{{product.productTitle}}</h4>
+      <!-- <ion-label><h2><strong></strong></h2></ion-label> -->
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+            <ion-row>
+              <h4>{{product.productTitle}}</h4>
+            </ion-row>
+            <ion-row>
+              <p>
+                <strong>الفئة / نوع المنتج:</strong> {{product.productCategory}}
+              </p>
+              <p>
+                {{product.availableUnits}}    <strong>:القطع المتوفرة</strong>
+              </p>
+            </ion-row>
+          </ion-col>
+          <ion-col size="4">
+            <img [src]="product.image" id="prodimage" width="150px" height="130px"/>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- <div style="color: white;">
+        <h4 slot="end">{{product.productTitle}}</h4>
         <p>
-          {{product.productCategory}}    <strong>:الفئة / نوع المنتج</strong>
+          <strong>الفئة / نوع المنتج:</strong> {{product.productCategory}}
         </p>
-        <p>
+        <p slot="end">
           {{product.availableUnits}}    <strong>:القطع المتوفرة</strong>
         </p>
       </div>
-      <img [src]="product.image" id="prodimage" width="150px" height="100px"/>
+      <img [src]="product.image" id="prodimage" width="150px" height="100px"/> -->
     </ion-item>
   </div>
 

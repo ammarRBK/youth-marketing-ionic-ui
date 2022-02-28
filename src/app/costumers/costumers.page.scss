@@ -1,6 +1,6 @@
 #fulllist{
     background: hsla(325, 100%, 50%, 0);
-    display: flexbox;
+    text-align: end;
     margin-right: 10px;
 }
 
@@ -8,7 +8,7 @@ ion-card{
     --background:rgba(217, 255, 0, 0.301);
     color: white;
     width: 100%;
-    border-radius: 10%;
+    border-radius: 5%;
     height: auto;
 }
 
