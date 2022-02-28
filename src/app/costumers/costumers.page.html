@@ -6,9 +6,8 @@
       <ion-segment-button *ngFor="let category of productCategories; i as index" [value]="category">
         <ion-label>{{category}}</ion-label>
       </ion-segment-button>
-      <ion-segment-button *ngIf="categories.value != null" value="null">
-        <ion-label id="cancelCategory">الغاء الفلتر</ion-label>
-      </ion-segment-button>
+
+        <ion-label *ngIf="categories.value != null" id="cancelCategory">الغاء الفلتر</ion-label>
     </ion-segment>
     <!-- <strong><ion-icon size="large" name="filter-outline" slot="end"></ion-icon></strong> -->
     <!-- <ion-select id="category" #category slot="end" placeholder="اختر فئة أو نوع المنتج" interface="popover" formControlName="productCategory" required="true">
@@ -26,12 +25,13 @@
         <ion-col size="6" *ngFor="let product of productions; index as i">
           <ion-card (click)="showProductPage(product)" *ngIf="product">
             <img id="cardimage" [src]="product.image"/>
-            <ion-card-header>
+            <ion-card-header slot="end">
               <ion-card-title>{{product.productTitle}}</ion-card-title>
             </ion-card-header>
-            <ion-card-content>
-              <h2><strong>{{product.availableUnits}}</strong>:العدد</h2><hr>
-              <h2><strong>{{product.productCategory}}</strong>:الفئة / نوع المنتج</h2>
+            <ion-card-content slot="end">
+              <ion-label>:نوع المنتج</ion-label>
+              <h2><strong>{{product.productCategory}}</strong></h2>
+              <h2><strong>{{product.availableUnits}}</strong>:القطع المتوفرة</h2>
             </ion-card-content>
           </ion-card>
         </ion-col>
