@@ -15,17 +15,27 @@
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
+      <ion-text slot="end"><br>{{productinfo.productCategory}}</ion-text>
+      <strong slot="end"><br>:نوع المنتج</strong>
+    </ion-item-divider>
+
+    <ion-item-divider mode="ios" id="divider">
       <ion-text slot="end"><strong>:الوصف</strong>    <br>{{productinfo.productDisciption}}</ion-text>
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
-      <ion-text slot="end"><br><br>KG/Liter   {{productinfo.productQuantity}}</ion-text>
+      <ion-text slot="end"><br>KG/Liter   {{productinfo.productQuantity}}</ion-text>
       <strong slot="end">:الكمية/ الوزن</strong>
+    </ion-item-divider><br><br>
+
+    <ion-item-divider mode="ios" id="divider">
+      <ion-text slot="end">{{productinfo.availableUnits}}  </ion-text>
+      <strong slot="end">    :عدد القطع المتوفرة</strong>
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
       <ion-text slot="end"><br><br>JD   {{productinfo.productPrice}}</ion-text>
-      <strong slot="end">:سعر المنتج</strong>
+      <strong slot="end">:سعر القطعة</strong>
     </ion-item-divider>
 
     <ion-item-divider *ngIf="productinfo.productDate != null" mode="ios" id="divider">
@@ -36,7 +46,7 @@
       <ion-text slot="end"> <br><br>{{productinfo.expirationDate}}</ion-text><strong slot="end">:تاريخ الانتهاء</strong>
     </ion-item-divider>
     <ion-item-divider *ngIf="!this.permit" mode="ios" id="divider">
-      <ion-text slot="end"> <br><br>{{productinfo.phoneNumber}}</ion-text><strong slot="end">:رقم هاتف البائع</strong>
+      <ion-text slot="end"> <br><br>0{{productinfo.phoneNumber}}</ion-text><strong slot="end">:رقم هاتف البائع</strong>
     </ion-item-divider>
   </div>
   <ion-grid *ngIf="this.permit">

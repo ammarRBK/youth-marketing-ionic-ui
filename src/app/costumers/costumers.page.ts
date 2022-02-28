@@ -63,7 +63,8 @@ export class CostumersPage implements OnInit {
     requestAnimationFrame(()=>{
       cards.forEach(card=>{
         let title= card.children[1].children[0].textContent
-        title.toLowerCase().indexOf(inputSearch) === -1 ? card.style.display="none" : card.style.display="block";
+        let productOwner= card.children[2].children[0].textContent
+        title.toLowerCase().indexOf(inputSearch) === -1 || productOwner.toLowerCase().indexOf(inputSearch) === -1 ? card.style.display="none" : card.style.display="block";
       })
     })
   }
@@ -74,8 +75,8 @@ export class CostumersPage implements OnInit {
     
     requestAnimationFrame(()=>{
       cards.forEach(card=>{
-        let category= card.children[2].children[1].children[1].textContent
-        category.indexOf(filterValue) === -1 ? card.style.display="none" : card.style.display="block";
+        let category= card.children[1].children[1].textContent
+        category === filterValue ? card.style.display="none" : card.style.display="block";
       })
     })
   }
