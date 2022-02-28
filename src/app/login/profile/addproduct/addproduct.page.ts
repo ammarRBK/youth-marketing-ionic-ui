@@ -24,6 +24,8 @@ export class AddproductPage implements OnInit {
   imageUri;
   fileName= "";
   productCategories;
+  defultDateValue= null;
+  defultExpireValue= null;
 
   constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera:Camera, public actionSheetController:ActionSheetController, private platform: Platform, private file:File) { 
     this.productCategories= this.productsServ.productCategories;
@@ -136,8 +138,8 @@ export class AddproductPage implements OnInit {
       productDescription: this.addinterfaceform.value.productDescription,
       productQuantity: this.addinterfaceform.value.productQuantity,
       availableUnits: this.addinterfaceform.value.availableUnits,
-      productDate: this.addinterfaceform.value.productDate || null,
-      expirationDate: this.addinterfaceform.value.expirationDate || null,
+      productDate: this.addinterfaceform.value.productDate != null ? this.addinterfaceform.value.productDate : null,
+      expirationDate: this.addinterfaceform.value.expirationDate != null ? this.addinterfaceform.value.expirationDate : null,
       productPrice: this.addinterfaceform.value.productPrice,
       productCategory: this.addinterfaceform.value.productCategory
     }

@@ -83,7 +83,8 @@
         </ion-row>
         <ion-row *ngIf="category.value.startsWith('مواد غذائية')">
           <ion-col>
-            <ion-datetime            
+            <ion-datetime
+            [(ngModel)]="defultDateValue"           
             mode="ios"
             placeholder="اختر تاريخ الانتهاء"
             displayFormat="D/MM/YYYY"
@@ -95,7 +96,8 @@
             required="true"><ion-icon name="calendar-outline"></ion-icon></ion-datetime>
           </ion-col>
           <ion-col>
-            <ion-datetime           
+            <ion-datetime
+            [(ngModel)]="defultExpireValue"          
             mode="ios"
             placeholder="اختر تاريخ الانتاج"
             min="2020"
