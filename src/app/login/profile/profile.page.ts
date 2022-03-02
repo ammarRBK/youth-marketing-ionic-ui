@@ -66,6 +66,10 @@ export class ProfilePage implements OnInit {
     this.router.navigateByUrl('home/login/profile/addproduct')
   }
 
+  navtoEditProfilePage(){
+    this.router.navigateByUrl('home/login/profile/edit-profile');
+  }
+
   backToHome(){
     this.router.navigateByUrl('home');
   }

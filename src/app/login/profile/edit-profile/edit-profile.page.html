@@ -1,9 +1,56 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>editProfile</ion-title>
+    <ion-title class="large-title" size="large"><ion-icon (click)="backToProfile()" class="icon" name="arrow-back-sharp"></ion-icon>تعديل معلومات الحساب</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="editProfileForm" (ngSubmit)="editProfileInfo()">
+    <ion-item lines="full" id="usernameinput">
+      <ion-input
+      placeholder="اسم المستخدم الجديد"
+      type="text"
+      formControlName="userName"
+      ><ion-icon name="person-sharp"></ion-icon></ion-input>
+    </ion-item>
+    <ion-item lines="full" id="passwordinput">
+      <ion-input 
+      placeholder="تأكيد كلمة السر"
+      type="password"
+      formControlName="confirmPassword"
+      ><ion-icon name="lock-open-sharp"></ion-icon></ion-input>
+    </ion-item>
+    <ion-item lines="full" id="passwordinput">
+      <ion-input
+      placeholder="كلمة السر الجديدة"
+      type="password" 
+      formControlName="password"
+      ><ion-icon name="lock-open-sharp"></ion-icon></ion-input>
+    </ion-item>
+    <ion-item lines="full" id="phonenumber">
+      <ion-input 
+      placeholder="أدخل رقم الهاتف الجديد اذا كنت ترغب بتعديله من 10 خانات"
+      type="tel"
+      formControlName="phoneNumber"
+      ><ion-icon name="call-sharp"></ion-icon></ion-input>
+    </ion-item>
+    <ion-item lines="full" id="emailinput">
+      <ion-input
+      placeholder="أخل الايميل إذا كنت ترغب بإضافته أو تعديل موجود حالياً"
+      type="email"
+      formControlName="email"
+      required="false"><ion-icon name="mail-sharp"></ion-icon></ion-input>
+    </ion-item>
+    <ion-item lines="full" id="passwordinput">
+      <ion-input
+      #oldPassword
+      placeholder="كلمة السر القديمة"
+      type="password" 
+      formControlName="oldPassword"
+      required="true"><ion-icon name="lock-open-sharp"></ion-icon><ion-icon *ngIf="oldPassword.value != '' && oldPassword.value != null" name="checkmark-circle-sharp" (click)="checkOldPassword(oldPassword.value)"></ion-icon></ion-input>
+    </ion-item>
+    <span *ngIf="errorMessage?.length > 0">{{errorMessage}}</span>
+    <h2 id="success" *ngIf="successMessage?.length > 0">{{successMessage}}</h2>
+    <ion-button class="subbutton" type="submit" [disabled]="!interfaceForm.valid" expand="block">تأكيد التسجيل</ion-button>
+  </form>
 </ion-content>
