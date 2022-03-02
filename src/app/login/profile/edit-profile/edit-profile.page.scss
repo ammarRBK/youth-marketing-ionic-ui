@@ -1,0 +1,63 @@
+.fullContent{
+    text-align: end;
+}
+
+ion-text{
+    color: white;
+    text-align: end;
+}
+
+#usernameinput{
+    color: white;
+    border-radius: 50px;
+    width: auto;
+    text-align: end;
+    --background: transparent;
+    --border-color: white;
+    border-style:inset;
+    margin-top: 20%;
+}
+
+#passwordinput{
+    color: white;
+    border-radius: 50px;
+    --background: transparent;
+    --border-color: white;
+    border-style:inset;
+    width: 80%;
+    text-align: end;
+    margin-top: 20px;
+    margin-left: 10%;
+}
+
+#phonenumber{
+    color: white;
+    border-radius: 50px;
+    --background: transparent;
+    --border-color: white;
+    border-style:inset;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#emailinput{
+    color: white;
+    border-radius: 50px;
+    width: 100%;
+    text-align: center;
+    --background: transparent;
+    --border-color: white;
+    border-style:inset;
+    margin-top: 20px;
+}
+
+#checkIcon{
+    font-size: 27px;
+}
+
+.subbutton{
+    margin-top: 10px;
+    height: 50px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
