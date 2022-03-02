@@ -3,7 +3,7 @@
     <ion-searchbar mode="ios" cancelButtonText="الغاء" showCancelButton="always" placeholder="ابحث عن منتج أو بائع" (ionInput)="handleText($event)" animated><ion-icon (click)="backToHome()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon><ion-icon size="large" name="person" (click)="routeProfile()" *ngIf="this.loggedin"></ion-icon></ion-searchbar>
     
     <ion-segment #categories scrollable="true" (ionChange)="filterCategory($event)">
-      <ion-segment-button *ngFor="let category of productCategories; i as index" [value]="category">
+      <ion-segment-button id="segmentbutton" color="light" *ngFor="let category of productCategories; i as index" [value]="category">
         <ion-label>{{category}}</ion-label>
       </ion-segment-button>
 

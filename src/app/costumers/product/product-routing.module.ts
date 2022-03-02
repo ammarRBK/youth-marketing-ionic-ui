@@ -7,11 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: ProductPage
-  },  {
-    path: 'edit-product',
-    loadChildren: () => import('./edit-product/edit-product.module').then( m => m.EditProductPageModule)
   }
-
 ];
 
 @NgModule({
