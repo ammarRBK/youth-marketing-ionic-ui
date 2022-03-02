@@ -14,7 +14,8 @@ export class EditProfilePage implements OnInit {
   editProfileForm: FormGroup;
   errorMessage='';
   successMessage='';
-  
+  formValidity: boolean;
+
   constructor(private authServ: AuthService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -27,6 +28,15 @@ export class EditProfilePage implements OnInit {
       oldPassword: ['',[Validators.required, Validators.minLength(8)]]
     },
     {validator: MustMatch('password', 'confirmPassword')})
+  }
+
+  formValuesAsString(){
+    let formString= ''+this.editProfileForm.value.userName+this.editProfileForm.value.password+this.editProfileForm.value.confirmPassword+this.editProfileForm.value.phoneNumber+this.editProfileForm.value.email;
+    formString.length > 0 && this.editProfileForm.value.oldPassword ? this.formValidity= true : this.formValidity= false;
+  }
+
+  backToProfile(){
+    this.router.navigateByUrl('home/login/profile');
   }
 
 }

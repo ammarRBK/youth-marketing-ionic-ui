@@ -45,6 +45,7 @@
     <ion-item lines="full" id="passwordinput">
       <ion-input
       #oldPassword
+      (ionChange)="formValuesAsString()"
       placeholder="كلمة السر القديمة"
       type="password" 
       formControlName="oldPassword"
@@ -52,6 +53,6 @@
     </ion-item>
     <span *ngIf="errorMessage?.length > 0">{{errorMessage}}</span>
     <h2 id="success" *ngIf="successMessage?.length > 0">{{successMessage}}</h2>
-    <ion-button class="subbutton" type="submit" [disabled]="!editProfileForm.valid" expand="block" color="success">تعديل المعلومات</ion-button>
+    <ion-button class="subbutton" type="submit" [disabled]="!formValidity" expand="block" color="success">تعديل المعلومات</ion-button>
   </form>
 </ion-content>
