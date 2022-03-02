@@ -11,7 +11,11 @@ const routes: Routes = [
   {
     path: 'addproduct',
     loadChildren: () => import('./addproduct/addproduct.module').then( m => m.AddproductPageModule)
+  },  {
+    path: 'edit-profile',
+    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   }
+
 ];
 
 @NgModule({
