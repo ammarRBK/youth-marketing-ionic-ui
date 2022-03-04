@@ -56,6 +56,18 @@ export class AuthService {
       catchError(this.handleError));
   }
 
+  editProfile(newProfileData: object): Observable<{}>{
+    newProfileData['deviceId']= this.deviceId;
+    return this.http.post(this.url+'users/editprofile', newProfileData, this.httpOptions).pipe(
+      retry(2), catchError(this.handleError));
+  }
+
+  checkOldPassword(oldPassword){
+    return this.http.post(this.url+'users/checkoldpassword', {deviceId:this.deviceId, password: oldPassword}, this.httpOptions).pipe(
+      retry(2),
+      catchError(this.handleError));
+  }
+
   logout(){
     return this.http.post(this.url+'users/logout',{deviceId:this.deviceId},this.httpOptions).pipe(
       retry(2),

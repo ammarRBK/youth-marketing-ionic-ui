@@ -36,7 +36,7 @@
     </ion-item>
     <ion-item lines="full" id="emailinput">
       <ion-input
-      placeholder="أخل الايميل إذا كنت ترغب بإضافته أو تعديل الموجود حالياً"
+      placeholder="أدخل الايميل إذا كنت ترغب بإضافته أو تعديل الموجود حالياً"
       type="email"
       formControlName="email"
       required="false"><ion-icon name="mail-sharp"></ion-icon></ion-input>
@@ -53,6 +53,6 @@
     </ion-item>
     <span *ngIf="errorMessage?.length > 0">{{errorMessage}}</span>
     <h2 id="success" *ngIf="successMessage?.length > 0">{{successMessage}}</h2>
-    <ion-button class="subbutton" type="submit" [disabled]="!formValidity" expand="block" color="success">تعديل المعلومات</ion-button>
+    <ion-button class="subbutton" type="submit" [disabled]="!filled && !oldPasswordCorrect" expand="block" color="success">تعديل المعلومات</ion-button>
   </form>
 </ion-content>

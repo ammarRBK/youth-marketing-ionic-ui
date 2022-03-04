@@ -3,6 +3,7 @@ import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../../users/_helper';
 import { Router } from '@angular/router';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,9 +15,10 @@ export class EditProfilePage implements OnInit {
   editProfileForm: FormGroup;
   errorMessage='';
   successMessage='';
-  formValidity: boolean;
+  filled: boolean;
+  oldPasswordCorrect: boolean;
 
-  constructor(private authServ: AuthService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private authServ: AuthService,private prodsSer: ProductsService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.editProfileForm= this.formBuilder.group({
@@ -30,9 +32,61 @@ export class EditProfilePage implements OnInit {
     {validator: MustMatch('password', 'confirmPassword')})
   }
 
+  submitEditForm(){
+    if(this.oldPasswordCorrect){
+      let newData={
+        newUserName: this.editProfileForm.value.userName.length > 0 ? this.editProfileForm.value.userName : "",
+        newPhoneNumber: this.editProfileForm.value.phoneNumber ? this.editProfileForm.value.phoneNumber : "",
+        newPassword: this.editProfileForm.value.password.length > 0 ? this.editProfileForm.value.password : "",
+        newEmail: this.editProfileForm.value.email.length > 0 ? this.editProfileForm.value.email : null,
+        oldPassword: this.editProfileForm.value.oldPassword
+      }
+
+      this.authServ.editProfile(newData).subscribe(resault=>{
+        if(resault['message'] === 'updated user info'){
+          this.successMessage= "تم تعديل المعلومات الشخصية"
+
+          setTimeout(() => {
+            this.editProfileForm.setValue({
+              userName: null,
+              password: null,
+              confirmPassword: null,
+              phoneNumber: null,
+              email: null,
+              oldPassword: null
+            })
+
+            this.successMessage= "";
+          }, 3000);
+        }else{
+          this.errorMessage= "حصل خطأ أثناء تعديل المعلومات تأكد من كتابتها بالصيغة الصحيحة";
+
+          setTimeout(() => {
+            this.errorMessage= "";
+          }, 2500);
+        }
+      })
+    }
+  }
+  
+  checkOldPassword(){
+    this.authServ.checkOldPassword(this.editProfileForm.value.oldPassword).subscribe(resault=>{
+      if(resault['message'] === "authintecated"){ 
+        this.oldPasswordCorrect= true;
+      }else{
+        this.oldPasswordCorrect= false;
+        this.errorMessage= "الرجاء التأكد من كلمة السر*";
+
+        setTimeout(()=>{
+          this.errorMessage= ""
+        },2000)
+      }
+    })
+  }
+
   formValuesAsString(){
     let formString= ''+this.editProfileForm.value.userName+this.editProfileForm.value.password+this.editProfileForm.value.confirmPassword+this.editProfileForm.value.phoneNumber+this.editProfileForm.value.email;
-    formString.length > 0 && this.editProfileForm.value.oldPassword ? this.formValidity= true : this.formValidity= false;
+    formString.length > 0 && this.editProfileForm.value.oldPassword ? this.filled= true : this.filled= false;
   }
 
   backToProfile(){

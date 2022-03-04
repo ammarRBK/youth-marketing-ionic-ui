@@ -71,7 +71,7 @@ export class UsersPage implements OnInit {
         this.successMessage= "";
        }, 4000);
       }else{
-        this.errorMessage= "لقد حدثت مشكلة أثناء تسجيل الحساب الرجاء التأكد من بياناتك و كتابتها بشكل وإعادة المحاولة"
+        this.errorMessage= "لقد حدثت مشكلة أثناء تسجيل الحساب الرجاء التأكد من بياناتك و كتابتها بشكل صحيح وإعادة المحاولة"
 
         setTimeout(() => {
           this.errorMessage= "";
