@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content class="fullContent">
-  <form [formGroup]="editProfileForm" (ngSubmit)="editProfileInfo()">
+  <form [formGroup]="editProfileForm" (ngSubmit)="submitEditForm()">
     <ion-item lines="full" id="usernameinput">
       <ion-input
       placeholder="اسم المستخدم الجديد"
@@ -43,16 +43,17 @@
     </ion-item><br><br>
     <ion-text slot="end">للتأكيد أدخل كلمة السر القديمة واضغط على اشارة التأكد التي ستظهر أمام الكلمة</ion-text>
     <ion-item lines="full" id="passwordinput">
+      <ion-button id="checkButton" color="secondary" *ngIf="oldPassword.value != '' && oldPassword.value != null" (click)="checkOldPassword(oldPassword.value)"><ion-icon id="checkIcon" slot="icon-only" name="checkmark-circle-sharp"></ion-icon></ion-button>
       <ion-input
       #oldPassword
       (ionChange)="formValuesAsString()"
       placeholder="كلمة السر القديمة"
       type="password" 
       formControlName="oldPassword"
-      required="true"><ion-icon name="lock-open-sharp"></ion-icon><ion-icon id="checkIcon" *ngIf="oldPassword.value != '' && oldPassword.value != null" name="checkmark-circle-sharp" (click)="checkOldPassword(oldPassword.value)"></ion-icon></ion-input>
+      required="true"><ion-icon name="lock-open-sharp"></ion-icon></ion-input>
     </ion-item>
     <span *ngIf="errorMessage?.length > 0">{{errorMessage}}</span>
     <h2 id="success" *ngIf="successMessage?.length > 0">{{successMessage}}</h2>
-    <ion-button class="subbutton" type="submit" [disabled]="!filled && !oldPasswordCorrect" expand="block" color="success">تعديل المعلومات</ion-button>
+    <ion-button class="subbutton" type="submit" [disabled]="!filled || !oldPasswordCorrect" expand="block" color="success">تعديل المعلومات</ion-button>
   </form>
 </ion-content>

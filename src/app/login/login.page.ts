@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
   
   ngOnInit(){
     this.loginInterfaceForm= this.loginForm.group({
-      phoneNumber: ['',[Validators.required, Validators.minLength(10), Validators.maxLength(14)]],
+      phoneNumber: ['',[Validators.required, Validators.minLength(9), Validators.maxLength(14)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]]
     });
     

@@ -55,7 +55,7 @@ export class EditProfilePage implements OnInit {
               email: null,
               oldPassword: null
             })
-
+            document.getElementById("checkButton").style.color= "secondary";
             this.successMessage= "";
           }, 3000);
         }else{
@@ -69,10 +69,11 @@ export class EditProfilePage implements OnInit {
     }
   }
   
-  checkOldPassword(){
-    this.authServ.checkOldPassword(this.editProfileForm.value.oldPassword).subscribe(resault=>{
+  checkOldPassword(oldPassword){
+    this.authServ.checkOldPassword(oldPassword).subscribe(resault=>{
       if(resault['message'] === "authintecated"){ 
         this.oldPasswordCorrect= true;
+        document.getElementById("checkButton").style.color= "success";
       }else{
         this.oldPasswordCorrect= false;
         this.errorMessage= "الرجاء التأكد من كلمة السر*";
