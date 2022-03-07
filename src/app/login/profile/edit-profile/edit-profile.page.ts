@@ -30,6 +30,8 @@ export class EditProfilePage implements OnInit {
       oldPassword: ['',[Validators.required, Validators.minLength(8)]]
     },
     {validator: MustMatch('password', 'confirmPassword')})
+
+    this.formValuesAsString();
   }
 
   submitEditForm(){
@@ -73,7 +75,11 @@ export class EditProfilePage implements OnInit {
     this.authServ.checkOldPassword(oldPassword).subscribe(resault=>{
       if(resault['message'] === "authintecated"){ 
         this.oldPasswordCorrect= true;
+        this.successMessage= "تم التأكد من كلمة السر"
         document.getElementById("checkButton").style.color= "success";
+        setTimeout(() => {
+          this.successMessage="";
+        }, 1500);
       }else{
         this.oldPasswordCorrect= false;
         this.errorMessage= "الرجاء التأكد من كلمة السر*";
@@ -86,8 +92,11 @@ export class EditProfilePage implements OnInit {
   }
 
   formValuesAsString(){
-    let formString= ''+this.editProfileForm.value.userName+this.editProfileForm.value.password+this.editProfileForm.value.confirmPassword+this.editProfileForm.value.phoneNumber+this.editProfileForm.value.email;
-    formString.length > 0 && this.editProfileForm.value.oldPassword ? this.filled= true : this.filled= false;
+    this.editProfileForm.valueChanges.subscribe(values=>{
+      let formString= ''+ values.userName+ values.password+ values.confirmPassword+ values.phoneNumber+ values.email;
+      formString.length > 0 && values.oldPassword ? this.filled= true : this.filled= false;
+    })
+    
   }
 
   backToProfile(){

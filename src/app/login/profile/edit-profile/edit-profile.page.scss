@@ -5,7 +5,8 @@
 ion-text{
     color: white;
     text-align: end;
-    margin-right: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 #usernameinput{
@@ -54,6 +55,17 @@ ion-text{
 
 #checkIcon{
     font-size: 27px;
+}
+
+#errormessage{
+    background-color:lightpink;
+    color: red;
+    font-weight: bolder;
+}
+
+#success{
+    color: white;
+    background-color: green;
 }
 
 .subbutton{
