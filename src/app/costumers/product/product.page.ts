@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { AlertController, Platform } from '@ionic/angular';
+import { AlertController, Platform, ModalController } from '@ionic/angular';
 import { ProfilePage } from '../../login/profile/profile.page';
+import { EditproductPage } from './editproduct/editproduct.page';
 
 @Component({
   selector: 'app-product',
@@ -12,7 +13,7 @@ import { ProfilePage } from '../../login/profile/profile.page';
 })
 export class ProductPage implements OnInit {
 
-  constructor(private product:ProductsService, private router:Router, private authServ: AuthService, private alert: AlertController, private platform: Platform) { 
+  constructor(private product:ProductsService, private router:Router, private authServ: AuthService, private alert: AlertController, private platform: Platform, private modalcontroler: ModalController) { 
     this.platform.backButton.subscribe(()=>{
       
       this.permit ? this.router.navigateByUrl('home/login/profile') : this.router.navigateByUrl('home/costumers');
@@ -78,6 +79,27 @@ export class ProductPage implements OnInit {
         this.router.navigateByUrl('home');
       }
     })
+  }
+
+  async showEditProductModal(){
+    const editproductmodal= await this.modalcontroler.create({
+      component: EditproductPage,
+      animated: true,
+      backdropDismiss: true,
+      showBackdrop: true,
+      componentProps:{
+        productTitle: this.productinfo.productTitle,
+        productDiscription: this.productinfo.productDisciption,
+        productQuantity: this.productinfo.productQuantity,
+        availableUnits: this.productinfo.availableUnits,
+        productPrice: this.productinfo.productPrice,
+        phoneNumber: this.productinfo.phoneNumber
+      }
+    })
+
+    const { data }= await editproductmodal.onWillDismiss()
+    this.productinfo= data;
+    return await editproductmodal.present()
   }
 
   routeProfile(){

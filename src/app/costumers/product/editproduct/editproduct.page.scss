@@ -1,0 +1,33 @@
+.editform{
+    margin-top: 8%;
+}
+#producttitleinput{
+    color: white;
+    border-radius: 20px;
+    --background: transparent;
+    --border-color: white;
+    border-style:inset;
+    text-align: center;
+    height: 50px;
+    font-weight: bolder;
+}
+
+#description{
+    color: white;
+    border-radius: 20px;
+    --background: transparent;
+    --border-color: white;
+    border-style:inset;
+    text-align: end;
+    height: 80px;
+}
+
+#numbers{
+    color: white;
+    margin-top: 6%;
+    border-radius: 20px;
+    --background: transparent;
+    --border-color: white;
+    border-style:inset;
+    text-align: center;
+}
