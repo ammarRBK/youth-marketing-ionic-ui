@@ -7,7 +7,7 @@
   <form class="editform" [formGroup]="editProductForm" (ngSubmit)="submitEditProduct()">
     <ion-item lines="full" id="producttitleinput">
       <ion-input
-      placeholder="الاسم الجديد للمنتج اذا كنت/ي ترغب/ين بتغييره"
+      placeholder="الاسم الجديد للمنتج في حال ترغب/ين بتغييره"
       type="text"
       formControlName="productTitle"
       ></ion-input>
@@ -15,24 +15,33 @@
 
     <ion-item lines="full" id="description">
       <ion-textarea
-      placeholder="مواصفات المنتج في رغبت/ي بتعديلها"
+      placeholder="مواصفات المنتج في حال رغبت/ي بتعديلها"
       type="text"
       lines="full"
       inputmode="text"
       mode="ios"
       min="5"
       formControlName="productDiscription"
-      required="true"></ion-textarea>
+      ></ion-textarea>
+    </ion-item>
+
+    <ion-item lines="full" id="numbers">
+      <ion-input             
+      placeholder="عدد القطع المتوفرة بعد اضافة أو بيع قطعة"
+      type="number"
+      formControlName="availableUnits"
+      ></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
         <ion-item lines="full" id="numbers">
-          <ion-input             
-          placeholder="عدد القطع المتوفرة"
-          type="number"
-          formControlName="availableUnits"
-          required="true"></ion-input>
+          <ion-input               
+            placeholder="(0.5 JD) سعر المنتج"
+            type="number"
+            lines="full"
+            formControlName="productPrice"
+            ><ion-icon name="cash-outline"></ion-icon></ion-input>
         </ion-item>
       </ion-col>
       <ion-col>
@@ -42,13 +51,21 @@
           placeholder="الكمية باللتر /وزن المنتج"
           type="number"
           formControlName="productQuantity"
-          required="true"></ion-input>
+          ></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
-    <span *ngIf="errormessage !== ''" id="errormessage"><ion-text>{{errormessage}}</ion-text></span>
-    <span *ngIf="editeddmessage !== ''" id="addedsuccess"><ion-text>{{editedmessage}}</ion-text></span>
-    <ion-button type="submit" [disabled]="!editProductForm.valid" color="success" size="large" expand="block" id="submitButt">تعديل المنتج</ion-button>
+
+    <ion-item lines="full" id="phonenumber">
+      <ion-input 
+      placeholder="أدخل رقم الهاتف الجديد يفضل رقم الواتس اب"
+      type="tel"
+      formControlName="phoneNumber"
+      ><ion-icon name="call-sharp"></ion-icon></ion-input>
+    </ion-item>
+    <span slot="end" *ngIf="errormessage !== ''" id="errormessage"><ion-text>{{errormessage}}</ion-text></span>
+    <span slot="end" *ngIf="editeddmessage !== ''" id="editedmessage"><ion-text>{{editedmessage}}</ion-text></span>
+    <ion-button type="submit" [disabled]="!editProductForm.valid || !validity > 0 " color="success" size="large" expand="block" id="submitButt">تعديل المنتج</ion-button>
   </form>
 </ion-content>
 

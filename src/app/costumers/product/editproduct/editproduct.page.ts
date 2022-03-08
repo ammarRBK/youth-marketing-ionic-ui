@@ -18,8 +18,12 @@ export class EditproductPage implements OnInit {
   @Input() productPrice;
   @Input() phoneNumber
 
+  errormessage: string= "";
+  editedmessage: string= "";
+  validity= 0
+
   editProductForm: FormGroup;
-  constructor(private formbuilder: FormBuilder, private productsSer: ProductsService, private router: Router) { }
+  constructor(private formbuilder: FormBuilder, private productsSer: ProductsService, private router: Router) {}
 
   ngOnInit() {
     this.editProductForm= this.formbuilder.group({
@@ -29,6 +33,15 @@ export class EditproductPage implements OnInit {
       availableUnits: ['',[]],
       phoneNumber: ['',[Validators.minLength(9),Validators.maxLength(10)]],
       productPrice: ['',[]]
+    })
+    this.validateForm()
+  }
+
+  validateForm(){
+    this.editProductForm.valueChanges.subscribe(values=>{
+      var lengths= values.productTitle.length + values.productQuantity.length + values.productDiscription.length + values.availableUnits.length + values.phoneNumber.length + values.productPrice.length
+      this.validity= lengths;
+      
     })
   }
 

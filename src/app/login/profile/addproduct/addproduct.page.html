@@ -81,7 +81,7 @@
             </ion-item>
           </ion-col>
         </ion-row>
-        <ion-row *ngIf="category.value.startsWith('مواد غذائية')">
+        <ion-row *ngIf="category.value.startsWith('مواد غذائية') || category.value.startsWith('حلويات')">
           <ion-col>
             <ion-datetime
             [(ngModel)]="defultDateValue"           
