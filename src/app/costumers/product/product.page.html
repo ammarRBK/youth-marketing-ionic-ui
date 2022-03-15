@@ -1,10 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      <ion-button slot="start" size="small" fill="clear" expand="block" (click)="logout()">تسجيل خروج</ion-button>
-      <ion-icon (click)="backward()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon><ion-icon size="large" name="person" (click)="routeProfile()" *ngIf="this.loggedin"></ion-icon>
-      {{productinfo.productTitle}}
-    </ion-title>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-icon (click)="backward()" size="large" class="icon" name="arrow-back-circle-sharp"></ion-icon>
+        </ion-col>
+        <ion-col size="2">
+          <ion-icon size="large" name="person" (click)="routeProfile()" *ngIf="this.loggedin"></ion-icon>
+        </ion-col>
+        <ion-col size="8">
+          <ion-title size="large">
+            <ion-button slot="start" size="small" fill="clear" expand="block" (click)="logout()">تسجيل خروج</ion-button>
+            {{productinfo.productTitle}}
+          </ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
@@ -15,8 +26,8 @@
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
-      <ion-text slot="end"><br>{{productinfo.productCategory}}</ion-text>
-      <strong slot="end"><br>:نوع المنتج</strong>
+      <ion-text slot="end"><br>  {{productinfo.productCategory}}</ion-text>
+      <strong slot="end"><br>   :نوع المنتج</strong>
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
@@ -24,12 +35,12 @@
     </ion-item-divider>
 
     <ion-item-divider mode="ios" id="divider">
-      <ion-text slot="end"><br>KG/Liter   {{productinfo.productQuantity}}</ion-text>
-      <strong slot="end">:الكمية/ الوزن</strong>
-    </ion-item-divider><br><br>
+      <ion-text slot="end">KG/Liter   {{productinfo.productQuantity}}</ion-text>
+      <strong slot="end">  :الكمية/ الوزن</strong>
+    </ion-item-divider><br>
 
     <ion-item-divider mode="ios" id="divider">
-      <ion-text slot="end">{{productinfo.availableUnits}}  </ion-text>
+      <ion-text slot="end">  {{productinfo.availableUnits}}  </ion-text>
       <strong slot="end">    :عدد القطع المتوفرة</strong>
     </ion-item-divider>
 
@@ -56,7 +67,7 @@
       </ion-col>
 
       <ion-col>
-        <ion-button size="large" expand="block" color="warning" (click)="showEditProductModal()">تعديل بيانات المنتج</ion-button>
+        <ion-button size="large" expand="block" color="warning" (click)="presentModal()">تعديل بيانات المنتج</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

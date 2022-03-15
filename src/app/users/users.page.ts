@@ -52,7 +52,7 @@ export class UsersPage implements OnInit {
     }
 
     this.signupServ.signup(user).subscribe(response=>{
-      if(response['successMessage']==="User saved with hashed password"){
+      if(response['message']==="User saved with hashed password"){
         
        this.successMessage= "تهانينا لقد تم تسجيل حسابك لدينا كبائع بإمكانك تسجيل الدخول واضافة منتجاتك"
 

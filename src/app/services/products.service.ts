@@ -41,6 +41,18 @@ export class ProductsService {
     // )
   }
 
+  editProduct(newProductData){
+    return this.http.post(this.url+"products/editproduct", newProductData, this.httpOptions).pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
+
+  editProductImage(imageUri){
+    const filetransfer: FileTransferObject= this.transferer.create();
+    return filetransfer.upload(imageUri, encodeURI(this.url+"products/editimageproduct"))
+  }
+
   getProducts(){
     return this.http.get(this.url+"products/getproducts",this.httpOptions).pipe(
       retry(2),

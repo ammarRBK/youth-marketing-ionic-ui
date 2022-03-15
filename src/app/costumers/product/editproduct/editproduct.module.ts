@@ -5,8 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { EditproductPageRoutingModule } from './editproduct-routing.module';
-
 import { EditproductPage } from './editproduct.page';
+
 
 @NgModule({
   imports: [

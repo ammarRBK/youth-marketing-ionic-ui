@@ -1,6 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{productTitle}}<strong>:تعديل المنتج</strong></ion-title>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-icon id="closeIco" size="large" name="close-outline" (click)="closeModal()"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <ion-title><strong>تعديل المنتج:  {{productTitle}}</strong></ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -63,6 +72,18 @@
       formControlName="phoneNumber"
       ><ion-icon name="call-sharp"></ion-icon></ion-input>
     </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+          <ion-button id="uploadpictue" (click)="uploadNewImage()" color="success">تحميل الصورة</ion-button>
+        </ion-col>
+        <ion-col size="9">
+          <ion-button type="button" id="picture" expand="block" (click)="selectImage()" color="secondary">تعديل صورة المنتج<ion-icon name="image-outline"></ion-icon></ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
     <span slot="end" *ngIf="errormessage !== ''" id="errormessage"><ion-text>{{errormessage}}</ion-text></span>
     <span slot="end" *ngIf="editeddmessage !== ''" id="editedmessage"><ion-text>{{editedmessage}}</ion-text></span>
     <ion-button type="submit" [disabled]="!editProductForm.valid || !validity > 0 " color="success" size="large" expand="block" id="submitButt">تعديل المنتج</ion-button>
