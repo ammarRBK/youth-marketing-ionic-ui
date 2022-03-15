@@ -32,7 +32,7 @@ export class EditproductPage implements OnInit {
   newImageId: string= "";
   errormessage: string= "";
   editedmessage: string= "";
-  validity= 0
+  validity= 0;
 
   editProductForm: FormGroup;
   constructor(private formbuilder: FormBuilder, private productsSer: ProductsService, private router: Router, public productParent: ModalController, private platform: Platform) {
@@ -112,8 +112,8 @@ export class EditproductPage implements OnInit {
 
   validateForm(){
     this.editProductForm.valueChanges.subscribe(values=>{
-      var lengths= values.productTitle.length + values.productQuantity.length + values.productDiscription.length + values.availableUnits.length + values.phoneNumber.length + values.productPrice.length
-      this.validity= lengths;
+      var lengths= '' + values.productTitle.length + values.productQuantity + values.productDiscription.length + values.availableUnits + values.phoneNumber + values.productPrice
+      this.validity= lengths.length;
       
     })
   }
