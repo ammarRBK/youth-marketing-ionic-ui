@@ -2,7 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'; 
 import { ProductsService } from 'src/app/services/products.service';
-import { ModalController, Platform } from '@ionic/angular';
+import { ModalController, Platform, ActionSheetController, ToastController } from '@ionic/angular';
+import {  Camera,CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+import { File } from "@awesome-cordova-plugins/file/ngx";
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
+
 import { ProductPage } from '../product.page';
 
 
@@ -30,12 +34,14 @@ export class EditproductPage implements OnInit {
 
   newImageUrl: string= "";
   newImageId: string= "";
+  imageData:any;
   errormessage: string= "";
   editedmessage: string= "";
   validity= 0;
+  validateUploadButton: boolean= false;
 
   editProductForm: FormGroup;
-  constructor(private formbuilder: FormBuilder, private productsSer: ProductsService, private router: Router, public productParent: ModalController, private platform: Platform) {
+  constructor(private formbuilder: FormBuilder, private productsSer: ProductsService, private router: Router, public productParent: ModalController, private platform: Platform, private actionSheetController: ActionSheetController, private camera: Camera, private toastController: ToastController) {
     this.platform.backButton.subscribe(()=>{
       
       this.productParent.dismiss()
@@ -97,17 +103,90 @@ export class EditproductPage implements OnInit {
     })
   }
 
-  closeModal(){
-    this.productParent.dismiss({
-      productTitle:this.editProductForm.value.productTitle,
-      productDiscription: this.editProductForm.value.productDiscription,
-      productQuantity: this.editProductForm.value.productQuantity,
-      availableUnits: this.editProductForm.value.availableUnits,
-      phoneNumber: this.editProductForm.value.phoneNumber,
-      productPrice: this.editProductForm.value.productPrice
+  async selectImage() {
+    const actionSheet = await this.actionSheetController.create({
+      header: "اختر مصدر صورة المنتج",
+      mode: "ios",
+      buttons: [{
+        text: 'اختيار من المعرض',
+        handler: () => {
+          this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
+        }
+      },
+      {
+        text: 'التقط صورة باستخدام الكاميرا',
+        handler: () => {
+          this.pickImage(this.camera.PictureSourceType.CAMERA);
+        }
+      },
+      {
+        text: 'إلغاء',
+        role: 'cancel'
+      }
+      ]
     });
-    
-    ProductPage.returned.next(false);
+    await actionSheet.present();
+  }
+
+  pickImage(sourceType) {
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType: sourceType,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true
+    }
+    this.camera.getPicture(options).then((imageData) => {
+      this.imageData= imageData;
+      this.validateUploadButton= true;
+    }, (err) => {
+      // Handle error
+      this.errormessage= err === "cordova_not_available" 
+      ? "الرجاء استخدام هاتف جوال لالتقاط او اختيار صورة للمنتج*" 
+      : err;
+      // "حدث خطأ أثناء اختيار ملف الصورة (الرجاء التأكد من الخطأ واعادة المحاولة)*"
+      setTimeout(() => {
+        this.errormessage= "";
+      }, 3000);
+    });
+  }
+
+  uploadNewImage(){
+    let productOptions: FileUploadOptions={
+      fileKey: "productImage",
+      fileName: this.imageData.substr(this.imageData.lastIndexOf('/')+1),
+      mimeType: 'image/jpeg',
+      params: {
+        productId: this.productId,
+        oldImageId: this.imageId
+      }
+    }
+    this.productsSer.editProductImage(this.imageData, productOptions).then(resault=>{
+      if(resault['message'] === "cannot update the image"){
+        this.errormessage= "لم يتم تحميل الصورة الرجاء المحاولة لاحقاً";
+
+        setTimeout(() => {
+          this.errormessage= "";
+        }, 2000);
+        
+      }else{
+        this.presentToast();
+        this.validateUploadButton= false; 
+      }
+    })
+  }
+
+  closeModal(){
+    this.productParent.dismiss();
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'تم تحميل صورة المنتج الجديدة بنجاح',
+      duration: 3000
+    });
+    toast.present();
   }
 
   validateForm(){

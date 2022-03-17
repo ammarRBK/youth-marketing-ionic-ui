@@ -48,9 +48,9 @@ export class ProductsService {
     )
   }
 
-  editProductImage(imageUri){
+  editProductImage(imageUri, imageData){
     const filetransfer: FileTransferObject= this.transferer.create();
-    return filetransfer.upload(imageUri, encodeURI(this.url+"products/editimageproduct"))
+    return filetransfer.upload(imageUri, encodeURI(this.url+"products/editimageproduct"), imageData)
   }
 
   getProducts(){
