@@ -71,5 +71,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-button *ngIf="!this.permit" size="large" expand="block" color="success">شراء المنتج</ion-button>
+  <a id="hyperlink" href="{{'https://api.whatsapp.com/send?phone=962' + productinfo.phoneNumber}}"><ion-button *ngIf="!this.permit" size="large" expand="block" color="success">تواصل مع البائع</ion-button></a>
 </ion-content>

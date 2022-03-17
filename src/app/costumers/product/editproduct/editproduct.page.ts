@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'; 
 import { ProductsService } from 'src/app/services/products.service';
@@ -7,7 +7,7 @@ import {  Camera,CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { File } from "@awesome-cordova-plugins/file/ngx";
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
 
-import { ProductPage } from '../product.page';
+import { ProfilePage } from 'src/app/login/profile/profile.page';
 
 
 @Component({
@@ -81,6 +81,10 @@ export class EditproductPage implements OnInit {
     this.productsSer.editProduct(newProductData).subscribe(resault=>{
       if(resault['message'] === "Product Edited successfully"){
         this.editedmessage= "تم تعديل بيانات المنتج بنجاح اذا أردت/ي تعديل الصورة الرجاء الضغط على اختيار الصورة ثم بعد اختيار الصورة ستظهر أيقونة بجانبها لرفع الصورة";
+
+        ProfilePage.returned.next(false)
+
+        this.productsSer.product= {permited:true, productinfo: resault['product']};
         setTimeout(() => {
           this.editProductForm.setValue({
             productTitle: null,
@@ -171,8 +175,11 @@ export class EditproductPage implements OnInit {
         }, 2000);
         
       }else{
+        this.productsSer.product= {permited:true, productinfo: resault['product']};
         this.presentToast();
-        this.validateUploadButton= false; 
+        this.validateUploadButton= false;
+
+        ProfilePage.returned.next(false)
       }
     })
   }
@@ -183,7 +190,7 @@ export class EditproductPage implements OnInit {
 
   async presentToast() {
     const toast = await this.toastController.create({
-      message: 'تم تحميل صورة المنتج الجديدة بنجاح',
+      message: '                        تم تحميل صورة المنتج الجديدة بنجاح',
       duration: 3000
     });
     toast.present();
