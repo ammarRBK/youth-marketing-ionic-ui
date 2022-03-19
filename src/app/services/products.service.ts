@@ -20,7 +20,10 @@ export class ProductsService {
     })
   }
 
-  product;
+  product: any={
+    productinfo: {},
+    permited: false
+  };
   status="";
   productCategories=["مواد غذائية صنع معمل",
   "حلويات صنع معمل",
@@ -72,6 +75,14 @@ export class ProductsService {
       retry(2),
       catchError(this.handleError)
     )
+  }
+
+  get productData():any{
+    return this.product.productinfo;
+  }
+
+  set productData(product:any){
+    this.product['productinfo']= product;
   }
 
 

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AlertController, Platform, ModalController } from '@ionic/angular';
 import { Subject } from 'rxjs';
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 import { ProfilePage } from '../../login/profile/profile.page';
 import { EditproductPage } from './editproduct/editproduct.page';
 
@@ -13,15 +14,17 @@ import { EditproductPage } from './editproduct/editproduct.page';
   styleUrls: ['./product.page.scss'],
 })
 export class ProductPage implements OnInit {
-  
-  constructor(private productsSer:ProductsService, private router:Router, private authServ: AuthService, private alert: AlertController, private platform: Platform, public modalcontroler: ModalController) { 
+  public static returned: Subject<any> = new Subject();
+  constructor(public productsSer:ProductsService, private router:Router, private authServ: AuthService, private alert: AlertController, private platform: Platform, public modalcontroler: ModalController, private callNumber: CallNumber) { 
     this.platform.backButton.subscribe(()=>{
-      
       this.permit ? this.router.navigateByUrl('home/login/profile') : this.router.navigateByUrl('home/costumers');
     })
+    ProductPage.returned.subscribe(res=>{
+      this.getProductData()
+    })
   }
-  editproductmodal;
-  productinfo= this.productsSer.product.productinfo;
+  
+  
   // {
   //   productTitle: 'عصيري',
   //   productDisciption: "بنميتبسيتنبتسبيسب",
@@ -35,6 +38,7 @@ export class ProductPage implements OnInit {
   //   phoneNumber: 799883355
   // }
   permit= this.productsSer.product.permited
+  productinfo= this.productsSer.productData
   loggedin: boolean;
   ngOnInit() { 
     this.authServ.checkLoggedIn().subscribe(res => {
@@ -96,7 +100,7 @@ export class ProductPage implements OnInit {
   }
 
   async presentModal(){
-    this.editproductmodal= await this.modalcontroler.create({
+    let editproductmodal= await this.modalcontroler.create({
       component: EditproductPage,
       animated: true,
       backdropDismiss: true,
@@ -119,18 +123,28 @@ export class ProductPage implements OnInit {
       }
     })
 
-    return await this.editproductmodal.present()
+    return await editproductmodal.present()
   }
 
-  async getDatafromModal(){
-    const { data }= await this.editproductmodal.onWillDismiss()
-    this.productinfo.productTitle= data.productTitle !== "" || data.productTitle !== null ? data.productTitle : this.productinfo.productTitle;
-    this.productinfo.productDisciption= data.productDiscription !== "" || data.productDiscription !== null ? data.productDiscription : this.productinfo.productDisciption;
-    this.productinfo.productQuantity= data.productQuantity !== "" || data.productQuantity !== null ? data.productQuantity : this.productinfo.productQuantity;
-    this.productinfo.availableUnits= data.availableUnits !== "" || data.availableUnits !== null ? data.availableUnits : this.productinfo.availableUnits;
-    this.productinfo.productPrice= data.productPrice !== "" || data.productPrice !== null ? data.productPrice : this.productinfo.productPrice;
-    this.productinfo.phoneNumber= data.phoneNumber !== "" || data.phoneNumber !== null ? data.phoneNumber : this.productinfo.phoneNumber;
-    this.warningAlert();
+  // async getDatafromModal(){
+  //   const { data }= await this.editproductmodal.onWillDismiss()
+  //   this.productinfo.productTitle= data.productTitle !== "" || data.productTitle !== null ? data.productTitle : this.productinfo.productTitle;
+  //   this.productinfo.productDisciption= data.productDiscription !== "" || data.productDiscription !== null ? data.productDiscription : this.productinfo.productDisciption;
+  //   this.productinfo.productQuantity= data.productQuantity !== "" || data.productQuantity !== null ? data.productQuantity : this.productinfo.productQuantity;
+  //   this.productinfo.availableUnits= data.availableUnits !== "" || data.availableUnits !== null ? data.availableUnits : this.productinfo.availableUnits;
+  //   this.productinfo.productPrice= data.productPrice !== "" || data.productPrice !== null ? data.productPrice : this.productinfo.productPrice;
+  //   this.productinfo.phoneNumber= data.phoneNumber !== "" || data.phoneNumber !== null ? data.phoneNumber : this.productinfo.phoneNumber;
+  //   this.warningAlert();
+  // }
+
+  getProductData(){
+    this.productinfo= this.productsSer.productData
+  }
+
+  openDialer(){
+    this.callNumber.callNumber('0'+this.productinfo.phoneNumber, true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
   }
 
   routeProfile(){

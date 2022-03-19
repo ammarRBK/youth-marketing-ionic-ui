@@ -6,6 +6,13 @@
     color: white;
 }
 
+#userdata{
+    margin-right: 2%;
+    color: black;
+    background-color: white;
+    text-align: end;
+}
+
 #product{
     background: rgba(217, 255, 0, 0.301);
     border-radius: 10px;
@@ -13,21 +20,16 @@
     height: 25%;
 }
 
-#climessage{
-    font-size: large;
-    background-color: rgba(255, 0, 221, 0.425);
-    color: black;
-}
-
-ion-toolbar{
-    display: flexbox;
-}
-
 #hint{
     background-color: black;
     font-size: small;
     border-radius: 20%;
     text-align: center;
+}
+
+#fabicons{
+    --color: black;
+    --background: white;
 }
 
 .prods{

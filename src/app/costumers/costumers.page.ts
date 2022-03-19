@@ -17,7 +17,7 @@ export class CostumersPage implements OnInit {
   scol=[];
   productCategories;
 
-  constructor(private router:Router, private authServ: AuthService, private products: ProductsService, private platform: Platform) { 
+  constructor(private router:Router, private authServ: AuthService, public products: ProductsService, private platform: Platform) { 
     this.productCategories= this.products.productCategories;
 
     this.platform.backButton.subscribe(()=>{
@@ -42,7 +42,8 @@ export class CostumersPage implements OnInit {
   }
 
   showProductPage(product){
-    this.products.product= {permited:false, productinfo:product};
+    this.products.productData= product;
+    this.products.product['permited']= false;
     this.router.navigateByUrl('costumers/product');
   }
 

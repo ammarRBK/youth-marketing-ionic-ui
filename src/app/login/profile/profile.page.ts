@@ -21,10 +21,7 @@ export class ProfilePage implements OnInit {
   constructor(public authServ: AuthService, private productsSer:ProductsService, private platform:Platform, private router: Router) { 
     
     this.platform.backButton.subscribe(()=>{
-      if(!this.userdata){
-        this.router.navigateByUrl('home')
-      }
-      this.router.navigateByUrl('home/users')
+      this.router.navigateByUrl('home')
     })
 
     ProfilePage.returned.subscribe(res=>{
@@ -58,7 +55,9 @@ export class ProfilePage implements OnInit {
   }
 
   showproduct(product){
-    this.productsSer.product= {permited:true, productinfo:product};
+    this.productsSer.productData= product;
+    this.productsSer.product['permited']= true;
+    // this.productsSer.product= {permited:true, productinfo:product};
     this.router.navigateByUrl('home/costumers/product');
   }
 

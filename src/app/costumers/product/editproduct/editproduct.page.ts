@@ -8,6 +8,7 @@ import { File } from "@awesome-cordova-plugins/file/ngx";
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
 
 import { ProfilePage } from 'src/app/login/profile/profile.page';
+import { ProductPage } from '../product.page';
 
 
 @Component({
@@ -81,10 +82,12 @@ export class EditproductPage implements OnInit {
     this.productsSer.editProduct(newProductData).subscribe(resault=>{
       if(resault['message'] === "Product Edited successfully"){
         this.editedmessage= "تم تعديل بيانات المنتج بنجاح اذا أردت/ي تعديل الصورة الرجاء الضغط على اختيار الصورة ثم بعد اختيار الصورة ستظهر أيقونة بجانبها لرفع الصورة";
-
+        
         ProfilePage.returned.next(false)
 
-        this.productsSer.product= {permited:true, productinfo: resault['product']};
+        this.productsSer.productData= resault['product'];
+
+        ProductPage.returned.next(false)
         setTimeout(() => {
           this.editProductForm.setValue({
             productTitle: null,
@@ -175,10 +178,10 @@ export class EditproductPage implements OnInit {
         }, 2000);
         
       }else{
-        this.productsSer.product= {permited:true, productinfo: resault['product']};
+        this.productsSer.productData= resault['product'];
         this.presentToast();
         this.validateUploadButton= false;
-
+        ProductPage.returned.next(false)
         ProfilePage.returned.next(false)
       }
     })
