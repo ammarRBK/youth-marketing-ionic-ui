@@ -15,11 +15,16 @@
 
 <ion-content>
 
-  <div id="userdata">
+  <div *ngIf="userdata === ''" id="userdata">
+    <strong><h1 slot="end">
+      <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+    </h1></strong>
+  </div>
+  <div *ngIf="userdata.length > 0" id="userdata">
     <strong><h1 slot="end">اسم المستخدم:  {{userdata}}</h1></strong>
   </div>
 
-  <div class="prods">
+  <div *ngIf="products.length > 0" class="prods">
     <ion-item id="product" (click)="showproduct(product)" *ngFor="let product of products; index as i" lines="none" color="rgba(255, 0, 234, 0.329)">
       <!-- <ion-label><h2><strong></strong></h2></ion-label> -->
       <ion-grid>
@@ -34,7 +39,7 @@
             </ion-row>
           </ion-col>
           <ion-col size="4">
-            <img [src]="product.image" id="prodimage" width="150px" height="130px"/>
+            <img [src]="product.image" id="prodimage"/>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -48,6 +53,33 @@
         </p>
       </div>
       <img [src]="product.image" id="prodimage" width="150px" height="100px"/> -->
+    </ion-item>
+  </div>
+
+  <div *ngIf="!products.length > 0" class="prods">
+    <ion-item id="product" lines="none" color="rgba(255, 0, 234, 0.329)">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+            <ion-row>
+              <h2>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h2>
+            </ion-row>
+            <ion-row>
+              <h5>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </h5>
+              <h5>
+                <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+              </h5>
+            </ion-row>
+          </ion-col>
+          <ion-col size="4">
+            <ion-skeleton-text animated id="prodimage"></ion-skeleton-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </div>
 

@@ -16,6 +16,7 @@ export class CostumersPage implements OnInit {
   fcol=[];
   scol=[];
   productCategories;
+  productionsLength= 0;
 
   constructor(private router:Router, private authServ: AuthService, public products: ProductsService, private platform: Platform) { 
     this.productCategories= this.products.productCategories;
@@ -35,9 +36,15 @@ export class CostumersPage implements OnInit {
   }
 
   getProds(){
+    this.productionsLength= 0;
     this.products.getProducts().forEach((elem:any)=>{
-
-      elem.length > 0 ? this.productions= elem : this.productions=[];
+      if (elem.length > 0) {
+        this.productions= elem;
+        this.productionsLength= elem.length;
+      } else {
+        this.productions= [];
+        this.productionsLength= 1;
+      }
     })
   }
 

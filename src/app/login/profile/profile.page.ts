@@ -35,6 +35,8 @@ export class ProfilePage implements OnInit {
   }
 
   getMyProducts(){
+    this.userdata= "";
+    this.products= [];
     this.productsSer.getUserProducts().subscribe(result=>{
       if(result['message'] === "you dont have products yet"){ 
         this.userdata= result['userName'];
