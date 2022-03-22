@@ -35,18 +35,25 @@ export class CostumersPage implements OnInit {
     
   }
 
-  getProds(){
+  getProds(event?){
     this.productionsLength= 0;
     this.products.getProducts().forEach((elem:any)=>{
       if (elem.length > 0) {
         this.productions= elem;
         this.productionsLength= elem.length;
+        event ? event.target.complete() : 'done';
       } else {
         this.productions= [];
         this.productionsLength= 1;
+        event ? event.target.complete() : 'done';
       }
     })
   }
+
+  // doRefresh(event){
+  //   this.getProds();
+  //   event.target.complete();
+  // }
 
   showProductPage(product){
     this.products.productData= product;

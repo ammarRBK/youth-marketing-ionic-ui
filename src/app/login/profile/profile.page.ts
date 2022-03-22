@@ -34,16 +34,18 @@ export class ProfilePage implements OnInit {
     this.getMyProducts();
   }
 
-  getMyProducts(){
+  getMyProducts(event?){
     this.userdata= "";
     this.products= [];
     this.productsSer.getUserProducts().subscribe(result=>{
       if(result['message'] === "you dont have products yet"){ 
         this.userdata= result['userName'];
+        event ? event.target.complete() : 'done';
       // this.clientMessage="إذا كنت ترغب بعرض منتجاتك للزبائن مستخدمين التطبيق قم بإضافتها الى ملفك الشخصي لدينا";
       }else{
         this.products= JSON.parse(result['prods']);
         this.userdata= result['userName'];
+        event ? event.target.complete() : 'done';
       }
     })
   }
