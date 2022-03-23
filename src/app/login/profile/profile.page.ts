@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -18,7 +18,7 @@ export class ProfilePage implements OnInit {
   products=[];
   userdata: string;
   public static returned: Subject<any> = new Subject();
-  constructor(public authServ: AuthService, private productsSer:ProductsService, private platform:Platform, private router: Router) { 
+  constructor(public authServ: AuthService, private productsSer:ProductsService, private platform:Platform, private router: Router, private loadingController: LoadingController) { 
     
     this.platform.backButton.subscribe(()=>{
       this.router.navigateByUrl('home')
@@ -51,9 +51,14 @@ export class ProfilePage implements OnInit {
   }
 
   logout(){
+    this.productsSer.loadingProcess('....يتم تسجيل الخروج');
     this.authServ.logout().subscribe(result=>{
       if(result['message'] === "logged out"){
-        this.backToHome();
+        setTimeout(() => {
+          this.loadingController.dismiss();
+          this.backToHome();
+        }, 2000);
+        
       }
     })
   }

@@ -2,7 +2,7 @@ import { Component, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'; 
 import { ProductsService } from 'src/app/services/products.service';
-import { ModalController, Platform, ActionSheetController, ToastController } from '@ionic/angular';
+import { ModalController, Platform, ActionSheetController, ToastController, LoadingController } from '@ionic/angular';
 import {  Camera,CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { File } from "@awesome-cordova-plugins/file/ngx";
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
@@ -42,7 +42,7 @@ export class EditproductPage implements OnInit {
   validateUploadButton: boolean= false;
 
   editProductForm: FormGroup;
-  constructor(private formbuilder: FormBuilder, private productsSer: ProductsService, private router: Router, public productParent: ModalController, private platform: Platform, private actionSheetController: ActionSheetController, private camera: Camera, private toastController: ToastController) {
+  constructor(private formbuilder: FormBuilder, private productsSer: ProductsService, private router: Router, public productParent: ModalController, private platform: Platform, private actionSheetController: ActionSheetController, private camera: Camera, private toastController: ToastController, private loadingController: LoadingController) {
     this.platform.backButton.subscribe(()=>{
       
       this.productParent.dismiss()
@@ -62,6 +62,7 @@ export class EditproductPage implements OnInit {
   }
 
   submitEditProduct(){
+    this.productsSer.loadingProcess('....يتم تعديل بيانات المنتج');
     let newProductData= {
       productId: this.productId,
       productTitle: this.editProductForm.value.productTitle ? this.editProductForm.value.productTitle : this.productTitle,
@@ -81,6 +82,8 @@ export class EditproductPage implements OnInit {
 
     this.productsSer.editProduct(newProductData).subscribe(resault=>{
       if(resault['message'] === "Product Edited successfully"){
+        this.loadingController.dismiss();
+
         this.editedmessage= "تم تعديل بيانات المنتج بنجاح اذا أردت/ي تعديل الصورة الرجاء الضغط على اختيار الصورة ثم بعد اختيار الصورة ستظهر أيقونة بجانبها لرفع الصورة";
         
         ProfilePage.returned.next(false)
@@ -101,6 +104,7 @@ export class EditproductPage implements OnInit {
           this.editedmessage= "";
         }, 4500);
       }else{
+        this.loadingController.dismiss();
         this.errormessage= "لم نتمكن من تعديل البيانات الرجاء التأكد من تعبأتها بشكل صحيح";
         
         setTimeout(() => {
@@ -160,6 +164,7 @@ export class EditproductPage implements OnInit {
   }
 
   uploadNewImage(){
+    this.productsSer.loadingProcess('.....يتم رفع الصورة');
     let productOptions: FileUploadOptions={
       fileKey: "productImage",
       fileName: this.imageData.substr(this.imageData.lastIndexOf('/')+1),
@@ -171,6 +176,7 @@ export class EditproductPage implements OnInit {
     }
     this.productsSer.editProductImage(this.imageData, productOptions).then(resault=>{
       if(resault['message'] === "cannot update the image"){
+        this.loadingController.dismiss();
         this.errormessage= "لم يتم تحميل الصورة الرجاء المحاولة لاحقاً";
 
         setTimeout(() => {
@@ -178,6 +184,7 @@ export class EditproductPage implements OnInit {
         }, 2000);
         
       }else{
+        this.loadingController.dismiss();
         this.productsSer.productData= resault['product'];
         this.presentToast();
         this.validateUploadButton= false;

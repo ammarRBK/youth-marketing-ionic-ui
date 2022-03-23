@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { AlertController, Platform, ModalController } from '@ionic/angular';
+import { AlertController, Platform, ModalController, LoadingController } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 import { ProfilePage } from '../../login/profile/profile.page';
@@ -15,7 +15,7 @@ import { EditproductPage } from './editproduct/editproduct.page';
 })
 export class ProductPage implements OnInit {
   public static returned: Subject<any> = new Subject();
-  constructor(public productsSer:ProductsService, private router:Router, private authServ: AuthService, private alert: AlertController, private platform: Platform, public modalcontroler: ModalController, private callNumber: CallNumber) { 
+  constructor(public productsSer:ProductsService, private router:Router, private authServ: AuthService, private alert: AlertController, private platform: Platform, public modalcontroler: ModalController, private callNumber: CallNumber, private loadingController: LoadingController) { 
     this.platform.backButton.subscribe(()=>{
       this.permit ? this.router.navigateByUrl('home/login/profile') : this.router.navigateByUrl('home/costumers');
     })
@@ -71,6 +71,7 @@ export class ProductPage implements OnInit {
   }
 
   deleteProduct(id, imageId){
+    this.productsSer.loadingProcess('....يتم الآن حذف المنتج')
     let product= {
       productId: id,
       imageId: imageId
@@ -81,7 +82,7 @@ export class ProductPage implements OnInit {
       })
 //refresh the Profile page component to call ngOnInit function another time
       ProfilePage.returned.next(false);
-      
+      this.loadingController.dismiss();
       await afterDeletAlert.present();
 
        setTimeout(() => {
@@ -93,8 +94,13 @@ export class ProductPage implements OnInit {
 
   logout(){
     this.authServ.logout().subscribe(result=>{
+      this.productsSer.loadingProcess('....يتم تسجيل الخروج')
       if(result['message'] === "logged out"){
-        this.router.navigateByUrl('home');
+        setTimeout(() => {
+          this.loadingController.dismiss();
+          this.router.navigateByUrl('home');
+        }, 2000);
+        
       }
     })
   }

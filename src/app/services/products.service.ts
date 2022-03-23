@@ -4,13 +4,14 @@ import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
+import { LoadingController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor(private http: HttpClient, private device: Device, private transferer: FileTransfer) { }
+  constructor(private http: HttpClient, private device: Device, private transferer: FileTransfer, private loadingController: LoadingController) { }
   deviceId= this.device.uuid;
   url= 'https://youth-marketing-server.herokuapp.com/api/';
   httpOptions: object={
@@ -83,6 +84,18 @@ export class ProductsService {
 
   set productData(product:any){
     this.product['productinfo']= product;
+  }
+
+  async loadingProcess(message:string){
+    const loader=await this.loadingController.create({
+      spinner: 'circular',
+      message: message,
+      mode: 'ios',
+      backdropDismiss: true,
+      animated: true,
+      keyboardClose: true
+    })
+    await loader.present();
   }
 
 
