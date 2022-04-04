@@ -4,7 +4,7 @@ import {  Camera,CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { File } from "@awesome-cordova-plugins/file/ngx";
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
 import { Router } from '@angular/router';
-import { ActionSheetController, Platform } from '@ionic/angular';
+import { ActionSheetController, LoadingController, Platform } from '@ionic/angular';
 import { ProductsService } from 'src/app/services/products.service';
 import { ProfilePage } from '../profile.page';
 
@@ -27,7 +27,7 @@ export class AddproductPage implements OnInit {
   defultDateValue= null;
   defultExpireValue= null;
 
-  constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera:Camera, public actionSheetController:ActionSheetController, private platform: Platform, private file:File) { 
+  constructor(private productsServ: ProductsService, private addformbuilder:FormBuilder, private router:Router, private camera:Camera, public actionSheetController:ActionSheetController, private platform: Platform, private file:File, public loadingController: LoadingController) { 
     this.productCategories= this.productsServ.productCategories;
     this.platform.backButton.subscribe(()=>{
       
@@ -133,6 +133,8 @@ export class AddproductPage implements OnInit {
 
   // product requirements= ['productTitle','productDescription','productQuantity','availableUnits','productDate','expirationDate','productImage','productPrice']
   submitAddProduct(){
+    this.productsServ.loadingProcess('!!...جارٍ إضافة المنتج')
+
     let productdata={
       productTitle: this.addinterfaceform.value.productTitle,
       productDescription: this.addinterfaceform.value.productDescription,
@@ -177,11 +179,13 @@ export class AddproductPage implements OnInit {
 
     this.productsServ.addProduct(this.imageUri, productOptions).then(result =>{
       if (result['message']=="cannot add the product") {
+            this.loadingController.dismiss();
             this.errormessage= "حدث خطأ ما أثناء اضافة منتجك* \n الرجاء التأكد من البيانات (اسم المنتج يجب أن لا يكون مكرراً والبيانات معبأة بشكل كامل وصحيح)"
             setTimeout(() => {
               this.errormessage= ""
             }, 3000);
           }else{
+            this.loadingController.dismiss();
             this.fileName= "";
             this.addedmessage= "تم إضافة المنتج بنجاح";
 //refresh the Profile page component to call ngOnInit function another time
@@ -203,6 +207,7 @@ export class AddproductPage implements OnInit {
             }, 2000);
           }
     }).catch(error=>{
+      this.loadingController.dismiss();
         this.errormessage= "حدث خطأ ما أثناء اضافة منتجك* \n الرجاء التأكد من البيانات (اسم المنتج يجب أن لا يكون مكرراً والبيانات معبأة بشكل كامل وصحيح)"
         setTimeout(() => {
           this.errormessage= ""

@@ -27,7 +27,7 @@
     <strong><h1 slot="end">اسم المستخدم:  {{userdata}}</h1></strong>
   </div>
 
-  <div *ngIf="products.length > 0" class="prods">
+  <div *ngIf="products.length > 0 && !products[0] === 'nothing'" class="prods">
     <ion-item id="product" (click)="showproduct(product)" *ngFor="let product of products; index as i" lines="none" color="rgba(255, 0, 234, 0.329)">
       <!-- <ion-label><h2><strong></strong></h2></ion-label> -->
       <ion-grid>
@@ -166,11 +166,11 @@
       <ion-fab-button id="fabicons" (click)="navtoEditProfilePage()">
         <ion-icon  name="create-outline"></ion-icon>
       </ion-fab-button>
-      <ion-label id="hint">تعديل البروفايل</ion-label>
+      <ion-label color="light" id="hint">تعديل البروفايل</ion-label>
       <ion-fab-button id="fabicons" (click)="navtoAddPage()">
         <ion-icon  name="add-outline"></ion-icon>
       </ion-fab-button>
-      <ion-label id="hint">اضافة منتج</ion-label>
+      <ion-label color="light" id="hint">اضافة منتج</ion-label>
     </ion-fab-list>
   </ion-fab>
 </ion-content>
