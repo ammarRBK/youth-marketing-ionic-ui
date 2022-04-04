@@ -227,10 +227,15 @@
 
     --ion-item-background: #1e1e1e;
 
-    --ion-toolbar-background: #1f1f1f;
+    --ion-toolbar-background: #07463d;
 
     --ion-tab-bar-background: #1f1f1f;
 
     --ion-card-background: #1e1e1e;
   }
+}
+
+ion-toolbar{
+  --background: rgb(6, 18, 29);
+  --color: white;
 }

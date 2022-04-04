@@ -40,6 +40,7 @@ export class ProfilePage implements OnInit {
     this.productsSer.getUserProducts().subscribe(result=>{
       if(result['message'] === "you dont have products yet"){ 
         this.userdata= result['userName'];
+        this.products= ['nothing']
         event ? event.target.complete() : 'done';
       // this.clientMessage="إذا كنت ترغب بعرض منتجاتك للزبائن مستخدمين التطبيق قم بإضافتها الى ملفك الشخصي لدينا";
       }else{
