@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, NumberValueAccessor, Validators } from '@angula
 import { MustMatch } from './_helper';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { ProductsService } from '../services/products.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-users',
@@ -19,7 +21,7 @@ export class UsersPage implements OnInit {
   successMessage: string;
   errorMessage: string;
 
-  constructor(private signupForm: FormBuilder, private signupServ: AuthService, private router: Router) { }
+  constructor(private signupForm: FormBuilder, private signupServ: AuthService, private router: Router, private productsSer: ProductsService, public loadingController: LoadingController) { }
 
   ngOnInit() {
     this.signupServ.checkLoggedIn().subscribe(res=>{
@@ -51,10 +53,13 @@ export class UsersPage implements OnInit {
       email: this.interfaceForm.value.email || null
     }
 
+    this.productsSer.loadingProcess('!....يتم تسجيل الحساب الآن');
+
     this.signupServ.signup(user).subscribe(response=>{
       if(response['message']==="User saved with hashed password"){
         
-       this.successMessage= "تهانينا لقد تم تسجيل حسابك لدينا كبائع بإمكانك تسجيل الدخول واضافة منتجاتك"
+        this.loadingController.dismiss()
+        this.successMessage= "تهانينا لقد تم تسجيل حسابك لدينا كبائع بإمكانك تسجيل الدخول واضافة منتجاتك"
 
        setTimeout(() => {
         this.interfaceForm.setValue({
@@ -71,6 +76,7 @@ export class UsersPage implements OnInit {
         this.successMessage= "";
        }, 4000);
       }else{
+        this.loadingController.dismiss()
         this.errorMessage= "لقد حدثت مشكلة أثناء تسجيل الحساب الرجاء التأكد من بياناتك و كتابتها بشكل صحيح وإعادة المحاولة"
 
         setTimeout(() => {

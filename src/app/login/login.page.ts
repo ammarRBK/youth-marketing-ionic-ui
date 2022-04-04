@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginPage implements OnInit {
   errorMessage: string;
   userProfileData: object;
 
-  constructor(private loginForm:FormBuilder, public loginServe: AuthService, private navCtrl: NavController, private router: Router) { }
+  constructor(private loginForm:FormBuilder, public loginServe: AuthService, private navCtrl: NavController, private router: Router, private productsSer: ProductsService, public loadingController: LoadingController) { }
   
   ngOnInit(){
     this.loginInterfaceForm= this.loginForm.group({
@@ -33,23 +34,29 @@ export class LoginPage implements OnInit {
   }
 
   submitLogin(){
+    this.productsSer.loadingProcess('!!...يتم الآن تسجيل الدخول الرجاء الانتظار')
     let user= this.loginInterfaceForm.value;
     this.loginServe.login(user).subscribe(res=>{
       if (!res) {
+        this.loadingController.dismiss()
         console.log("problem in LOGIN")
       }else{
         if(res['message']=== "user Authintecated"){
           console.log(res['user'])
           this.userProfileData= res['user'];
           this.errorMessage='';
+          this.loadingController.dismiss()
           this.router.navigateByUrl('home/login/profile');
 
         }if(res['message']=== "wrong password"){
+          this.loadingController.dismiss()
           this.errorMessage= 'كلمة السر خاطئة الرجاء التأكد من كلمة السر*';
           }else{
             if (res['message'] === "user is not in database") {
-            this.errorMessage= 'رقم الهاتف خاطئ أو المستخدم غير مسجل لدينا الرجاء التأكد من رقم الهاتف* ';
+              this.loadingController.dismiss()
+              this.errorMessage= 'رقم الهاتف خاطئ أو المستخدم غير مسجل لدينا الرجاء التأكد من رقم الهاتف* ';
             } else {
+              this.loadingController.dismiss()
               this.errorMessage= res['message'] + '\n' + "Error: " + res['error'];
           }
         }
