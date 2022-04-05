@@ -36,7 +36,11 @@
 }
 
 #category{
-    --background-color: transparent;
+    --background: transparent;
+    --color: white;
+}
+
+#dates{
     color: white;
 }
 
@@ -82,4 +86,8 @@ ion-label{
 
 ion-row{
     margin-top: 5%;
+}
+
+ion-datetime{
+    --color:white;
 }

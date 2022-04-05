@@ -17,6 +17,7 @@ export class ProfilePage implements OnInit {
   clientMessage:string;
   products=[];
   userdata: string;
+  returnedEmptyProds: boolean= true;
   public static returned: Subject<any> = new Subject();
   constructor(public authServ: AuthService, private productsSer:ProductsService, private platform:Platform, private router: Router, private loadingController: LoadingController) { 
     
@@ -40,10 +41,12 @@ export class ProfilePage implements OnInit {
     this.productsSer.getUserProducts().subscribe(result=>{
       if(result['message'] === "you dont have products yet"){ 
         this.userdata= result['userName'];
-        this.products= ['nothing']
+        this.returnedEmptyProds= true;
+        this.products= ['kdjfkdj'];
         event ? event.target.complete() : 'done';
       // this.clientMessage="إذا كنت ترغب بعرض منتجاتك للزبائن مستخدمين التطبيق قم بإضافتها الى ملفك الشخصي لدينا";
       }else{
+        this.returnedEmptyProds= false;
         this.products= JSON.parse(result['prods']);
         this.userdata= result['userName'];
         event ? event.target.complete() : 'done';

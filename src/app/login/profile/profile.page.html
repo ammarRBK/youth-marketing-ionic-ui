@@ -27,10 +27,10 @@
     <strong><h1 slot="end">اسم المستخدم:  {{userdata}}</h1></strong>
   </div>
 
-  <div *ngIf="products.length > 0 && !products[0] === 'nothing'" class="prods">
+  <div *ngIf="!returnedEmptyProds" class="prods">
     <ion-item id="product" (click)="showproduct(product)" *ngFor="let product of products; index as i" lines="none" color="rgba(255, 0, 234, 0.329)">
       <!-- <ion-label><h2><strong></strong></h2></ion-label> -->
-      <ion-grid>
+      <ion-grid *ngIf="product.productTitle">
         <ion-row>
           <ion-col size="8">
             <ion-row>
