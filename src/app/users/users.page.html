@@ -52,11 +52,20 @@
     </ion-item>
     <hr><hr><hr>
     <ion-item lines="full" id="phonenumber">
-      <ion-input 
-      placeholder="أدخل رقم الهاتف يفضل رقم الواتس اب"
-      type="tel"
-      formControlName="phoneNumber"
-      required="true"><ion-icon name="call-sharp"></ion-icon></ion-input>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3">
+            <ion-input value="+962" [readonly]="true"></ion-input>
+          </ion-col>
+          <ion-col size="9">
+            <ion-input 
+            placeholder="أدخل رقم الهاتف يفضل رقم الواتس اب"
+            type="tel"
+            formControlName="phoneNumber"
+            required="true"><ion-icon name="call-sharp"></ion-icon></ion-input>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
     </ion-item>
     <hr><hr>
     <ion-label><h1 style="color: white;"><strong>:العنوان</strong></h1></ion-label><hr><hr>

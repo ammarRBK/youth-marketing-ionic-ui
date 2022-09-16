@@ -47,6 +47,7 @@
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-file-transfer": "^1.7.1",
     "currency-formatter": "^1.5.9",
+    "firebase": "^9.9.4",
     "jetifier": "^2.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

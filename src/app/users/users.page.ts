@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { ProductsService } from '../services/products.service';
 import { LoadingController } from '@ionic/angular';
+import { getAuth, RecaptchaVerifier } from 'firebase/auth';
 
 @Component({
   selector: 'app-users',
@@ -42,6 +43,14 @@ export class UsersPage implements OnInit {
 
   address(){
     return this.interfaceForm.value.district+"-"+this.interfaceForm.value.block+"-HH"+this.interfaceForm.value.houseHold
+  }
+
+  phoneNumPrepare(){
+    let number= this.interfaceForm.value.phoneNumber;
+    if(number.toString().startsWith('+962') || number.toString().startsWith('962')){
+      return Number(number);
+    }
+    return Number('+962'+number);
   }
 
   submitSignup(){
