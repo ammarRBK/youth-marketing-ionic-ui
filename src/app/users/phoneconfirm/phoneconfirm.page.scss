@@ -1,0 +1,51 @@
+ion-input{
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    --background: transparent;
+    width: 70%;
+    color: white;
+    text-align: center;
+}
+
+#title{
+    text-align: center;
+}
+
+#textcontent{
+    color: white;
+    text-align: center;
+    font-size: large;
+    margin-top: 10%;
+    margin-right: 3%;
+    margin-left: 1%;
+}
+
+#sendcodeButt{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10%;
+}
+
+#questioncontent{
+    color: white;
+    text-align: end;
+    font-size: large;
+    margin-top: 7%;
+    margin-right: 3%;
+    margin-left: 1%;
+}
+
+#editphone{
+    margin-left: 40%;
+}
+
+#resend{
+    margin-right: 10%;
+}
+
+.otpcode{
+    margin-top: 12%;
+    margin-left: 5%;
+    margin-right: 5%;
+}

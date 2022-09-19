@@ -132,7 +132,7 @@
     </ion-item>
     <span *ngIf="errorMessage?.length > 0">{{errorMessage}}</span>
     <h2 id="success" *ngIf="successMessage?.length > 0">{{successMessage}}</h2>
-    <ion-button class="subbutton" type="submit" [disabled]="!interfaceForm.valid" expand="block">تأكيد التسجيل</ion-button>
+    <ion-button id="sendPhone" class="subbutton" type="submit" [disabled]="!interfaceForm.valid" expand="block">تأكيد التسجيل</ion-button>
   </form>
 </div>
 </ion-content>

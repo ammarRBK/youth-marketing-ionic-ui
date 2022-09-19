@@ -3,9 +3,15 @@ import { FormBuilder, FormGroup, NumberValueAccessor, Validators } from '@angula
 import { MustMatch } from './_helper';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { ProductsService } from '../services/products.service';
-import { LoadingController } from '@ionic/angular';
-import { getAuth, RecaptchaVerifier } from 'firebase/auth';
+import { LoadingController, ModalController } from '@ionic/angular';
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+import { PhoneconfirmPage } from './phoneconfirm/phoneconfirm.page';
+
+declare global {
+  interface Window { recaptchaVerifier: any;  confirmationResult: any;}
+}
 
 @Component({
   selector: 'app-users',
@@ -22,15 +28,28 @@ export class UsersPage implements OnInit {
   successMessage: string;
   errorMessage: string;
 
-  constructor(private signupForm: FormBuilder, private signupServ: AuthService, private router: Router, private productsSer: ProductsService, public loadingController: LoadingController) { }
+  public static returned: Subject<any>= new Subject();
+  constructor(private signupForm: FormBuilder, private signupServ: AuthService, private router: Router, private productsSer: ProductsService, public loadingController: LoadingController, public modalCtrl: ModalController) {
+    UsersPage.returned.subscribe(res=>{
+      this.submitSignup();
+    });
+   }
 
   ngOnInit() {
+
+    const auth= getAuth();
+    window.recaptchaVerifier= new RecaptchaVerifier('sendPhone',{
+      'size': 'invisible'
+    },auth)
+
     this.signupServ.checkLoggedIn().subscribe(res=>{
       res['message']=== "loggedin" ? this.router.navigateByUrl('home/login/profile') : console.log("not loggedin")
     })
+
+
     this.interfaceForm= this.signupForm.group({
       userName: ['',[Validators.required,Validators.minLength(3)]],
-      phoneNumber: ['',[Validators.required,Validators.minLength(10), Validators.maxLength(14), Validators.pattern(/\-?\d*\.?\d{1,2}/)]],
+      phoneNumber: ['',[Validators.required,Validators.minLength(9), Validators.maxLength(10), Validators.pattern(/\-?\d*\.?\d{1,2}/)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]],
       confirmPassword: ['',[Validators.required]],
       district: ['',[Validators.required]],
@@ -45,12 +64,36 @@ export class UsersPage implements OnInit {
     return this.interfaceForm.value.district+"-"+this.interfaceForm.value.block+"-HH"+this.interfaceForm.value.houseHold
   }
 
-  phoneNumPrepare(){
-    let number= this.interfaceForm.value.phoneNumber;
-    if(number.toString().startsWith('+962') || number.toString().startsWith('962')){
-      return Number(number);
-    }
-    return Number('+962'+number);
+  sendVerifyCode(phoneNumberElement){
+    this.productsSer.loadingProcess('جارِ التحقق من رقم الهاتف');
+
+    var phoneNumber= this.interfaceForm.value.phoneNumber;
+    const appVerifier = window.recaptchaVerifier;
+    const auth = getAuth();
+    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+    .then(async (confirmationResult) => {
+      // SMS sent. Prompt user to type the code from the message, then sign the
+      // user in with confirmationResult.confirm(code).
+      // window.confirmationResult = confirmationResult;
+      const verifyPhone= await this.modalCtrl.create({
+        component: PhoneconfirmPage,
+        backdropDismiss: true,
+        showBackdrop: true,
+        componentProps: confirmationResult
+      })
+
+      this.loadingController.dismiss()
+      await verifyPhone.present();
+      // ...
+    }).catch((error) => {
+      // Error; SMS not sent
+      this.errorMessage= "لم يتم إرسال رمز التحقق الرجاء التأكد من رقم الهاتف إعادة الضغط على تأكيد التسجيل";
+      setTimeout(() => {
+        phoneNumberElement.setFocus()
+        this.errorMessage= "";
+      }, 3000);
+      // ...
+    });
   }
 
   submitSignup(){

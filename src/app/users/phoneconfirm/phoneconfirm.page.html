@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <ion-icon size="large" (click)="backToHome()" name="arrow-back-sharp"></ion-icon>
+        </ion-col>
+        <ion-col size="8">
+          <ion-title>تأكيد رقم الهاتف</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid> -->
+    <ion-title size="large" id="title">تأكيد رقم الهاتف</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="textcontent">
+    <ion-text>
+    أدخل الرمز المكون من 6 خانات الذي وصلك برسالة نصية 
+    </ion-text><br><br>
+    <ion-text>
+   + الى الرقم<strong> 962798726360</strong>
+    </ion-text>
+  </div>
+  <div class="otpcode">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input type="tel" maxLength="1" id="first" #firstElement [(ngModel)]="first" 
+          (keyup)="moveToNext($event,secondElement)"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input type="tel" maxLength="1" id="second" #secondElement [(ngModel)]="second" 
+          (keyup)="moveToNext($event, thirdElement)"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input type="tel" maxLength="1" id="third" #thirdElement [(ngModel)]="third" 
+          (keyup)="moveToNext($event, fourthElement)"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input type="tel" maxLength="1" id="fourth" #fourthElement [(ngModel)]="fourth" 
+          (keyup)="moveToNext($event, fifthElement)"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input type="tel" maxLength="1" id="fifth" #fifthElement [(ngModel)]="fifth" 
+          (keyup)="moveToNext($event, sixthElement)"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-input type="tel" maxLength="1" id="sixth" #sixthElement [(ngModel)]="sixth" 
+          (keyup)="moveToNext($event, 'done')"></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-button size="large" id="sendcodeButt" [disabled]="!this.sixth">إرسال الرمز</ion-button>
+  <div id="questioncontent">
+    <ion-text>
+      ألم تتلق رمزاً؟
+    </ion-text>
+  </div>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button color="medium" fill="outline" expand="block">تعديل رقم الهاتف</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text id="resend">
+            <ion-button fill="outline" expand="block" [disabled]="this.timer > 0">{{timer}} أعد إرسال الرمز</ion-button> 
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
