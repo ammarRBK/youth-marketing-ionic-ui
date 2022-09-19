@@ -28,7 +28,7 @@
     </div>
   </div>
   <div id="formerea">
-  <form [formGroup]="interfaceForm" (ngSubmit)="submitSignup()">
+  <form [formGroup]="interfaceForm" (ngSubmit)="sendVerifyCode(phoneNumberElement)">
     <ion-item lines="full" id="usernameinput">
       <ion-input
       placeholder="الاسم واسم العائلة أو اللقب"
@@ -62,6 +62,7 @@
             placeholder="أدخل رقم الهاتف يفضل رقم الواتس اب"
             type="tel"
             formControlName="phoneNumber"
+            #phoneNumberElement
             required="true"><ion-icon name="call-sharp"></ion-icon></ion-input>
           </ion-col>
         </ion-row>

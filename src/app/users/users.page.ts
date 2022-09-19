@@ -67,7 +67,7 @@ export class UsersPage implements OnInit {
   sendVerifyCode(phoneNumberElement){
     this.productsSer.loadingProcess('جارِ التحقق من رقم الهاتف');
 
-    var phoneNumber= this.interfaceForm.value.phoneNumber;
+    var phoneNumber= '+962'+this.interfaceForm.value.phoneNumber;
     const appVerifier = window.recaptchaVerifier;
     const auth = getAuth();
     signInWithPhoneNumber(auth, phoneNumber, appVerifier)
