@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { ProductsService } from '../services/products.service';
 import { LoadingController, ModalController } from '@ionic/angular';
+import { initializeApp } from "firebase/app";
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { PhoneconfirmPage } from './phoneconfirm/phoneconfirm.page';
 
@@ -37,11 +38,6 @@ export class UsersPage implements OnInit {
 
   ngOnInit() {
 
-    const auth= getAuth();
-    window.recaptchaVerifier= new RecaptchaVerifier('sendPhone',{
-      'size': 'invisible'
-    },auth)
-
     this.signupServ.checkLoggedIn().subscribe(res=>{
       res['message']=== "loggedin" ? this.router.navigateByUrl('home/login/profile') : console.log("not loggedin")
     })
@@ -58,6 +54,23 @@ export class UsersPage implements OnInit {
       email: ['',[Validators.email]]
     },{validator: MustMatch('password', 'confirmPassword')});
     this.formvalidate=this.interfaceForm.controls
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD1fnhsRF_daPim_g50D4bz7Uf7h4kPkNg",
+      authDomain: "youth-marketing-server.firebaseapp.com",
+      projectId: "youth-marketing-server",
+      storageBucket: "youth-marketing-server.appspot.com",
+      messagingSenderId: "391850460375",
+      appId: "1:391850460375:web:b2967c9181a8ca4f769c92"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    const auth= getAuth();
+    window.recaptchaVerifier= new RecaptchaVerifier('sendPhone',{
+      'size': 'invisible'
+    },auth)
   }
 
   address(){
