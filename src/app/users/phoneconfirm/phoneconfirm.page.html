@@ -53,7 +53,8 @@
       </ion-row>
     </ion-grid>
   </div>
-  <ion-button size="large" id="sendcodeButt" [disabled]="!this.sixth">إرسال الرمز</ion-button>
+  <ion-button size="large" id="sendcodeButt" [disabled]="!this.sixth" (click)="sendCode()">إرسال الرمز</ion-button>
+  <span *ngIf="errorMessage?.length > 0">{{errorMessage}}</span>
   <div id="questioncontent">
     <ion-text>
       ألم تتلق رمزاً؟
