@@ -92,7 +92,9 @@ export class UsersPage implements OnInit {
         component: PhoneconfirmPage,
         backdropDismiss: true,
         showBackdrop: true,
-        componentProps: confirmationResult
+        componentProps: {
+          phoneNumber: phoneNumber
+        }
       })
 
       this.loadingController.dismiss()
