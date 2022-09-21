@@ -68,7 +68,7 @@
         </ion-col>
         <ion-col size="6">
           <ion-text id="resend">
-            <ion-button fill="outline" expand="block" [disabled]="this.timer > 0">{{timer}} أعد إرسال الرمز</ion-button> 
+            <ion-button fill="outline" expand="block" [disabled]="this.timer > 0" (click)="resendVerificationCode()">{{timer}} أعد إرسال الرمز</ion-button> 
           </ion-text>
         </ion-col>
       </ion-row>

@@ -51,13 +51,22 @@ export class LoginPage implements OnInit {
         }if(res['message']=== "wrong password"){
           this.loadingController.dismiss()
           this.errorMessage= 'كلمة السر خاطئة الرجاء التأكد من كلمة السر*';
+          setTimeout(() => {
+            this.errorMessage= ""
+          }, 3000);
           }else{
             if (res['message'] === "user is not in database") {
               this.loadingController.dismiss()
               this.errorMessage= 'رقم الهاتف خاطئ أو المستخدم غير مسجل لدينا الرجاء التأكد من رقم الهاتف* ';
+              setTimeout(() => {
+                this.errorMessage= ""
+              }, 3000);
             } else {
               this.loadingController.dismiss()
               this.errorMessage= res['message'] + '\n' + "Error: " + res['error'];
+              setTimeout(() => {
+                this.errorMessage= ""
+              }, 3000);
           }
         }
       }

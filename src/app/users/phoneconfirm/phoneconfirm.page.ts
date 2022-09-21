@@ -41,16 +41,19 @@ export class PhoneconfirmPage implements OnInit {
     
     window.confirmationResult.confirm(code).then((result)=>{
       if(result){
-        this.closeModal()
+        this.modalCtrl.dismiss();
         UsersPage.returned.next(false);
       }
     }).catch((error)=>{
-      this.errorMessage= error;
+      this.errorMessage= "تم إدخال رمز خاطئ  الرجاء التأكد";
+      setTimeout(() => {
+        this.errorMessage= ""
+      }, 3000);
     })
   }
 
   resendVerificationCode(){
-    this.productSer.loadingProcess('....جارٍ إعادة الرمز')
+    this.productSer.loadingProcess('....جارٍ إعادة ارسال الرمز')
     const auth= getAuth();
     
     signInWithPhoneNumber(auth, this.phoneNumber ,window.recaptchaVerifier).then(async (confirmationResult)=>{

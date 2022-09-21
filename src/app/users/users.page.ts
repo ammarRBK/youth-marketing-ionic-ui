@@ -101,8 +101,9 @@ export class UsersPage implements OnInit {
       await verifyPhone.present();
       // ...
     }).catch((error) => {
+      this.loadingController.dismiss()
       // Error; SMS not sent
-      this.errorMessage= "لم يتم إرسال رمز التحقق الرجاء التأكد من رقم الهاتف إعادة الضغط على تأكيد التسجيل";
+      this.errorMessage= "لم يتم إرسال رمز التحقق الرجاء التأكد من رقم الهاتف ثم إعادة الضغط على تأكيد التسجيل";
       setTimeout(() => {
         phoneNumberElement.setFocus()
         this.errorMessage= "";

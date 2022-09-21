@@ -22,7 +22,7 @@ export class ProfilePage implements OnInit {
   constructor(public authServ: AuthService, private productsSer:ProductsService, private platform:Platform, private router: Router, private loadingController: LoadingController) { 
     
     this.platform.backButton.subscribe(()=>{
-      this.router.navigateByUrl('home')
+      this.backToHome();
     })
 
     ProfilePage.returned.subscribe(res=>{
