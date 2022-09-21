@@ -38,7 +38,7 @@ export class PhoneconfirmPage implements OnInit {
   sendCode(){
     var code= Number(''+this.first+this.second+this.third+this.fourth+this.fifth+this.sixth);
     
-    this.confirmationResult.confirm(code).then((result)=>{
+    window.confirmationResult.confirm(code).then((result)=>{
       if(result){
         this.modalCtrl.dismiss()
         UsersPage.returned.next(false);

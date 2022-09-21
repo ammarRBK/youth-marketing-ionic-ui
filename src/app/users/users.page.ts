@@ -87,7 +87,7 @@ export class UsersPage implements OnInit {
     .then(async (confirmationResult) => {
       // SMS sent. Prompt user to type the code from the message, then sign the
       // user in with confirmationResult.confirm(code).
-      // window.confirmationResult = confirmationResult;
+      window.confirmationResult = confirmationResult;
       const verifyPhone= await this.modalCtrl.create({
         component: PhoneconfirmPage,
         backdropDismiss: true,

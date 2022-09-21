@@ -57,7 +57,7 @@
       <ion-text slot="end"> <br><br>{{productinfo.expirationDate}}</ion-text><strong slot="end">:تاريخ الانتهاء</strong>
     </ion-item-divider>
     <ion-item-divider *ngIf="!this.permit" mode="ios" id="divider">
-      <ion-text slot="end"> <br><br>0{{productinfo.phoneNumber}}</ion-text><strong slot="end">:رقم هاتف البائع</strong>
+      <ion-text slot="end"> <br><br>{{productinfo.phoneNumber}}</ion-text><strong slot="end">:رقم هاتف البائع</strong>
     </ion-item-divider>
   </div>
   <ion-grid *ngIf="this.permit">
