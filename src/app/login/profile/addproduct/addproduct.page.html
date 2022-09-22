@@ -94,7 +94,7 @@
             cancelText="الغاء"
             doneText="اختيار"
             formControlName="expirationDate"
-            required="true"><ion-icon name="calendar-outline"></ion-icon></ion-datetime>
+            required="category.value.startsWith('مواد غذائية') || category.value.startsWith('حلويات')"><ion-icon name="calendar-outline"></ion-icon></ion-datetime>
           </ion-col>
           <ion-col>
             <ion-datetime
@@ -108,7 +108,7 @@
             cancelText="الغاء"
             doneText="اختيار"
             formControlName="productDate"
-            required="true"><ion-icon name="calendar-outline"></ion-icon></ion-datetime>
+            required="category.value.startsWith('مواد غذائية') || category.value.startsWith('حلويات')"><ion-icon name="calendar-outline"></ion-icon></ion-datetime>
           </ion-col>
         </ion-row>
         <ion-row>
