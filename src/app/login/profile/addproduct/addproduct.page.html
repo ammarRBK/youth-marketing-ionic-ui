@@ -73,7 +73,7 @@
             </ion-accordion-group> -->
             <ion-item>
 
-              <ion-select id="category" #category slot="end" placeholder="اختر فئة أو نوع المنتج" interface="popover" formControlName="productCategory" required="true">
+              <ion-select id="category" #category slot="end" placeholder="اختر فئة أو نوع المنتج" interface="popover" formControlName="productCategory" (ionChnange)="setRequired($event)" required="true">
 
                 <ion-select-option *ngFor="let category of productCategories; i as index" [value]="category">{{category}}</ion-select-option>
                 
@@ -94,7 +94,7 @@
             cancelText="الغاء"
             doneText="اختيار"
             formControlName="expirationDate"
-            required="category.value.startsWith('مواد غذائية') || category.value.startsWith('حلويات')"><ion-icon name="calendar-outline"></ion-icon></ion-datetime>
+            ><ion-icon name="calendar-outline"></ion-icon></ion-datetime>
           </ion-col>
           <ion-col>
             <ion-datetime
@@ -108,7 +108,9 @@
             cancelText="الغاء"
             doneText="اختيار"
             formControlName="productDate"
-            required="category.value.startsWith('مواد غذائية') || category.value.startsWith('حلويات')"><ion-icon name="calendar-outline"></ion-icon></ion-datetime>
+            ><ion-icon name="calendar-outline"></ion-icon></ion-datetime>
+            <!-- [required]="category.value.startsWith('مواد غذائية') || category.value.startsWith('حلويات')"
+[required]="category.value.startsWith('مواد غذائية') || category.value.startsWith('حلويات')" -->
           </ion-col>
         </ion-row>
         <ion-row>

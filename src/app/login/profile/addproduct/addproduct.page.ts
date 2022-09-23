@@ -227,6 +227,13 @@ export class AddproductPage implements OnInit {
     this.router.navigateByUrl("home/login/profile")
   }
 
+  setRequired(event){
+    let category= event.target.value;
+
+    category.startsWith('حلويات') || category.startsWith('مواد غذائية') ? document.getElementById('dates').setAttribute('required','') : document.getElementById('dates').removeAttribute('required');
+
+  }
+
   // makeFileIntoBlob(_imagePath) {
   //   // INSTALL PLUGIN - cordova plugin add cordova-plugin-file
   //   return new Promise((resolve, reject) => {
