@@ -148,7 +148,7 @@ export class ProductPage implements OnInit {
   }
 
   openDialer(){
-    this.callNumber.callNumber('0'+this.productinfo.phoneNumber, true)
+    this.callNumber.callNumber('0798726360', false)
       .then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
   }
