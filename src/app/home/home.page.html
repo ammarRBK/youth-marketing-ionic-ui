@@ -21,22 +21,22 @@
     <ion-button mode="ios" expand="round" fill="solid" (click)="costumers()"><strong>زبون</strong></ion-button>
     <ion-button mode="ios" expand="round" fill="solid" (click)="users()"><strong>بائع</strong></ion-button>
   </div>
-  <div id="communicateText">
-    <ion-text>
-      :للشكاوي والاقتراحات تواصل معنا
-    </ion-text>
-  </div>
 </ion-content>
 <ion-footer class="ion-no-border">
   <ion-toolbar>
+    <ion-title>
+      <ion-text>
+        :للشكاوي والاقتراحات تواصل معنا
+      </ion-text>
+    </ion-title>
     <ion-buttons>
-      <ion-button size="large">
+      <ion-button size="large" href="{{'https://api.whatsapp.com/send?phone=962' + 798726360}}">
        واتساب <ion-icon color="success" size="large" name="logo-whatsapp"></ion-icon>
       </ion-button>
-      <ion-button size="large">
+      <ion-button size="large" href="https://www.facebook.com/Youth-Marketing-107037065177889">
        فيسبوك <ion-icon color="primary" size="large" name="logo-facebook"></ion-icon>
       </ion-button>
-      <ion-button>
+      <ion-button href="mailto:youth.marketing.developer@gmail.com">
        ايميل <ion-icon src="../../assets/icons8-gmail-logo.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
