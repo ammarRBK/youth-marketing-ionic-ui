@@ -15,7 +15,7 @@ export class AuthService {
 
   user: object;
   deviceId= String(this.device.uuid);
-  url= 'https://youth-marketing-server.herokuapp.com/api/';
+  url= 'https://youth-marketing-server.onrender.com/api/';
   httpOptions: object={
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin':'*',

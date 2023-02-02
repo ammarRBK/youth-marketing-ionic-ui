@@ -13,7 +13,7 @@ export class ProductsService {
 
   constructor(private http: HttpClient, private device: Device, private transferer: FileTransfer, private loadingController: LoadingController) { }
   deviceId= this.device.uuid;
-  url= 'https://youth-marketing-server.herokuapp.com/api/';
+  url= 'https://youth-marketing-server.onrender.com/api/';
   httpOptions: object={
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin':'*',
