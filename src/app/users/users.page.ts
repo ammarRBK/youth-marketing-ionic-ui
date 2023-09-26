@@ -68,9 +68,8 @@ export class UsersPage implements OnInit {
     const app = initializeApp(firebaseConfig);
 
     const auth= getAuth();
-    window.recaptchaVerifier= new RecaptchaVerifier('sendPhone',{
-      'size': 'invisible'
-    },auth)
+    window.recaptchaVerifier= new RecaptchaVerifier(null,null
+    ,auth)
   }
 
   address(){
