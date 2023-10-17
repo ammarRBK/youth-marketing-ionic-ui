@@ -1,15 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "./out-tsc/app",
-    "types": []
-  },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts"
-  ]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:646779809d2004a871464467d0a2cb2ee2ae94cf05790fb0b5ce5ec3d8498709
+size 302
